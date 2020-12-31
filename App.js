@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import AuthNavigator from './navigation/AuthNavigator';
+import HomeScreen from './screens/HomeScreen.js';
+import firebase from 'firebase'
+import {
+    API_KEY,
+    AUTH_DOMAIN,
+    PROJECT_ID,
+    STORAGE_BUCKET,
+    MESSAGE_SENDER_ID,
+    APP_ID,
+    MEASUREMENT_ID
+} from 'react-native-dotenv'
+const firebaseConfig = {
+    apiKey: API_KEY,
+    authDomain: AUTH_DOMAIN,
+    projectId: PROJECT_ID,
+    storageBucket: STORAGE_BUCKET,
+    messagingSenderId: MESSAGE_SENDER_ID,
+    appId: APP_ID,
+    measurementId:MEASUREMENT_ID
 }
+firebase.initializeApp(firebaseConfig);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default createAppContainer(
+  
+  createSwitchNavigator(
+    {
+      Auth: AuthNavigator,
+      App: HomeScreen,
+    },
+    {
+      initialRouteName: 'Auth'
+    }
+  )
+);
