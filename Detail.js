@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import BackButton from './buttons/BackButton'
 
-import imagePlant from './plants_images/banana.jpg'
 
 const Detail = () => (
   <View style={container}>
+    <BackButton/> 
     <Text style={text}>Banana</Text>
     <Image 
       style={stylesImage.stretch}
@@ -12,6 +13,7 @@ const Detail = () => (
       /> 
   </View>
 );
+
 
 const page = StyleSheet.create({
   container: {
@@ -52,5 +54,6 @@ const stylesImage = StyleSheet.create({
 
 const container = StyleSheet.compose(page.container, lists.listContainer);
 const text = StyleSheet.compose(page.text, lists.listItem);
+
 
 export default Detail;
