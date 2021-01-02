@@ -1,7 +1,7 @@
 import { createSwitchNavigator } from 'react-navigation';
-import LoadingScreen from '../screens/LoadingScreen';
-import SignUpScreen from '../screens/SignUpScreen';
-import SignInScreen from '../screens/SignInScreen';
+import LoadingScreen from '../components/LoadingScreen';
+import SignUpScreen from '../components/SignUpScreen';
+import SignInScreen from '../components/SignInScreen';
 const AuthNavigator = createSwitchNavigator(
   {
     Loading: { screen: LoadingScreen },
