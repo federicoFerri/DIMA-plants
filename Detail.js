@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import BackButton from './buttons/BackButton'
 
+const titolo = 'titolo';
+const descrizione = 'descrizione';
+const image_plant = require('./plants_images/banana.jpg');
 
 const Detail = () => (
   <View style={container}>
@@ -9,8 +12,19 @@ const Detail = () => (
     <Text style={text}>Banana</Text>
     <Image 
       style={stylesImage.stretch}
-      source={require('./plants_images/banana.jpg')}
+      source={image_plant}
       /> 
+    <Info 
+      title={titolo}
+      descr={descrizione}
+    />
+  </View>
+);
+
+const Info = (props) => (
+<View style={container}>
+    <Text style={text}>{props.title}</Text>
+    <Text style={{fontSize: 20, color: '#000'}}>{props.descr}</Text>
   </View>
 );
 
@@ -47,6 +61,7 @@ const stylesImage = StyleSheet.create({
   stretch: {
     width: 357,
     height: 151,
+    flexDirection: 'row',
     resizeMode: 'stretch',
   },
 });
