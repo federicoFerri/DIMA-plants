@@ -24,7 +24,12 @@ const DetailScreen = () => {
 
 const Detail = () => (
   <SafeAreaView style={container}>
-    <BackButton/> 
+    <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
+      <BackButton/> 
+      <Weather
+      source={require('./assets/weather_images/sunny.png')}
+      /> 
+    </SafeAreaView>
     <Text style={{fontSize: 36,
     color: '#000',
     fontFamily:'Comfortaa'}}>Banana</Text>
@@ -61,9 +66,25 @@ const PlantImage = (props) => (
     <Image 
       style={stylesImage.stretch}
       source={props.source}
-      /> 
+      />
   </SafeAreaView>
 )
+
+const Weather = (props) => (
+  <SafeAreaView style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
+    <Image 
+      style={{width: 35, height: 34}}
+      source={props.source}
+      />
+      <View>
+        <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>SUNNY</Text>
+        <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>30 °C</Text>
+        <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>from weather api</Text>
+      </View> 
+       
+  </SafeAreaView>
+)
+
 
 const Info = (props) => (
 <SafeAreaView style={container}>
