@@ -8,6 +8,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.1.0",
+    "expo-font": "~8.3.0",
     "expo": "~39.0.2",
     "expo-analytics-segment": "^9.1.0",
     "expo-facebook": "^9.1.0",
