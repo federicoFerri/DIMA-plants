@@ -10,7 +10,7 @@ const image_plant = require('../plants_images/banana.jpg');
 const DetailScreen = () => {
   //hook to get font
   const [loaded] = useFonts({
-    Comfortaa: require('./assets/fonts/Comfortaa-Regular.ttf'),
+    Comfortaa: require('../assets/fonts/Comfortaa-Regular.ttf'),
   });
 
   if (!loaded) {
@@ -27,7 +27,7 @@ const Detail = () => (
     <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
       <BackButton/> 
       <Weather
-      source={require('./assets/weather_images/sunny.png')}
+      source={require('../assets/weather_images/sunny.png')}
       /> 
     </SafeAreaView>
     <Text style={{fontSize: 36,
@@ -76,11 +76,11 @@ const Weather = (props) => (
       style={{width: 35, height: 34}}
       source={props.source}
       />
-      <View>
-        <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>SUNNY</Text>
-        <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>30 °C</Text>
-        <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>from weather api</Text>
-      </View> 
+    <View>
+      <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>SUNNY</Text>
+      <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>30 °C</Text>
+      <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>from weather api</Text>
+    </View> 
        
   </SafeAreaView>
 )

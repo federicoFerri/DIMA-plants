@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button } from 'react-native';
 import firebase from 'firebase';
+import PlantWidget from './PlantWidget'
 
 
 class HomeScreen extends React.Component {
@@ -27,6 +28,12 @@ class HomeScreen extends React.Component {
               });*/
           }}/>
         </View>
+
+        <PlantWidget
+          source={require('../plants_images/banana.jpg')}
+          name="Banana"
+        /> 
+
       </SafeAreaView>
     );
   }
