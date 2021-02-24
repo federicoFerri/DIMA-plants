@@ -1,3 +1,4 @@
+/*
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -25,3 +26,16 @@ const Plants = () => {
 }
 
 export default Plants;
+*/
+
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import Detail from './Detail';
+import imagePlant from './plants_images/banana.jpg'
+
+const App = () => (
+  <Detail/>
+);
+
+
+export default App;
