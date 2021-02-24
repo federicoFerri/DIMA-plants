@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
-import BackButton from './buttons/BackButton'
+import BackButton from '../buttons/BackButton'
 import { useFonts } from 'expo-font';
 
 const titolo = 'titolo';
 const descrizione = 'descrizione';
-const image_plant = require('./plants_images/banana.jpg');
+const image_plant = require('../plants_images/banana.jpg');
 
 const DetailScreen = () => {
   //hook to get font
