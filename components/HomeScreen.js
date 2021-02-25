@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, Button } from 'react-native';
 import firebase from 'firebase';
 
 
+
 class HomeScreen extends React.Component {
   state = { user: {} };
   componentDidMount() {
@@ -11,23 +12,16 @@ class HomeScreen extends React.Component {
         this.setState({user: user});
       }
     })
- 
   }
 
  
   render() {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <Text>{this.state.user.email}</Text>
-          <Button title="Log Off" onPress={() => {
-            firebase.auth().signOut();
-          /*  analytics.identify("test", {
-                email: "this.state.email"
-              });*/
-          }}/>
-        </View>
-      </SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.container}>
+            <Text>Home</Text>
+          </View>
+        </SafeAreaView>
     );
   }
 }
@@ -38,4 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+
+
 export default HomeScreen;
