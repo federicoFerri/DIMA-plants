@@ -32,6 +32,7 @@ class HomeScreen extends React.Component {
         <PlantWidget
           source={require('../plants_images/banana.jpg')}
           name="Banana"
+          time_left_next_watering={30}
         /> 
 
       </SafeAreaView>
