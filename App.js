@@ -6,7 +6,6 @@ import { firebaseConfig } from './config/firebase.js';
 import AuthNavigator from './navigation/AuthNavigator';
 import AppNavigator from "./navigation/AppNavigator";
 import {NavigationContainer} from "@react-navigation/native";
-import HomeScreen from "./components/HomeScreen";
 
 
 firebase.initializeApp(firebaseConfig);
@@ -37,3 +36,33 @@ const Plants = () => {
 }
 
 export default Plants;
+
+/*
+
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import Detail from './components/Detail';
+import imagePlant from './plants_images/banana.jpg'
+
+const App = () => (
+  <Detail/>
+);
+
+
+export default App;
+*/
+
+/*
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import Detail from './components/Detail';
+import HomeScreen from './components/HomeScreen';
+import imagePlant from './plants_images/banana.jpg'
+
+const App = () => (
+  <HomeScreen/>
+);
+
+
+export default App;
+*/

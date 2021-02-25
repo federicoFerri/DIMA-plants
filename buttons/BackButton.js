@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 
-const image_BackButton = require('../button_images/back_button.png');
+const image_BackButton = require('../assets/button_images/back_button.png');
 
 const BackButton = () => (
   <SafeAreaView>
