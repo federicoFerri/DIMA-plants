@@ -4,6 +4,7 @@ import ProfileScreen from "../components/ProfileScreen";
 import HomeScreen from "../components/HomeScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createStackNavigator} from "@react-navigation/stack";
+import DetailScreen from "../components/DetailScreen";
 
 const CreationStack = createStackNavigator();
 
