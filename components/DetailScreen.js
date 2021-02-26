@@ -7,59 +7,72 @@ const titolo = 'titolo';
 const descrizione = 'descrizione';
 const image_plant = require('../plants_images/banana.jpg');
 
-const DetailScreen = () => {
-  //hook to get font
-  const [loaded] = useFonts({
-    Comfortaa: require('../assets/fonts/Comfortaa-Regular.ttf'),
-  });
+class DetailScreen extends React.Component {
+  state = {fontsLoaded: false};
 
-  if (!loaded) {
-    return <SafeAreaView><Text>no</Text></SafeAreaView>;
+  async loadFonts() {
+    await Font.loadAsync({
+        Comfortaa: require('../assets/fonts/Comfortaa-Regular.ttf')
+    });
+    this.setState({ fontsLoaded: true });
   }
 
-  return (
-    <Detail/>
-  );
+  componentDidMount() {
+    this.loadFonts();
+  }
+  
+  render() {
+    if (this.state.fontsLoaded) {
+      return <Detail/>;
+    }
+    else {
+      return <SafeAreaView><Text>Font not loaded</Text></SafeAreaView>;
+    }
+  }
 }
 
-const Detail = () => (
-  <SafeAreaView style={container}>
-    <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
-      <BackButton/> 
-      <Weather
-      source={require('../assets/weather_images/sunny.png')}
-      /> 
-    </SafeAreaView>
-    <Text style={{fontSize: 36,
-    color: '#000',
-    fontFamily:'Comfortaa'}}>Banana</Text>
-    <PlantImage 
-      source={image_plant}
-      /> 
-    <SafeAreaView style={{flex: 1,flexDirection: 'column'}}>
-      <Info 
-        title={'plant type'}
-        descr={'Fruit plant'}
-      />
-      <Info 
-        title={'position'}
-        descr={'Internal'}
-      />
-      <Info 
-        title={'exposition'}
-        descr={'Sunny'}
-      />
-      <Info 
-        title={'room'}
-        descr={'Living room'}
-      />
-      <Info 
-        title={'location'}
-        descr={"Av. d'Icària, 18908005 Barcelona, Spagna"}
-      />
-    </SafeAreaView>
-  </SafeAreaView>
-);
+class Detail extends React.Component {
+  render() {
+    return (
+      <SafeAreaView style={container}>
+        <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
+          <BackButton/> 
+          <Weather
+          source={require('../assets/weather_images/sunny.png')}
+          /> 
+        </SafeAreaView>
+        <Text style={{fontSize: 36,
+        color: '#000',
+        fontFamily:'Comfortaa'}}>Banana</Text>
+        <PlantImage 
+          source={image_plant}
+          /> 
+        <SafeAreaView style={{flex: 1,flexDirection: 'column'}}>
+          <Info 
+            title={'plant type'}
+            descr={'Fruit plant'}
+          />
+          <Info 
+            title={'position'}
+            descr={'Internal'}
+          />
+          <Info 
+            title={'exposition'}
+            descr={'Sunny'}
+          />
+          <Info 
+            title={'room'}
+            descr={'Living room'}
+          />
+          <Info 
+            title={'location'}
+            descr={"Av. d'Icària, 18908005 Barcelona, Spagna"}
+          />
+        </SafeAreaView>
+      </SafeAreaView>
+    )
+  }
+}
 
 const PlantImage = (props) => (
   <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', marginHorizontal: 30,marginVertical: 10}}>
