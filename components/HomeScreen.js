@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button,TouchableOpacity } from 'react-native';
 import firebase from 'firebase';
 import PlantWidget from './PlantWidget'
 
@@ -15,6 +15,9 @@ class HomeScreen extends React.Component {
     })
   }
 
+  toDetailScreen() {
+    this.props.navigation.navigate('Detail');
+  }
  
   render() {
     return (
@@ -26,7 +29,14 @@ class HomeScreen extends React.Component {
                 source={require('../plants_images/banana.jpg')}
                 name="Banana"
                 time_left_next_watering={30}
+                onPress={() => this.toDetailScreen()}
             />
+            <TouchableOpacity 
+            activeOpacity={0.5}
+            onPress={() => this.toDetailScreen()}>
+                {/*name of the plant */}
+                <Text style={{fontSize: 25, color: '#000', fontFamily:'Comfortaa'}}>ciao</Text>
+          </TouchableOpacity>
         </SafeAreaView>
     );
   }

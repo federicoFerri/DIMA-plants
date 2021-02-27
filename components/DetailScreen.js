@@ -8,7 +8,7 @@ const descrizione = 'descrizione';
 const image_plant = require('../plants_images/banana.jpg');
 
 class DetailScreen extends React.Component {
-  state = {fontsLoaded: false};
+  state = {user: {}, fontsLoaded: false};
 
   async loadFonts() {
     await Font.loadAsync({

@@ -21,6 +21,10 @@ class PlantWidget extends React.Component {
     this.setState({ fontsLoaded: true });
   }
 
+  toDetailScreen() {
+    this.props.onPress;
+  }
+
   componentDidMount() {
     this.loadFonts();
   }
@@ -28,29 +32,31 @@ class PlantWidget extends React.Component {
     if (this.state.fontsLoaded) {
       return (
         <SafeAreaView style={{width: 300, height: 190, flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center'}}>
-          <TouchableOpacity activeOpacity={0.5}>
-              {/*plant image */}
-              <Image 
-              style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
-              source={this.props.source}
-              />
-              {/*name of the plant */}
-              <View style={{position: 'absolute', bottom: 2, left: 8}}>
-                <Text style={{fontSize: 25, color: '#000', fontFamily:'Comfortaa'}}>{this.props.name}</Text>
-              </View>
-              {/*water status image */}
-              <Image 
-              style={{width: 20, height: 25, position: 'absolute', top:4, right:8}}
-              source={water_status_image}
-              />
-              {/*time left and clock image on top left */}
-              <View style={{position: 'absolute', top: 2, left: 4, padding: 5, flex: 1, flexDirection:'row'}}>
+          <TouchableOpacity 
+            activeOpacity={0.5}
+            onPress={() => this.toDetailScreen()}>
+                {/*plant image */}
                 <Image 
-                style={{width: 24, height: 23}}
-                source={clock_image}
+                style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
+                source={this.props.source}
                 />
-                <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering in {this.props.time_left_next_watering} min</Text>
-              </View>
+                {/*name of the plant */}
+                <View style={{position: 'absolute', bottom: 2, left: 8}}>
+                  <Text style={{fontSize: 25, color: '#000', fontFamily:'Comfortaa'}}>{this.props.name}</Text>
+                </View>
+                {/*water status image */}
+                <Image 
+                style={{width: 20, height: 25, position: 'absolute', top:4, right:8}}
+                source={water_status_image}
+                />
+                {/*time left and clock image on top left */}
+                <View style={{position: 'absolute', top: 2, left: 4, padding: 5, flex: 1, flexDirection:'row'}}>
+                  <Image 
+                  style={{width: 24, height: 23}}
+                  source={clock_image}
+                  />
+                  <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering in {this.props.time_left_next_watering} min</Text>
+                </View>
           </TouchableOpacity>
           <View style={{width: 300, padding: 10, flexDirection:'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#E8DFDF', borderBottomRightRadius: 10, borderBottomLeftRadius: 10}}>
             <TouchableOpacity activeOpacity={0.5}>
