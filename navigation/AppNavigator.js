@@ -16,6 +16,17 @@ function CreationStackScreen() {
     );
 }
 
+const DetailStack = createStackNavigator();
+
+function DetailStackScreen() {
+    return (
+        <DetailStack.Navigator >
+            <DetailStack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <DetailStack.Screen name="Detail" component={DetailScreen} options={{ headerShown: false }} />
+        </DetailStack.Navigator>
+    );
+}
+
 const AppNavigator = createBottomTabNavigator();
 
 function AppNavigatorScreen() {
@@ -23,7 +34,7 @@ function AppNavigatorScreen() {
         <AppNavigator.Navigator tabBarOptions={{ showLabel: false }}>
             <AppNavigator.Screen
                 name="Home"
-                component={HomeScreen}
+                component={DetailStackScreen}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ color, size }) => (
