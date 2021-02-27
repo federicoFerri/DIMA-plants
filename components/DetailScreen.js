@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
 import BackButton from '../buttons/BackButton'
-import { useFonts } from 'expo-font';
+import * as Font from "expo-font";
 
 const titolo = 'titolo';
 const descrizione = 'descrizione';
