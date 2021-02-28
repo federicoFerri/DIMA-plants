@@ -11,7 +11,7 @@ const CreationStack = createStackNavigator();
 function CreationStackScreen() {
     return (
         <CreationStack.Navigator>
-            <CreationStack.Screen name="Create" component={CreateScreen} />
+            <CreationStack.Screen name="Create" component={CreateScreen} options={{ headerShown: false }} />
         </CreationStack.Navigator>
     );
 }

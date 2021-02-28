@@ -2,17 +2,28 @@ import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView, Button } from 'react-native';
 import firebase from 'firebase';
 import PlantWidget from './PlantWidget'
+import * as Font from "expo-font";
 
 
 
 class HomeScreen extends React.Component {
-  state = { user: {} };
+  state = { user: {}, plants: []};
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user != null) {
         this.setState({user: user});
+        firebase.firestore().collection('plants').where('uid', '==', user.uid).get().then(snapshot => {
+          const tmpPlants = [];
+          snapshot.forEach(doc => {
+            tmpPlants.push(doc.data());
+          });
+          this.setState({plants: tmpPlants});
+        }).catch(err => {
+          console.log('Error getting documents', err);
+        });
       }
-    })
+    });
   }
 
  
