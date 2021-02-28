@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button,TouchableOpacity } from 'react-native';
 import firebase from 'firebase';
 import PlantWidget from './PlantWidget'
 import * as Font from "expo-font";
@@ -26,6 +26,9 @@ class HomeScreen extends React.Component {
     });
   }
 
+  toDetailScreen = () => {
+    this.props.navigation.navigate('Detail');
+  }
  
   render() {
     return (
@@ -37,6 +40,7 @@ class HomeScreen extends React.Component {
                 source={require('../plants_images/banana.jpg')}
                 name="Banana"
                 time_left_next_watering={30}
+                onPress={() => this.toDetailScreen()}
             />
         </SafeAreaView>
     );

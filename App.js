@@ -6,6 +6,8 @@ import { firebaseConfig } from './config/firebase.js';
 import AuthNavigator from './navigation/AuthNavigator';
 import AppNavigator from "./navigation/AppNavigator";
 import {NavigationContainer} from "@react-navigation/native";
+import {Text, SafeAreaView} from 'react-native';
+import * as Font from "expo-font";
 
 
 firebase.initializeApp(firebaseConfig);
@@ -23,17 +25,34 @@ const AppContainer = createAppContainer(
 );
 
 
-const Plants = () => {
-    return (
-        <SafeAreaProvider>
-            <NavigationContainer>
-            <AppContainer>
+class Plants extends React.Component {
+    state = {fontsLoaded: false};
+    async loadFonts() {
+        await Font.loadAsync({
+            Comfortaa: require('./assets/fonts/Comfortaa-Regular.ttf')
+        });
+        this.setState({ fontsLoaded: true });
+      }
+    componentDidMount() {
+        this.loadFonts();
+    }
+    render() {
+        if (this.state.fontsLoaded) {
+            return (
+                <SafeAreaProvider>
+                    <NavigationContainer>
+                    <AppContainer>
 
-            </AppContainer>
-            </NavigationContainer>
-        </SafeAreaProvider>
-    )
-}
+                    </AppContainer>
+                    </NavigationContainer>
+                </SafeAreaProvider>
+            )
+        }
+        else {
+            return <SafeAreaView><Text>Font not loaded</Text></SafeAreaView>;
+        }
+    }
+};
 
 export default Plants;
 

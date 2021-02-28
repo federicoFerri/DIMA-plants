@@ -5,13 +5,20 @@ import HomeScreen from "../components/HomeScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createStackNavigator} from "@react-navigation/stack";
 import DetailScreen from "../components/DetailScreen";
+import CreatePlantStep1Screen from "../components/CreatePlantStep1Screen";
+import CreatePlantStep2Screen from "../components/CreatePlantStep2Screen";
+import CreatePlantStep3Screen from "../components/CreatePlantStep3Screen";
+import CreatePlantStep4Screen from "../components/CreatePlantStep4Screen";
 
 const CreationStack = createStackNavigator();
 
 function CreationStackScreen() {
     return (
         <CreationStack.Navigator>
-            <CreationStack.Screen name="Create" component={CreateScreen} options={{ headerShown: false }} />
+            <CreationStack.Screen name="CreateStep1" component={CreatePlantStep1Screen} options={{ headerShown: false }} />
+            <CreationStack.Screen name="CreateStep2" component={CreatePlantStep2Screen} options={{ headerShown: false }} />
+            <CreationStack.Screen name="CreateStep3" component={CreatePlantStep3Screen} options={{ headerShown: false }} />
+            <CreationStack.Screen name="CreateStep4" component={CreatePlantStep4Screen} options={{ headerShown: false }} />
         </CreationStack.Navigator>
     );
 }
@@ -21,7 +28,7 @@ const DetailStack = createStackNavigator();
 function DetailStackScreen() {
     return (
         <DetailStack.Navigator >
-            <DetailStack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <DetailStack.Screen name="RealHome" component={HomeScreen} options={{ headerShown: false }} />
             <DetailStack.Screen name="Detail" component={DetailScreen} options={{ headerShown: false }} />
         </DetailStack.Navigator>
     );
@@ -36,7 +43,6 @@ function AppNavigatorScreen() {
                 name="Home"
                 component={DetailStackScreen}
                 options={{
-                    tabBarLabel: '',
                     tabBarIcon: ({ color, size }) => (
                         <Image
                             source={require('../assets/home.png')}
@@ -48,7 +54,7 @@ function AppNavigatorScreen() {
                 name="Create"
                 component={CreationStackScreen}
                 options={{
-                    tabBarLabel: '',
+                    tabBarVisible: false,
                     tabBarIcon: ({ color, size }) => (
                         <Image
                             source={require('../assets/new.png')}
@@ -60,7 +66,6 @@ function AppNavigatorScreen() {
                 name="Profile"
                 component={ProfileScreen}
                 options={{
-                    tabBarLabel: '',
                     tabBarIcon: ({ color, size }) => (
                         <Image
                             source={require('../assets/person.png')}
