@@ -1,6 +1,5 @@
 import React from 'react';
 import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
-import * as Font from "expo-font";
 
 const clock_image = require('../assets/button_images/clock.png');
 const water_status_image = require('../assets/button_images/water_status.png');
@@ -12,24 +11,10 @@ const water_status_image = require('../assets/button_images/water_status.png');
 */}
 
 class PlantWidget extends React.Component {
-  state = {fontsLoaded: false};
-
-  async loadFonts() {
-    await Font.loadAsync({
-        Comfortaa: require('../assets/fonts/Comfortaa-Regular.ttf')
-    });
-    this.setState({ fontsLoaded: true });
-  }
-
   toDetailScreen() {
     this.props.onPress;
   }
-
-  componentDidMount() {
-    this.loadFonts();
-  }
   render() {
-    if (this.state.fontsLoaded) {
       return (
         <SafeAreaView style={{width: 300, height: 190, flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity 
@@ -80,10 +65,6 @@ class PlantWidget extends React.Component {
           </View>
         </SafeAreaView>
       );
-    }
-    else{
-      return null;
-    }
   }
 }
 

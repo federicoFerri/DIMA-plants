@@ -1,33 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
 import BackButton from '../buttons/BackButton'
-import * as Font from "expo-font";
 
 const titolo = 'titolo';
 const descrizione = 'descrizione';
 const image_plant = require('../plants_images/banana.jpg');
 
 class DetailScreen extends React.Component {
-  state = {user: {}, fontsLoaded: false};
-
-  async loadFonts() {
-    await Font.loadAsync({
-        Comfortaa: require('../assets/fonts/Comfortaa-Regular.ttf')
-    });
-    this.setState({ fontsLoaded: true });
-  }
-
-  componentDidMount() {
-    this.loadFonts();
-  }
+  state = {user: {}};
   
   render() {
-    if (this.state.fontsLoaded) {
       return <Detail/>;
-    }
-    else {
-      return <SafeAreaView><Text>Font not loaded</Text></SafeAreaView>;
-    }
+
   }
 }
 
