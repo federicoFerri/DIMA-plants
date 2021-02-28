@@ -15,7 +15,7 @@ class HomeScreen extends React.Component {
     })
   }
 
-  toDetailScreen() {
+  toDetailScreen = () => {
     this.props.navigation.navigate('Detail');
   }
  

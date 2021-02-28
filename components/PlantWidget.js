@@ -8,18 +8,19 @@ const water_status_image = require('../assets/button_images/water_status.png');
   @source: a png image of the plant
   @name: the name of the plant
   @time_left_next_watering: time left to the next watering in minutes
+  @onPress: if image of the widget is pressed, it launches an event like TouchableOpacity
 */}
 
 class PlantWidget extends React.Component {
-  toDetailScreen() {
-    this.props.onPress;
+  imagePressed = () => () => {
+    this.props.onPress()
   }
   render() {
       return (
         <SafeAreaView style={{width: 300, height: 190, flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity 
             activeOpacity={0.5}
-            onPress={() => this.toDetailScreen()}>
+            onPress={this.imagePressed()}>
                 {/*plant image */}
                 <Image 
                 style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
