@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 

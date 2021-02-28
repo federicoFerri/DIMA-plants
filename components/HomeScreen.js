@@ -31,12 +31,6 @@ class HomeScreen extends React.Component {
                 time_left_next_watering={30}
                 onPress={() => this.toDetailScreen()}
             />
-            <TouchableOpacity 
-            activeOpacity={0.5}
-            onPress={() => this.toDetailScreen()}>
-                {/*name of the plant */}
-                <Text style={{fontSize: 25, color: '#000', fontFamily:'Comfortaa'}}>ciao</Text>
-          </TouchableOpacity>
         </SafeAreaView>
     );
   }

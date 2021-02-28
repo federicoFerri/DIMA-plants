@@ -5,16 +5,20 @@ import HomeScreen from "../components/HomeScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createStackNavigator} from "@react-navigation/stack";
 import DetailScreen from "../components/DetailScreen";
-import AddPlantStep1Screen from "../components/AddPlantStep1Screen";
-import AddPlantStep2Screen from "../components/AddPlantStep2Screen";
+import CreatePlantStep1Screen from "../components/CreatePlantStep1Screen";
+import CreatePlantStep2Screen from "../components/CreatePlantStep2Screen";
+import CreatePlantStep3Screen from "../components/CreatePlantStep3Screen";
+import CreatePlantStep4Screen from "../components/CreatePlantStep4Screen";
 
 const CreationStack = createStackNavigator();
 
 function CreationStackScreen() {
     return (
         <CreationStack.Navigator>
-            <CreationStack.Screen name="Create" component={AddPlantStep1Screen} />
-            <CreationStack.Screen name="CreateStep2" component={AddPlantStep2Screen} />
+            <CreationStack.Screen name="Create" component={CreatePlantStep1Screen} />
+            <CreationStack.Screen name="CreateStep2" component={CreatePlantStep2Screen} />
+            <CreationStack.Screen name="CreateStep3" component={CreatePlantStep3Screen} />
+            <CreationStack.Screen name="CreateStep4" component={CreatePlantStep4Screen} />
         </CreationStack.Navigator>
     );
 }
