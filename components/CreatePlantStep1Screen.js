@@ -14,11 +14,12 @@ class CreatePlantStep1Screen extends React.Component {
     }
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center'}}>
+            <SafeAreaView style={{ flex: 1, flexDirection:'column'}}>
                 <HeaderCreatePlant
-                    forwardPress={() => this.toStep2()} backPress={() => this.toHome()}
+                    forwardPress={() => this.toStep2()} 
+                    backPress={() => this.toHome()}
                 />
-                <Text style={{fontSize: 36, color: '#000', fontFamily:'Comfortaa'}}>Add a plant</Text>
+                <Text style={{fontSize: 36, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>Add a plant</Text>
             </SafeAreaView>
         )
     }

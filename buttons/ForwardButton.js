@@ -19,7 +19,7 @@ class ForwardButton extends React.Component {
                     onPress={this.imagePressed()}
                 >
                     <Image 
-                        style={stylesImage.backButton}
+                        style={stylesImage.forwardButton}
                         source={image_ForwardButton}
                         /> 
                 </TouchableOpacity>
@@ -31,10 +31,11 @@ class ForwardButton extends React.Component {
 
 
 const stylesImage = StyleSheet.create({
-    flex: 1,
     forwardButton: {
-      width: 28,
-      height: 23,
+      width: 32,
+      height: 27,
+      resizeMode: 'contain',
+      marginTop: 17
     },
   });
 

@@ -13,11 +13,12 @@ class CreatePlantStep2Screen extends React.Component {
     }
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center'}}>
+            <SafeAreaView style={{ flex: 1, flexDirection:'column'}}>
                 <HeaderCreatePlant
-                    forwardPress={() => this.toStep3()} backPress={() => this.toStep1()}
+                    forwardPress={() => this.toStep3()} 
+                    backPress={() => this.toStep1()}
                 />
-                <Text style={{fontSize: 36, color: '#000', fontFamily:'Comfortaa'}}>Position</Text>
+                <Text style={{fontSize: 36, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>Position</Text>
             </SafeAreaView>
         )
     }
