@@ -11,6 +11,7 @@ class CreatePlantStep1Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
+        plantImage:'',
     }
 
     toStep2 = () => {

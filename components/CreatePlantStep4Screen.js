@@ -4,6 +4,16 @@ import HeaderCreatePlant from './HeaderCreatePlant';
 import { CommonActions } from "@react-navigation/native";
 
 class CreatePlantStep4Screen extends React.Component {
+    state = {
+        plantName: '',
+        plantType: '',
+        plantImage:'',
+        externalInternal: '',
+        exposition: '',
+        roomName:'',
+        address:'',
+    }
+    
     toEnd = () => {
         this.props.navigation.dispatch(
             CommonActions.reset({
