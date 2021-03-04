@@ -11,7 +11,6 @@ class CreatePlantStep1Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
-        selectedValue: 'java',
     }
 
     toStep2 = () => {
@@ -44,10 +43,14 @@ class CreatePlantStep1Screen extends React.Component {
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000', marginLeft: 15, marginTop:15,}}
+                        textInputProps={{fontSize: 15, color: '#000', marginLeft: 15, fontFamily: 'Comfortaa'}}
                         useNativeAndroidPickerStyle={false}
-                        //onDownArrow={this.handlePlantType}
-                        onValueChange={(value) => console.log(value)}
+                        placeholder={{
+                            label: 'Select a plant type',
+                            value: null,
+                            color: 'gray',
+                          }}
+                        onValueChange={(value) => this.handlePlantType(value)}
                         
                         Icon={() => {
                             return <DownArrow/>;
