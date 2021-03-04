@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView, TextInput} from 'react-native';
-import {Picker} from '@react-native-picker/picker'
+import RNPickerSelect from 'react-native-picker-select';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 import HeaderCreatePlant from './HeaderCreatePlant';
 import {NavigationActions} from "react-navigation";
+import DownArrow from '../buttons/DownArrow';
 
 class CreatePlantStep1Screen extends React.Component {
     state = {
@@ -34,19 +35,32 @@ class CreatePlantStep1Screen extends React.Component {
                 />
                 <Text style={{fontSize: 36, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>Add a plant</Text>
                 <TextInput
-                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', padding:15}}
+                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}
                     placeholder = "Name of the plant"
                     placeholderTextColor = 'black'
                     onChangeText = {this.handlePlantName}
                 />
-                <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa'}}>
-                    <Picker
-                        style={{marginLeft: 4, fontSize: 30, color: '#000', fontFamily:'Comfortaa'}}
-                    >
-                        <Picker.Item label="Tomato" value="tomato"/>
-                        <Picker.Item label="Rose" value="rose" />
-                    </Picker>
+                
+                <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
+                    <RNPickerSelect
+                        style={{}}
+                        textInputProps={{fontSize: 15, color: '#000', marginLeft: 15, marginTop:15,}}
+                        useNativeAndroidPickerStyle={false}
+                        //onDownArrow={this.handlePlantType}
+                        onValueChange={(value) => console.log(value)}
+                        
+                        Icon={() => {
+                            return <DownArrow/>;
+                          }}
+                        items={[
+                            { label: 'Tomato', value: 'tomato' },
+                            { label: 'Rose', value: 'rose' },
+                            { label: 'Tulipan', value: 'tulipan' },
+                        ]}
+                    />
                 </SafeAreaView>
+                    
+                
                 
             </SafeAreaView>
         )
