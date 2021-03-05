@@ -1,17 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 import HeaderCreatePlant from './HeaderCreatePlant';
 import {NavigationActions} from "react-navigation";
 import DownArrow from '../buttons/DownArrow';
+import * as ImagePicker from 'expo-image-picker';
 
 class CreatePlantStep1Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
         plantImage:'',
+    }
+
+    openImagePickerAsync = () => {
+        permissionResult = ImagePicker.requestMediaLibraryPermissionsAsync();
+    
+        if (permissionResult.granted === false) {
+          alert("Permission to access camera roll is required!");
+          return;
+        }
+    
+        lpickerResult = ImagePicker.launchImageLibraryAsync();
+        console.log(pickerResult);
     }
 
     toStep2 = () => {
@@ -63,6 +76,11 @@ class CreatePlantStep1Screen extends React.Component {
                         ]}
                     />
                 </SafeAreaView>
+
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Button title="Pick an image from camera roll" onPress={this.openImagePickerAsync} />
+                    
+                </View>
                     
                 
                 
