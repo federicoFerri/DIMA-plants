@@ -12,19 +12,24 @@ class CreatePlantStep1Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
-        plantImage:'',
+        plantImage: 'https://i.imgur.com/TkIrScD.png',
     }
 
-    openImagePickerAsync = () => {
-        permissionResult = ImagePicker.requestMediaLibraryPermissionsAsync();
+    openImagePickerAsync = async () => {
+        let permissionResult = ImagePicker.requestMediaLibraryPermissionsAsync();
     
         if (permissionResult.granted === false) {
           alert("Permission to access camera roll is required!");
           return;
         }
     
-        lpickerResult = ImagePicker.launchImageLibraryAsync();
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
         console.log(pickerResult);
+        if (pickerResult.cancelled === true) {
+            return;
+        }
+        this.setState({ plantImage: pickerResult.uri });
+        console.log('hey ' + this.state.plantImage);
     }
 
     toStep2 = () => {
@@ -79,7 +84,7 @@ class CreatePlantStep1Screen extends React.Component {
 
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Button title="Pick an image from camera roll" onPress={this.openImagePickerAsync} />
-                    
+                    {this.state.plantImage && <Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250}}/>}
                 </View>
                     
                 
