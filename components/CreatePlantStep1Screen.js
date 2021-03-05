@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button, TouchableOpacity} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
@@ -8,22 +8,31 @@ import {NavigationActions} from "react-navigation";
 import DownArrow from '../buttons/DownArrow';
 import * as ImagePicker from 'expo-image-picker';
 
+import plant_load_image from '../assets/button_images/add_a_photo.png'
+
+const plantLoadImageUri = Image.resolveAssetSource(plant_load_image).uri
+
 class CreatePlantStep1Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
-        plantImage: 'https://i.imgur.com/TkIrScD.png',
+        plantImage: plantLoadImageUri,
     }
 
     openImagePickerAsync = async () => {
         let permissionResult = ImagePicker.requestMediaLibraryPermissionsAsync();
+        let permissionResultCamera = ImagePicker.requestCameraPermissionsAsync();
     
-        if (permissionResult.granted === false) {
-          alert("Permission to access camera roll is required!");
+        if (permissionResult.granted === false && (await permissionResultCamera).granted === false) {
+          alert("Permission to access camera roll and camera are required!");
           return;
         }
-    
-        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        //launchImagwLibraryAsync() for selection of saved images
+        let pickerResult = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+          } );
         console.log(pickerResult);
         if (pickerResult.cancelled === true) {
             return;
@@ -81,12 +90,19 @@ class CreatePlantStep1Screen extends React.Component {
                         ]}
                     />
                 </SafeAreaView>
-
+                <Text style={{fontSize: 15, color: '#000', marginLeft: 15, marginTop: 15}}>Tap to add a photo</Text>
+                {/*
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Button title="Pick an image from camera roll" onPress={this.openImagePickerAsync} />
                     {this.state.plantImage && <Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250}}/>}
                 </View>
-                    
+                */}
+                <TouchableOpacity 
+                    activeOpacity={0.5}
+                    onPress={this.openImagePickerAsync}
+                    style={{width: 300, height: 250, alignSelf: 'center'}}>
+                        {this.state.plantImage && <Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250, alignSelf: 'center'}}/>}  
+                </TouchableOpacity>
                 
                 
             </SafeAreaView>
