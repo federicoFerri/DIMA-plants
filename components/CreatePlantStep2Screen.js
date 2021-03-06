@@ -46,7 +46,7 @@ class CreatePlantStep2Screen extends React.Component {
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000', marginLeft: 15, fontFamily: 'Comfortaa'}}
+                        textInputProps={{fontSize: 15, color: '#000'}}
                         useNativeAndroidPickerStyle={false}
                         placeholder={{
                             label: 'External/Internal',
@@ -68,7 +68,7 @@ class CreatePlantStep2Screen extends React.Component {
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000', marginLeft: 15, fontFamily: 'Comfortaa'}}
+                        textInputProps={{fontSize: 15, color: '#000'}}
                         useNativeAndroidPickerStyle={false}
                         placeholder={{
                             label: 'Exposition',
@@ -89,9 +89,9 @@ class CreatePlantStep2Screen extends React.Component {
                 </SafeAreaView>
 
                 <TextInput
-                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}
+                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', padding:15}}
                     placeholder = "Name of the room (optional)"
-                    placeholderTextColor = 'black'
+                    placeholderTextColor = 'gray'
                     onChangeText = {this.handleRoomName}
                 />
 

@@ -33,12 +33,12 @@ class CreatePlantStep1Screen extends React.Component {
             aspect: [4, 3],
             quality: 1,
           } );
-        console.log(pickerResult);
+        //console.log(pickerResult);
         if (pickerResult.cancelled === true) {
             return;
         }
         this.setState({ plantImage: pickerResult.uri });
-        console.log('hey ' + this.state.plantImage);
+        //console.log('hey ' + this.state.plantImage);
     }
 
     toStep2 = () => {
@@ -62,16 +62,16 @@ class CreatePlantStep1Screen extends React.Component {
                 />
                 <Text style={{fontSize: 36, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>Add a plant</Text>
                 <TextInput
-                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}
+                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', padding:15}}
                     placeholder = "Name of the plant"
-                    placeholderTextColor = 'black'
+                    placeholderTextColor = 'gray'
                     onChangeText = {this.handlePlantName}
                 />
                 
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000', marginLeft: 15, fontFamily: 'Comfortaa'}}
+                        textInputProps={{fontSize: 15, color: '#000', fontFamily: 'Comfortaa'}}
                         useNativeAndroidPickerStyle={false}
                         placeholder={{
                             label: 'Select a plant type',
