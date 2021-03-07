@@ -35,9 +35,9 @@ class CreatePlantStep3Screen extends React.Component {
                 />
                 <Text style={{fontSize: 36, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>Address</Text>
                 <TextInput
-                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}
+                    style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', padding:15}}
                     placeholder = "Enter address"
-                    placeholderTextColor = 'black'
+                    placeholderTextColor = 'gray'
                     onChangeText = {this.handleAddress}
                 />
             </SafeAreaView>

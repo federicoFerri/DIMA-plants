@@ -61,7 +61,7 @@ class PlantWidget extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.5}>
                 <Image 
-                  style={{width: 30, height: 30}}
+                  style={{width: 32, height: 30}}
                   source={require('../assets/button_images/bad_plant.png')}
                 />
             </TouchableOpacity>
