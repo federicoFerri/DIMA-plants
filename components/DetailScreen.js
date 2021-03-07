@@ -2,14 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
 import BackButton from '../buttons/BackButton'
 
-const titolo = 'titolo';
-const descrizione = 'descrizione';
-const image_plant = require('../plants_images/banana.jpg');
-
 class DetailScreen extends React.Component {
-  state = {user: {}};
+    state = { user: {}, plant: {}};
+    componentDidMount() {
+        this.setState({
+            user: this.props.route.params.user,
+            plant: this.props.route.params.plant
+        });
+    }
   
-  render() {
+    render() {
       return (
           <SafeAreaView style={container}>
             <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
@@ -20,14 +22,14 @@ class DetailScreen extends React.Component {
             </SafeAreaView>
             <Text style={{fontSize: 36,
               color: '#000',
-              fontFamily:'Comfortaa'}}>Banana</Text>
+              fontFamily:'Comfortaa'}}>{this.state.plant.name}</Text>
             <PlantImage
-                source={image_plant}
+                source={{uri: this.state.plant.imageUrl}}
             />
             <SafeAreaView style={{flex: 1,flexDirection: 'column'}}>
               <Info
                   title={'plant type'}
-                  descr={'Fruit plant'}
+                  descr={this.state.plant.plantType}
               />
               <Info
                   title={'position'}

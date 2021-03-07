@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Button,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Button, TouchableOpacity, FlatList } from 'react-native';
 import firebase from 'firebase';
 import PlantWidget from './PlantWidget'
 import * as Font from "expo-font";
@@ -7,41 +7,62 @@ import * as Font from "expo-font";
 
 
 class HomeScreen extends React.Component {
-  state = { user: {}, plants: []};
+  state = { user: {}, plants: [], isFetching: true};
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user != null) {
         this.setState({user: user});
-        firebase.firestore().collection('plants').where('uid', '==', user.uid).get().then(snapshot => {
-          const tmpPlants = [];
-          snapshot.forEach(doc => {
-            tmpPlants.push(doc.data());
-          });
-          this.setState({plants: tmpPlants});
-        }).catch(err => {
-          console.log('Error getting documents', err);
-        });
+        this.onRefresh();
       }
     });
   }
 
-  toDetailScreen = () => {
-    this.props.navigation.navigate('Detail');
+  toDetailScreen = (plant) => {
+    this.props.navigation.navigate('Detail', {
+      plant: plant,
+      user: this.state.user
+    });
+  }
+
+  onRefresh() {
+    this.setState({isFetching: true});
+    firebase.firestore().collection('plants').where('uid', '==', this.state.user.uid).get().then(snapshot => {
+      const tmpPlants = [];
+      snapshot.forEach(doc => {
+        tmpPlants.push(doc.data());
+      });
+      this.setState({plants: tmpPlants, isFetching: false});
+    }).catch(err => {
+      console.log('Error getting documents', err);
+    });
   }
  
   render() {
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-          <View style={styles.container}>
-            <Text>Home</Text>
-          </View>
-            <PlantWidget
-                source={require('../plants_images/banana.jpg')}
-                name="Banana"
-                time_left_next_watering={30}
-                onPress={() => this.toDetailScreen()}
+        <SafeAreaView style={{ flex: 1}}>
+          <Text style={{fontSize: 36, color: '#000', fontFamily: 'Comfortaa', marginTop: 50, marginLeft: 10}}>Profile</Text>
+          <View style={{alignItems: 'center'}}>
+            <FlatList style={{marginTop: 15}}
+                data={this.state.plants}
+                renderItem={({ item }) => (
+                    <PlantWidget
+                        image_url={item.imageUrl}
+                        name={item.name}
+                        time_left_next_watering={30}
+                        onPress={() => this.toDetailScreen(item)}
+                    />
+                )}
+                keyExtractor={(item, index) => index.toString()}
+                refreshing={this.state.isFetching}
+                onRefresh={() => this.onRefresh()}
+                ListEmptyComponent={() => (
+                    <View>
+                      <Text>Non hai nessuna pianta, aggiungi una pianta!</Text>
+                    </View>
+                )}
             />
+          </View>
         </SafeAreaView>
     );
   }

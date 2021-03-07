@@ -12,9 +12,11 @@ const water_status_image = require('../assets/button_images/water_status.png');
 */}
 
 class PlantWidget extends React.Component {
+
   imagePressed = () => () => {
     this.props.onPress()
   }
+
   render() {
       return (
         <SafeAreaView style={{width: 300, height: 190, flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center'}}>
@@ -24,7 +26,7 @@ class PlantWidget extends React.Component {
                 {/*plant image */}
                 <Image 
                 style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
-                source={this.props.source}
+                source={{uri: this.props.image_url}}
                 />
                 {/*name of the plant */}
                 <View style={{position: 'absolute', bottom: 2, left: 8}}>
