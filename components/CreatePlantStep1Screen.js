@@ -42,7 +42,12 @@ class CreatePlantStep1Screen extends React.Component {
     }
 
     toStep2 = () => {
-        this.props.navigation.navigate('CreateStep2');
+        this.props.navigation.navigate('CreateStep2', 
+        {
+            plantName: this.state.plantName,
+            plantType: this.state.plantType,
+            plantImage: this.state.plantImage
+        });
     }
     toHome = () => {
         this.props.navigation.goBack('Home');
@@ -71,7 +76,7 @@ class CreatePlantStep1Screen extends React.Component {
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000', fontFamily: 'Comfortaa'}}
+                        textInputProps={{fontSize: 15, color: '#000'}}
                         useNativeAndroidPickerStyle={false}
                         placeholder={{
                             label: 'Select a plant type',

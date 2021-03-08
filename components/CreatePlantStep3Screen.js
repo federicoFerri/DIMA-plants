@@ -15,15 +15,40 @@ class CreatePlantStep3Screen extends React.Component {
         address:'',
     }
 
+    componentDidMount() {
+        this.setState({
+            plantName: this.props.route.params.plantName,
+            plantType: this.props.route.params.plantType,
+            plantImage: this.props.route.params.plantImage,
+            externalInternal: this.props.route.params.externalInternal,
+            exposition: this.props.route.params.exposition,
+            roomName: this.props.route.params.roomName
+        });
+    }
+
     toStep4 = () => {
-        this.props.navigation.navigate('CreateStep4');
+        this.props.navigation.navigate('CreateStep4',{
+            plantName: this.state.plantName,
+            plantType: this.state.plantType,
+            plantImage: this.state.plantImage,
+            externalInternal: this.state.externalInternal,
+            exposition: this.state.exposition,
+            roomName: this.state.roomName,
+            address: this.state.address
+        });
     }
     toStep2 = () => {
-        this.props.navigation.navigate('CreateStep2');
+        this.props.navigation.navigate('CreateStep2',
+        {
+            //we put the same elements as the navigation from step1 to step2
+            plantName: this.state.plantName,
+            plantType: this.state.plantType,
+            plantImage: this.state.plantImage
+        });
     }
 
     handleAddress = (text) => {
-        this.setState({ externalInternal: text })
+        this.setState({ address: text })
     }
 
     render() {

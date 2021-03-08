@@ -16,6 +16,15 @@ class CreatePlantStep2Screen extends React.Component {
         roomName:'',
     }
 
+    componentDidMount() {
+        this.setState({
+            plantName: this.props.route.params.plantName,
+            plantType: this.props.route.params.plantType,
+            plantImage: this.props.route.params.plantImage
+        });
+        //console.log(this.state);
+    }
+
     handleExternalInternal = (text) => {
         this.setState({ externalInternal: text })
     }
@@ -29,7 +38,15 @@ class CreatePlantStep2Screen extends React.Component {
     }
 
     toStep3 = () => {
-        this.props.navigation.navigate('CreateStep3');
+        this.props.navigation.navigate('CreateStep3',
+        {
+            plantName: this.state.plantName,
+            plantType: this.state.plantType,
+            plantImage: this.state.plantImage,
+            externalInternal: this.state.externalInternal,
+            exposition: this.state.exposition,
+            roomName: this.state.roomName
+        });
     }
     toStep1 = () => {
         this.props.navigation.navigate('CreateStep1');

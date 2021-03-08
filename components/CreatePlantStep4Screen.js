@@ -17,6 +17,18 @@ class CreatePlantStep4Screen extends React.Component {
         address:'',
         plantState: '', //0 is 'needs water', 1 is 'fine'
     }
+
+    componentDidMount() {
+        this.setState({
+            plantName: this.props.route.params.plantName,
+            plantType: this.props.route.params.plantType,
+            plantImage: this.props.route.params.plantImage,
+            externalInternal: this.props.route.params.externalInternal,
+            exposition: this.props.route.params.exposition,
+            roomName: this.props.route.params.roomName,
+            address: this.props.route.params.address
+        });
+    }
     
     toEnd = () => {
         this.props.navigation.dispatch(
@@ -26,9 +38,18 @@ class CreatePlantStep4Screen extends React.Component {
             })
         );
         //this.props.navigation.navigate('Home');
+        console.log(this.state);
     }
     toStep3 = () => {
-        this.props.navigation.navigate('CreateStep3');
+        this.props.navigation.navigate('CreateStep3',
+        {
+            plantName: this.state.plantName,
+            plantType: this.state.plantType,
+            plantImage: this.state.plantImage,
+            externalInternal: this.state.externalInternal,
+            exposition: this.state.exposition,
+            roomName: this.state.roomName
+        });
     }
     handlePlantIsGood = () => {
         this.setState({ plantState: 1 })
