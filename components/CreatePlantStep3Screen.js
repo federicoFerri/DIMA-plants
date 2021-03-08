@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity} from 'react-native';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 import HeaderCreatePlant from './HeaderCreatePlant';
+
+const image_geo_localization = require('../assets/button_images/geo_localization.png');
 
 class CreatePlantStep3Screen extends React.Component {
     state = {
@@ -51,6 +53,10 @@ class CreatePlantStep3Screen extends React.Component {
         this.setState({ address: text })
     }
 
+    handleGeoLocalization = () => {
+        //TODO
+    }
+
     render() {
         return (
             <SafeAreaView style={{ flex: 1, flexDirection:'column'}}>
@@ -65,6 +71,16 @@ class CreatePlantStep3Screen extends React.Component {
                     placeholderTextColor = 'gray'
                     onChangeText = {this.handleAddress}
                 />
+                <SafeAreaView style={{ flex: 1, flexDirection:'column', alignItems: 'center', marginTop: 60}}>
+                    <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Or use geo-localization</Text>
+                    <TouchableOpacity activeOpacity={0.5} onPress={this.handleGeoLocalization()}>
+                        <Image 
+                            style={{width: 115, height: 153, resizeMode: 'contain',}}
+                            source={image_geo_localization}
+                            /> 
+                    </TouchableOpacity>
+
+                </SafeAreaView>
             </SafeAreaView>
         )
     }
