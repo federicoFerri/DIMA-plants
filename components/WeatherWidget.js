@@ -10,7 +10,7 @@ class WeatherWidget extends React.Component {
         return (
             <SafeAreaView style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Image 
-                    style={{width: 35, height: 34}}
+                    style={{resizeMode: 'stretch', width: 45, height: 44}}
                     source={{uri: 'https:'+ this.props.icon}}
                 />
                 <View>
