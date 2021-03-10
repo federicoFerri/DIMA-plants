@@ -1,13 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
 import BackButton from '../buttons/BackButton'
+import WeatherWidget from '../components/WeatherWidget'
 
 class DetailScreen extends React.Component {
-    state = { user: {}, plant: {}};
+    state = { 
+      user: {}, 
+      plant: {},
+      latitude: 41.390205,
+      longitude: 2.154007,
+      icon: '',
+      condition_weather: '',
+      temperature: ''
+    };
     componentDidMount() {
         this.setState({
             user: this.props.route.params.user,
             plant: this.props.route.params.plant
+        });
+
+        //weather API request
+        fetch('http://api.weatherapi.com/v1/current.json?key=72fea28e67a349748a9160705210903&q='
+        +this.state.latitude +','+ this.state.longitude + '&aqi=no')
+        .then(response => response.json())
+        .then(responseJson => {
+          this.setState(
+            {
+              icon: responseJson.current.condition.icon,
+              condition_weather: responseJson.current.condition.text,
+              temperature: responseJson.current.temp_c
+            },
+            function() {}
+          );
+        })
+        .catch(error => {
+          console.error(error);
         });
     }
   
@@ -16,8 +43,10 @@ class DetailScreen extends React.Component {
           <SafeAreaView style={container}>
             <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
               <BackButton onPress={() => this.props.navigation.goBack()}/>
-              <Weather
-                  source={require('../assets/weather_images/sunny.png')}
+              <WeatherWidget
+                  icon={this.state.icon}
+                  condition={this.state.condition_weather}
+                  temperature={this.state.temperature}
               />
             </SafeAreaView>
             <Text style={{fontSize: 36,
@@ -59,21 +88,6 @@ const PlantImage = (props) => (
       style={stylesImage.stretch}
       source={props.source}
       />
-  </SafeAreaView>
-)
-
-const Weather = (props) => (
-  <SafeAreaView style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
-    <Image 
-      style={{width: 35, height: 34}}
-      source={props.source}
-      />
-    <View>
-      <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>SUNNY</Text>
-      <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>30 °C</Text>
-      <Text style={{fontSize: 11, color: '#000', fontFamily:'Comfortaa'}}>from weather api</Text>
-    </View> 
-       
   </SafeAreaView>
 )
 
