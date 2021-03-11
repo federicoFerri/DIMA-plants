@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacit
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 import HeaderCreatePlant from './HeaderCreatePlant';
+import * as Location from 'expo-location';
 
 const image_geo_localization = require('../assets/button_images/geo_localization.png');
 
@@ -15,6 +16,8 @@ class CreatePlantStep3Screen extends React.Component {
         exposition: '',
         roomName:'',
         address:'',
+        latitude: '',
+        longitude: '',
     }
 
     componentDidMount() {
@@ -36,7 +39,9 @@ class CreatePlantStep3Screen extends React.Component {
             externalInternal: this.state.externalInternal,
             exposition: this.state.exposition,
             roomName: this.state.roomName,
-            address: this.state.address
+            address: this.state.address,
+            latitude: this.state.latitude,
+            longitude: this.state.longitude
         });
     }
     toStep2 = () => {
@@ -49,8 +54,26 @@ class CreatePlantStep3Screen extends React.Component {
         });
     }
 
-    handleAddress = (text) => {
-        this.setState({ address: text })
+    handleAddress = async (text) => {
+        console.log(text)
+        try{
+            let permissionResult = Location.requestPermissionsAsync();
+        
+            if (permissionResult=== false) {
+                alert("Permission to access map services are required!");
+                return;
+            }
+            let result = await Location.geocodeAsync(text);
+            //console.log(result);
+            //console.log(result[0].latitude);
+            this.setState({ address: text });
+            this.setState({ latitude: result[0].latitude });
+            this.setState({ longitude: result[0].longitude });
+            //console.log(this.state);
+        }catch(error){
+            console.log(error);
+        }
+        
     }
 
     handleGeoLocalization = () => {

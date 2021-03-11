@@ -18,6 +18,8 @@ class CreatePlantStep4Screen extends React.Component {
         exposition: '',
         roomName:'',
         address:'',
+        latitude: '',
+        longitude: '',
         plantState: '', //0 is 'needs water', 1 is 'fine'
     }
 
@@ -34,7 +36,9 @@ class CreatePlantStep4Screen extends React.Component {
             externalInternal: this.props.route.params.externalInternal,
             exposition: this.props.route.params.exposition,
             roomName: this.props.route.params.roomName,
-            address: this.props.route.params.address
+            address: this.props.route.params.address,
+            latitude: this.props.route.params.latitude,
+            longitude: this.props.route.params.longitude,
         });
     }
 
