@@ -6,9 +6,10 @@ import { firebaseConfig } from './config/firebase.js';
 import AuthNavigator from './navigation/AuthNavigator';
 import AppNavigator from "./navigation/AppNavigator";
 import {NavigationContainer} from "@react-navigation/native";
-import {Text, SafeAreaView} from 'react-native';
+import {Text, SafeAreaView, LogBox} from 'react-native';
 import * as Font from "expo-font";
 
+LogBox.ignoreLogs(['Setting a timer']);
 
 firebase.initializeApp(firebaseConfig);
 

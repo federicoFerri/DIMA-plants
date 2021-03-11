@@ -5,9 +5,12 @@ import { CommonActions } from "@react-navigation/native";
 
 import needs_water_image from '../assets/button_images/bad_plant.png'
 import plant_fine_image from '../assets/button_images/good_plant.png'
+import firebase from "firebase";
+import * as Font from "expo-font";
 
 class CreatePlantStep4Screen extends React.Component {
     state = {
+        user: {},
         plantName: '',
         plantType: '',
         plantImage:'',
@@ -19,6 +22,11 @@ class CreatePlantStep4Screen extends React.Component {
     }
 
     componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user != null) {
+                this.setState({user: user});
+            }
+        });
         this.setState({
             plantName: this.props.route.params.plantName,
             plantType: this.props.route.params.plantType,
@@ -29,7 +37,15 @@ class CreatePlantStep4Screen extends React.Component {
             address: this.props.route.params.address
         });
     }
-    
+
+    async uploadToFirebase(uri, filename) {
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        const ref = firebase.storage().ref().child('uploads/' + this.state.user.uid + '/' + filename);
+        const snapshot = await ref.put(blob);
+        return snapshot.ref.getDownloadURL();
+    }
+
     toEnd = () => {
         this.props.navigation.dispatch(
             CommonActions.reset({
@@ -37,6 +53,22 @@ class CreatePlantStep4Screen extends React.Component {
                 routes: [{ name: 'Home' }],
             })
         );
+        const filename = this.state.plantImage.substring(this.state.plantImage.lastIndexOf('/') + 1);
+        const imageUri = Platform.OS === 'ios' ? this.state.plantImage.replace('file://', '') : this.state.plantImage;
+        this.uploadToFirebase(imageUri, filename).then((imageUrl) => {
+            console.log(imageUrl);
+            firebase.firestore().collection('plants').add({
+                name: this.state.plantName,
+                plantType: this.state.plantType,
+                imageUrl: imageUrl,
+                position: this.state.externalInternal,
+                exposition: this.state.exposition,
+                room: this.state.roomName,
+                location: this.state.address,
+                state: this.state.plantState,
+                uid: this.state.user.uid
+            });
+        });
         //this.props.navigation.navigate('Home');
         console.log(this.state);
     }
