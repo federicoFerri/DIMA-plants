@@ -76,8 +76,27 @@ class CreatePlantStep3Screen extends React.Component {
         
     }
 
-    handleGeoLocalization = () => {
-        //TODO
+    handleGeoLocalization = async () => {
+        try{
+            let permissionResult = await Location.requestPermissionsAsync();
+        
+            if (permissionResult=== false) {
+                alert("Permission to access map services are required!");
+                return;
+            }
+            let result = await Location.getCurrentPositionAsync({});
+            console.log(result);
+            //console.log(result[0].latitude);
+            let location = {latitude: result.coords.latitude, longitude: result.coords.longitude};
+            let addressFound = await Location.reverseGeocodeAsync(location);
+            console.log(addressFound);
+            this.setState({ address: addressFound[0].city });
+            this.setState({ latitude: result.coords.latitude });
+            this.setState({ longitude: result.coords.longitude });
+            console.log(this.state);
+        }catch(error){
+            console.log(error);
+        }
     }
 
     render() {
@@ -96,12 +115,13 @@ class CreatePlantStep3Screen extends React.Component {
                 />
                 <SafeAreaView style={{ flex: 1, flexDirection:'column', alignItems: 'center', marginTop: 60}}>
                     <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Or use geo-localization</Text>
-                    <TouchableOpacity activeOpacity={0.5} onPress={this.handleGeoLocalization()}>
+                    <TouchableOpacity activeOpacity={0.5} onPress={this.handleGeoLocalization}>
                         <Image 
                             style={{width: 115, height: 153, resizeMode: 'contain',}}
                             source={image_geo_localization}
                             /> 
                     </TouchableOpacity>
+                    <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Location selected: {this.state.address}</Text>
 
                 </SafeAreaView>
             </SafeAreaView>
