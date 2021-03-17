@@ -38,15 +38,22 @@ class CreatePlantStep2Screen extends React.Component {
     }
 
     toStep3 = () => {
-        this.props.navigation.navigate('CreateStep3',
-        {
-            plantName: this.state.plantName,
-            plantType: this.state.plantType,
-            plantImage: this.state.plantImage,
-            externalInternal: this.state.externalInternal,
-            exposition: this.state.exposition,
-            roomName: this.state.roomName
-        });
+        if(this.state.externalInternal==='' || this.state.exposition===''){
+            alert("Insert all required data!");
+            return;
+        }
+        else{
+            this.props.navigation.navigate('CreateStep3',
+            {
+                plantName: this.state.plantName,
+                plantType: this.state.plantType,
+                plantImage: this.state.plantImage,
+                externalInternal: this.state.externalInternal,
+                exposition: this.state.exposition,
+                roomName: this.state.roomName
+            });
+        }
+        
     }
     toStep1 = () => {
         this.props.navigation.navigate('CreateStep1');

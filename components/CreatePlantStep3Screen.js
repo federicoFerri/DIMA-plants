@@ -32,17 +32,24 @@ class CreatePlantStep3Screen extends React.Component {
     }
 
     toStep4 = () => {
-        this.props.navigation.navigate('CreateStep4',{
-            plantName: this.state.plantName,
-            plantType: this.state.plantType,
-            plantImage: this.state.plantImage,
-            externalInternal: this.state.externalInternal,
-            exposition: this.state.exposition,
-            roomName: this.state.roomName,
-            address: this.state.address,
-            latitude: this.state.latitude,
-            longitude: this.state.longitude
-        });
+        if(this.state.address==='' || this.state.latitude==='' || this.state.longitude===''){
+            alert("Insert all required data!");
+            return;
+        }
+        else{
+            this.props.navigation.navigate('CreateStep4',{
+                plantName: this.state.plantName,
+                plantType: this.state.plantType,
+                plantImage: this.state.plantImage,
+                externalInternal: this.state.externalInternal,
+                exposition: this.state.exposition,
+                roomName: this.state.roomName,
+                address: this.state.address,
+                latitude: this.state.latitude,
+                longitude: this.state.longitude
+            });
+        }
+        
     }
     toStep2 = () => {
         this.props.navigation.navigate('CreateStep2',
