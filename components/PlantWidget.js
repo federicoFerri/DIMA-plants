@@ -19,7 +19,7 @@ class PlantWidget extends React.Component {
 
   render() {
       return (
-        <SafeAreaView style={{width: 300, height: 190, flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center'}}>
+        <SafeAreaView style={{width: 300, height: 190, flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
           <TouchableOpacity 
             activeOpacity={0.5}
             onPress={this.imagePressed()}>
