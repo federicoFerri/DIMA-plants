@@ -51,16 +51,9 @@ class CreatePlantStep4Screen extends React.Component {
     }
 
     toEnd = () => {
-        this.props.navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: 'Home' }],
-            })
-        );
         const filename = this.state.plantImage.substring(this.state.plantImage.lastIndexOf('/') + 1);
         const imageUri = Platform.OS === 'ios' ? this.state.plantImage.replace('file://', '') : this.state.plantImage;
         this.uploadToFirebase(imageUri, filename).then((imageUrl) => {
-            console.log(imageUrl);
             firebase.firestore().collection('plants').add({
                 name: this.state.plantName,
                 plantType: this.state.plantType,
@@ -71,10 +64,15 @@ class CreatePlantStep4Screen extends React.Component {
                 location: this.state.address,
                 state: this.state.plantState,
                 uid: this.state.user.uid
+            }).then((res) => {
+                this.props.navigation.dispatch(
+                    CommonActions.reset({
+                        index: 0,
+                        routes: [{ name: 'Home'}]
+                    })
+                );
             });
         });
-        //this.props.navigation.navigate('Home');
-        console.log(this.state);
     }
     toStep3 = () => {
         this.props.navigation.navigate('CreateStep3',

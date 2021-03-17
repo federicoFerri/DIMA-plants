@@ -28,6 +28,7 @@ class ProfileScreen extends React.Component {
           <SafeAreaView style={{flex: 1}}>
             <Text style={{fontSize: 36, color: '#000', fontFamily: 'Comfortaa', marginTop: 50, marginLeft: 10}}>Profile</Text>
             <Text style={{fontFamily: 'Comfortaa', marginLeft: 10}}>{this.state.user.email}</Text>
+
             <View style={{padding: 20}}>
               <View style={{marginTop: 10, marginBottom: 10}}>
                 <Button color='#000' title="LOG OUT" onPress={() => {
