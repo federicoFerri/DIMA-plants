@@ -20,11 +20,16 @@ class HeaderCreatePlant extends React.Component {
                 <BackButton
                     onPress={this.backPressed()}
                 />
-                <ForwardButton
+                {this.props.isForwardVisible && <ForwardButton
                     onPress={this.forwardPressed()}
-                />
+                />}
             </SafeAreaView>
         )
     }
 }
+
+HeaderCreatePlant.defaultProps = {
+    isForwardVisible: true,
+  };
+
 export default HeaderCreatePlant;

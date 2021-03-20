@@ -86,10 +86,12 @@ class CreatePlantStep4Screen extends React.Component {
         });
     }
     handlePlantIsGood = () => {
-        this.setState({ plantState: 1 })
+        this.setState({ plantState: 1 });
+        this.toEnd();
     }
     handlePlantIsBad = () => {
-        this.setState({ plantState: 0 })
+        this.setState({ plantState: 0 });
+        this.toEnd();
     }
     render() {
         return (
@@ -97,6 +99,7 @@ class CreatePlantStep4Screen extends React.Component {
                 <HeaderCreatePlant
                     forwardPress={() => this.toEnd()} 
                     backPress={() => this.toStep3()}
+                    isForwardVisible={false}
                 />
                 <Text style={{fontSize: 24, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>How is your plant now?</Text>
                 <SafeAreaView style={{ flex: 1, flexDirection:'row', justifyContent: 'center', marginTop: 75}}>
