@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import HeaderCreatePlant from './HeaderCreatePlant';
 import { CommonActions } from "@react-navigation/native";
 
@@ -21,6 +21,8 @@ class CreatePlantStep4Screen extends React.Component {
         latitude: '',
         longitude: '',
         plantState: '', //0 is 'needs water', 1 is 'fine'
+
+        loading: false,
     }
 
     componentDidMount() {
@@ -39,6 +41,8 @@ class CreatePlantStep4Screen extends React.Component {
             address: this.props.route.params.address,
             latitude: this.props.route.params.latitude,
             longitude: this.props.route.params.longitude,
+
+            loading: false,
         });
     }
 
@@ -53,6 +57,7 @@ class CreatePlantStep4Screen extends React.Component {
     toEnd = () => {
         const filename = this.state.plantImage.substring(this.state.plantImage.lastIndexOf('/') + 1);
         const imageUri = Platform.OS === 'ios' ? this.state.plantImage.replace('file://', '') : this.state.plantImage;
+        this.setState({loading: true});
         this.uploadToFirebase(imageUri, filename).then((imageUrl) => {
             firebase.firestore().collection('plants').add({
                 name: this.state.plantName,
@@ -65,6 +70,7 @@ class CreatePlantStep4Screen extends React.Component {
                 state: this.state.plantState,
                 uid: this.state.user.uid
             }).then((res) => {
+                this.setState({loading: false});
                 this.props.navigation.dispatch(
                     CommonActions.reset({
                         index: 0,
@@ -95,34 +101,57 @@ class CreatePlantStep4Screen extends React.Component {
     }
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, flexDirection:'column'}}>
-                <HeaderCreatePlant
-                    forwardPress={() => this.toEnd()} 
-                    backPress={() => this.toStep3()}
-                    isForwardVisible={false}
-                />
-                <Text style={{fontSize: 24, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>How is your plant now?</Text>
-                <SafeAreaView style={{ flex: 1, flexDirection:'row', justifyContent: 'center', marginTop: 75}}>
-                    <SafeAreaView style={{ flex: 1, flexDirection:'column', alignItems: 'center'}}>
-                        <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 10}}>Fine</Text>
-                        <TouchableOpacity 
-                            activeOpacity={0.5}
-                            onPress={this.handlePlantIsGood}
-                        >
-                            <Image source={plant_fine_image} style={{width: 127, height: 109, alignSelf: 'center'}}/>  
-                        </TouchableOpacity>
-                    </SafeAreaView>
-                    <SafeAreaView style={{ flex: 1, height: 170, flexDirection:'column', alignItems: 'center'}}>
-                        <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 10}}>Needs water</Text>
-                        <TouchableOpacity 
-                            activeOpacity={0.5}
-                            onPress={this.handlePlantIsBad}
-                        >    
-                            <Image source={needs_water_image} style={{width: 126, height: 117, alignSelf: 'center'}}/>  
-                        </TouchableOpacity>
-                    </SafeAreaView>    
+            <SafeAreaView style={{flex:1}}>
+            {this.state.loading ? (
+                <SafeAreaView style={{ flex: 1, flexDirection:'column', justifyContent: 'center'}}>
+                    <ActivityIndicator
+                            //visibility of Overlay Loading Spinner
+                            visible={true}
+                            //Text with the Spinner
+                            textContent={'Loading...'}
+                            //Text style of the Spinner Text
+                            textStyle={{flex:1, fontFamily:'Comfortaa', padding:8}}
+                            size="large"
+                            color="#000000"
+                            />
                 </SafeAreaView>
+                ) : (
+                    <SafeAreaView style={{ flex: 1, flexDirection:'column'}}>
+                        <HeaderCreatePlant
+                            forwardPress={() => this.toEnd()} 
+                            backPress={() => this.toStep3()}
+                            isForwardVisible={false}
+                        />
+                        <Text style={{fontSize: 24, color: '#000', fontFamily:'Comfortaa', marginLeft: 20, marginTop: 15}}>How is your plant now?</Text>
+                        <SafeAreaView style={{ flex: 1, flexDirection:'row', justifyContent: 'center', marginTop: 75}}>
+                            <SafeAreaView style={{ flex: 1, flexDirection:'column', alignItems: 'center'}}>
+                                <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 10}}>Fine</Text>
+                                <TouchableOpacity 
+                                    activeOpacity={0.5}
+                                    onPress={this.handlePlantIsGood}
+                                >
+                                    <Image source={plant_fine_image} style={{width: 127, height: 109, alignSelf: 'center'}}/>  
+                                </TouchableOpacity>
+                            </SafeAreaView>
+                            <SafeAreaView style={{ flex: 1, height: 170, flexDirection:'column', alignItems: 'center'}}>
+                                <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 10}}>Needs water</Text>
+                                <TouchableOpacity 
+                                    activeOpacity={0.5}
+                                    onPress={this.handlePlantIsBad}
+                                >    
+                                    <Image source={needs_water_image} style={{width: 126, height: 117, alignSelf: 'center'}}/>  
+                                </TouchableOpacity>
+                            </SafeAreaView>    
+                        </SafeAreaView>
+                    </SafeAreaView>
+
+                )
+                
+            }
+            
             </SafeAreaView>
+
+            
         )
     }
 }
