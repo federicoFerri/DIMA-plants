@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, Alert} from 'react-native';
 import BackButton from '../buttons/BackButton'
+import DeletePlantButton from '../buttons/DeletePlantButton';
 import WeatherWidget from '../components/WeatherWidget'
 
 class DetailScreen extends React.Component {
@@ -37,6 +38,27 @@ class DetailScreen extends React.Component {
           console.error(error);
         });
     }
+
+    //TODO add fuction that cancel plant in the database
+    deletePlant = () => {
+      //TODO
+    }
+
+    createMessageDeletePlant = () => {
+      Alert.alert(
+        "Attention",
+        "Do you really want to delete this plant?",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+          },
+          //TODO substitute fuction for deletion of the plant
+          { text: "Delete plant", onPress: () => this.deletePlant() }
+        ],
+        { cancelable: true }
+      );
+    }
   
     render() {
       return (
@@ -49,9 +71,13 @@ class DetailScreen extends React.Component {
                   temperature={this.state.temperature}
               />
             </SafeAreaView>
-            <Text style={{fontSize: 36,
-              color: '#000',
-              fontFamily:'Comfortaa'}}>{this.state.plant.name}</Text>
+            <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
+              <Text style={{fontSize: 36,
+                color: '#000',
+                fontFamily:'Comfortaa'}}>{this.state.plant.name}
+              </Text>
+              <DeletePlantButton onPress={() => this.createMessageDeletePlant()}/>
+            </SafeAreaView>
             <PlantImage
                 source={{uri: this.state.plant.imageUrl}}
             />
