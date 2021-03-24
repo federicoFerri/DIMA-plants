@@ -50,6 +50,7 @@ class HomeScreen extends React.Component {
                         image_url={item.imageUrl}
                         name={item.name}
                         time_left_next_watering={30}
+                        colorWaterStatus={'red'}
                         onPress={() => this.toDetailScreen(item)}
                     />
                 )}

@@ -8,6 +8,7 @@ const water_status_image = require('../assets/button_images/water_status.png');
   @source: a png image of the plant
   @name: the name of the plant
   @time_left_next_watering: time left to the next watering in minutes
+  @colorWaterStatus: string of the color that the water status must have
   @onPress: if image of the widget is pressed, it launches an event like TouchableOpacity
 */}
 
@@ -35,6 +36,7 @@ class PlantWidget extends React.Component {
                 {/*water status image */}
                 <Image 
                 style={{width: 20, height: 25, position: 'absolute', top:4, right:8}}
+                tintColor={this.props.colorWaterStatus}
                 source={water_status_image}
                 />
                 {/*time left and clock image on top left */}
