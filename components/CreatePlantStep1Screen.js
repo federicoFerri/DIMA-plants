@@ -16,7 +16,7 @@ class CreatePlantStep1Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
-        plantImage: plantLoadImageUri,
+        plantImage: '',
     }
 
     openImagePickerAsync = async () => {
@@ -30,7 +30,7 @@ class CreatePlantStep1Screen extends React.Component {
         //launchImagwLibraryAsync() for selection of saved images
         let pickerResult = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
-            aspect: [4, 3],
+            aspect: [350, 250],
             quality: 1,
           } );
         //console.log(pickerResult);
@@ -102,18 +102,13 @@ class CreatePlantStep1Screen extends React.Component {
                         ]}
                     />
                 </SafeAreaView>
-                <Text style={{fontSize: 15, color: '#000', marginLeft: 15, marginTop: 15}}>Tap to add a photo</Text>
-                {/*
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Button title="Pick an image from camera roll" onPress={this.openImagePickerAsync} />
-                    {this.state.plantImage && <Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250}}/>}
-                </View>
-                */}
+                <Text style={{fontSize: 15, color: '#000', marginLeft: 25, marginTop: 15, marginBottom: 10}}>Tap to add a photo</Text>
                 <TouchableOpacity 
                     activeOpacity={0.5}
                     onPress={this.openImagePickerAsync}
-                    style={{width: 300, height: 250, alignSelf: 'center'}}>
-                        {this.state.plantImage && <Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250, alignSelf: 'center'}}/>}  
+                    style={{width: 300, height: 250, alignSelf: 'center', flex:1, alignItems: 'center', flexDirection: 'column'}}>
+                        {this.state.plantImage ? (<Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250, alignSelf: 'center'}}/>) 
+                        : (<Image source={{ uri: plantLoadImageUri }} style={{width: 160, height: 120, marginTop: 40, alignSelf: 'center', resizeMode: 'contain'}}/>)}  
                 </TouchableOpacity>
                 
                 
