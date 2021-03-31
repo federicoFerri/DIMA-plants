@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, Alert} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, Alert, FlatList, ScrollView} from 'react-native';
 import BackButton from '../buttons/BackButton'
 import DeletePlantButton from '../buttons/DeletePlantButton';
 import WeatherWidget from '../components/WeatherWidget'
+
+import needs_water_image from '../assets/button_images/bad_plant.png'
+import plant_fine_image from '../assets/button_images/good_plant.png'
+import watering_event from '../assets/button_images/watering.png'
 
 class DetailScreen extends React.Component {
     state = { 
@@ -62,7 +66,7 @@ class DetailScreen extends React.Component {
   
     render() {
       return (
-          <SafeAreaView style={container}>
+          <ScrollView style={container}>
             <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
               <BackButton onPress={() => this.props.navigation.goBack()}/>
               <WeatherWidget
@@ -103,10 +107,40 @@ class DetailScreen extends React.Component {
                   descr={"Av. d'Icària, 18908005 Barcelona, Spagna"}
               />
             </SafeAreaView>
-          </SafeAreaView>
+            <ScrollView horizontal={true} style={{flex:1, paddingHorizontal:50, borderBottomWidth: 20}}>
+              <Event source={needs_water_image} date={'10th Dec'}/>
+              <Event source={plant_fine_image} date={'11th Dec'}/>
+              <Event source={watering_event} date={'12th Dec'}/>
+              <Event source={plant_fine_image} date={'13th Dec'}/>
+              <Event source={watering_event} date={'14th Dec'}/>
+              <Event source={plant_fine_image} date={'15th Dec'}/>
+              <Event source={watering_event} date={'16th Dec'}/>
+              <Event source={needs_water_image} date={'17th Dec'}/>
+            </ScrollView>
+          </ScrollView>
+
       )
   }
 }
+
+{/*props required
+  @source: image of the event to show
+  @date: string of the time of the event
+*/}
+const Event = (props) => (
+  <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal:10}}>
+    <Image 
+      style={{
+        width: 50,
+        height: 50,
+        resizeMode: 'contain'
+      }}
+      source={props.source}
+    />
+    <Text style={{fontSize: 15, color: '#000',fontFamily: 'Comfortaa'}}>{props.date}</Text>
+
+  </SafeAreaView>
+)
 
 const PlantImage = (props) => (
   <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', marginHorizontal: 30,marginVertical: 10}}>
@@ -119,7 +153,15 @@ const PlantImage = (props) => (
 
 
 const Info = (props) => (
-<SafeAreaView style={container}>
+<SafeAreaView style={{
+  flex: 1,
+    
+  padding: 24,
+  paddingTop: 10,
+  paddingHorizontal: 20,
+  backgroundColor: '#fff',
+  marginHorizontal: 5,}}
+>
     <Text style={{fontSize: 12, color: '#000', fontWeight: 'bold', fontFamily:'Comfortaa'}}>{props.title}</Text>
     <Text style={{fontSize: 18, color: '#000', fontFamily:'Comfortaa'}}>{props.descr}</Text>
   </SafeAreaView>
