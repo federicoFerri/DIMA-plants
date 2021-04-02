@@ -7,6 +7,8 @@ import WeatherWidget from '../components/WeatherWidget'
 import needs_water_image from '../assets/button_images/bad_plant.png'
 import plant_fine_image from '../assets/button_images/good_plant.png'
 import watering_event from '../assets/button_images/watering.png'
+import line_timeline from '../assets/timeline_images/line_timeline.png'
+import point_timeline from '../assets/timeline_images/point_timeline.png'
 
 class DetailScreen extends React.Component {
     state = { 
@@ -128,7 +130,7 @@ class DetailScreen extends React.Component {
   @date: string of the time of the event
 */}
 const Event = (props) => (
-  <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal:10}}>
+  <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal:0}}>
     <Image 
       style={{
         width: 50,
@@ -137,6 +139,33 @@ const Event = (props) => (
       }}
       source={props.source}
     />
+    <SafeAreaView style={{ flexDirection:'row', justifyContent:'center'}}>
+      <Image 
+        style={{
+          
+          width: 50,
+          height: 5,
+          resizeMode: 'stretch'
+        }}
+        source={line_timeline}
+      />
+      <Image 
+        style={{
+          width: 20,
+          height: 20,
+          resizeMode: 'contain'
+        }}
+        source={point_timeline}
+      />
+      <Image 
+        style={{
+          width: 50,
+          height: 5,
+          resizeMode: 'stretch'
+        }}
+        source={line_timeline}
+      />
+    </SafeAreaView>
     <Text style={{fontSize: 15, color: '#000',fontFamily: 'Comfortaa'}}>{props.date}</Text>
 
   </SafeAreaView>
