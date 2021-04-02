@@ -118,6 +118,7 @@ class DetailScreen extends React.Component {
               <Event source={plant_fine_image} date={'15th Dec'}/>
               <Event source={watering_event} date={'16th Dec'}/>
               <Event source={needs_water_image} date={'17th Dec'}/>
+              <Event source={needs_water_image} date={'18th Dec'}/>
             </ScrollView>
           </ScrollView>
 
@@ -130,7 +131,7 @@ class DetailScreen extends React.Component {
   @date: string of the time of the event
 */}
 const Event = (props) => (
-  <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal:0}}>
+  <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
     <Image 
       style={{
         width: 50,
@@ -142,7 +143,7 @@ const Event = (props) => (
     <SafeAreaView style={{ flexDirection:'row', justifyContent:'center'}}>
       <Image 
         style={{
-          
+          top: 7,
           width: 50,
           height: 5,
           resizeMode: 'stretch'
@@ -159,6 +160,7 @@ const Event = (props) => (
       />
       <Image 
         style={{
+        top: 8, //needs to be 1 pixel more than the line at the left
           width: 50,
           height: 5,
           resizeMode: 'stretch'
