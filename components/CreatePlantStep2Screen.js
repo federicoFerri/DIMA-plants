@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Platform} from 'react-native';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 import HeaderCreatePlant from './HeaderCreatePlant';
@@ -70,7 +70,7 @@ class CreatePlantStep2Screen extends React.Component {
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000'}}
+                        textInputProps={{fontSize: 15, color: '#000', padding: Platform.OS === 'ios' ? 13 : 0}}
                         useNativeAndroidPickerStyle={false}
                         placeholder={{
                             label: 'External/Internal',
@@ -92,7 +92,7 @@ class CreatePlantStep2Screen extends React.Component {
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000'}}
+                        textInputProps={{fontSize: 15, color: '#000', padding: Platform.OS === 'ios' ? 13 : 0}}
                         useNativeAndroidPickerStyle={false}
                         placeholder={{
                             label: 'Exposition',

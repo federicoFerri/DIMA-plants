@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button, TouchableOpacity, Platform} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
@@ -83,7 +83,7 @@ class CreatePlantStep1Screen extends React.Component {
                 <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
                     <RNPickerSelect
                         style={{}}
-                        textInputProps={{fontSize: 15, color: '#000'}}
+                        textInputProps={{fontSize: 15, color: '#000', padding: Platform.OS === 'ios' ? 13 : 0}}
                         useNativeAndroidPickerStyle={false}
                         placeholder={{
                             label: 'Select a plant type',
