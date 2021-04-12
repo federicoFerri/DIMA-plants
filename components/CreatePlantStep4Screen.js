@@ -41,8 +41,7 @@ class CreatePlantStep4Screen extends React.Component {
             address: this.props.route.params.address,
             latitude: this.props.route.params.latitude,
             longitude: this.props.route.params.longitude,
-
-            loading: false,
+            loading: false
         });
     }
 

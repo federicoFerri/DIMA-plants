@@ -49,7 +49,13 @@ class Plants extends React.Component {
     componentDidMount() {
         this.loadFonts();
         registerForPushNotificationsAsync().then((token) => {
-            console.log(token);
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user != null) {
+                    firebase.firestore().collection('users').doc(user.uid).update({expoToken: token});
+                    console.log(token);
+                }
+            });
+
         });
 
     }

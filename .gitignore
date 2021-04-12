@@ -14,3 +14,7 @@ web-build/
 
 # idea
 .idea/*
+
+
+# venv
+venv/
