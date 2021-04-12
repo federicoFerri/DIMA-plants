@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button, TouchableOpacity, Platform} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
@@ -9,6 +9,7 @@ import DownArrow from '../buttons/DownArrow';
 import * as ImagePicker from 'expo-image-picker';
 
 import plant_load_image from '../assets/button_images/add_a_photo.png'
+import PickerPlant from './PickerPlants';
 
 const plantLoadImageUri = Image.resolveAssetSource(plant_load_image).uri
 
@@ -42,7 +43,7 @@ class CreatePlantStep1Screen extends React.Component {
     }
 
     toStep2 = () => {
-        if(this.state.plantName==='' || this.state.plantType==='' || this.state.plantImage===plantLoadImageUri){
+        if(this.state.plantName==='' || this.state.plantType==='' || this.state.plantImage===''){
             alert("Insert all required data!");
             return;
         }
@@ -80,28 +81,15 @@ class CreatePlantStep1Screen extends React.Component {
                     onChangeText = {this.handlePlantName}
                 />
                 
-                <SafeAreaView style={{ height: 52, marginLeft: 20, marginRight:20, marginTop:20,  borderColor: 'black', borderWidth: 2, fontSize: 15, color: '#000', fontFamily:'Comfortaa', padding:15}}>
-                    <RNPickerSelect
-                        style={{}}
-                        textInputProps={{fontSize: 15, color: '#000'}}
-                        useNativeAndroidPickerStyle={false}
-                        placeholder={{
-                            label: 'Select a plant type',
-                            value: null,
-                            color: 'gray',
-                          }}
-                        onValueChange={(value) => this.handlePlantType(value)}
-                        
-                        Icon={() => {
-                            return <DownArrow/>;
-                          }}
-                        items={[
-                            { label: 'Tomato', value: 'tomato' },
-                            { label: 'Rose', value: 'rose' },
-                            { label: 'Tulipan', value: 'tulipan' },
-                        ]}
-                    />
-                </SafeAreaView>
+                <PickerPlant
+                    label= 'Select a plant type'
+                    items= {[
+                        { label: 'Tomato', value: 'tomato' },
+                        { label: 'Rose', value: 'rose' },
+                        { label: 'Tulipan', value: 'tulipan' },
+                    ]}
+                    function= {this.handlePlantType}
+                />
                 <Text style={{fontSize: 15, color: '#000', marginLeft: 25, marginTop: 15, marginBottom: 10}}>Tap to add a photo</Text>
                 <TouchableOpacity 
                     activeOpacity={0.5}
