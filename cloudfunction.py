@@ -70,6 +70,6 @@ def hello_world(request):
                 message = f'{plants_in_need[0]} ha bisogno di acqua, innaffiala subito!'
             send_push_message(user['expoToken'], message, extra=None)
             print('user', user_id, 'sent notification for', len(plants_in_need), 'plants')
-
+    return 'ok'
 
 #hello_world(None)

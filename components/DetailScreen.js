@@ -3,12 +3,13 @@ import { StyleSheet, Text, View, Image, SafeAreaView, Alert, FlatList, ScrollVie
 import BackButton from '../buttons/BackButton'
 import DeletePlantButton from '../buttons/DeletePlantButton';
 import WeatherWidget from '../components/WeatherWidget'
-
+import firebase from "firebase";
 import needs_water_image from '../assets/button_images/bad_plant.png'
 import plant_fine_image from '../assets/button_images/good_plant.png'
 import watering_event from '../assets/button_images/watering.png'
 import line_timeline from '../assets/timeline_images/line_timeline.png'
 import point_timeline from '../assets/timeline_images/point_timeline.png'
+import {CommonActions} from "@react-navigation/native";
 
 class DetailScreen extends React.Component {
     state = { 
@@ -47,9 +48,15 @@ class DetailScreen extends React.Component {
         });
     }
 
-    //TODO add fuction that cancel plant in the database
     deletePlant = () => {
-      //TODO
+        firebase.firestore().collection('plants').doc(this.state.plant_id).delete().then(() => {
+            this.props.navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: 'Home'}]
+                })
+            );
+        })
     }
 
     createMessageDeletePlant = () => {
@@ -61,7 +68,6 @@ class DetailScreen extends React.Component {
             text: "Cancel",
             onPress: () => console.log("Cancel Pressed"),
           },
-          //TODO substitute fuction for deletion of the plant
           { text: "Delete plant", onPress: () => this.deletePlant() }
         ],
         { cancelable: true }

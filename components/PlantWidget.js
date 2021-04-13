@@ -3,8 +3,24 @@ import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import firebase from "firebase";
 
 class PlantWidget extends React.Component {
+  state = { colorWaterStatus: null, timeLeftNextWatering: 0};
 
-  imagePressed = () => () => {
+  componentDidMount() {
+    const expired = firebase.firestore.Timestamp.now().seconds > this.props.plant.data().lastWatering.seconds + this.props.plant.data().secondsBetweenWaterings;
+    const diff = this.props.plant.data().lastWatering.seconds + this.props.plant.data().secondsBetweenWaterings - firebase.firestore.Timestamp.now().seconds;
+    console.log(firebase.firestore.Timestamp.now().seconds, this.props.plant.data().lastWatering.seconds + this.props.plant.data().secondsBetweenWaterings, diff, expired);
+    this.setState({
+        colorWaterStatus: (expired ? 'red' : 'green'),
+        timeLeftNextWatering: (expired ? 'now' : 'in ' + Math.floor(diff / 60) + ' min')
+    });
+    // TODO start a recurrent operation (timer) that updates the time left and color of the icon (state)
+  }
+
+  componentWillUnmount() {
+      // TODO: clear the interval
+  }
+
+    imagePressed = () => () => {
     this.props.onPress()
   }
 
@@ -13,7 +29,7 @@ class PlantWidget extends React.Component {
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'bad'}),
           secondsBetweenWaterings: this.props.plant.secondsBetweenWaterings + diff
       }).then(() => {
-          // TODO: mark opacity with green color for n seconds
+          // TODO: mark opacity with green color for n seconds and update props
       })
   }
 
@@ -23,7 +39,7 @@ class PlantWidget extends React.Component {
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'good'}),
           secondsBetweenWaterings: this.props.plant.secondsBetweenWaterings + diff
       }).then(() => {
-          // TODO: mark opacity with green color for n seconds
+          // TODO: mark opacity with green color for n seconds and update props
       })
   }
 
@@ -32,7 +48,7 @@ class PlantWidget extends React.Component {
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'watering'}),
           lastWatering: firebase.firestore.Timestamp.now()
       }).then(() => {
-          // TODO: mark opacity with green color for n seconds
+          // TODO: mark opacity with green color for n seconds and update props
       })
   }
 
@@ -54,7 +70,7 @@ class PlantWidget extends React.Component {
                 {/*water status image */}
                 <Image 
                 style={{width: 20, height: 25, position: 'absolute', top:4, right:8}}
-                tintColor={this.props.colorWaterStatus}
+                tintColor={this.state.colorWaterStatus}
                 source={require('../assets/button_images/water_status.png')}
                 />
                 {/*time left and clock image on top left */}
@@ -63,7 +79,7 @@ class PlantWidget extends React.Component {
                   style={{width: 24, height: 23}}
                   source={require('../assets/button_images/clock.png')}
                   />
-                  <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering in {this.props.time_left_next_watering} min</Text>
+                  <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering {this.state.timeLeftNextWatering}</Text>
                 </View>
           </TouchableOpacity>
           <View style={{width: 300, padding: 10, flexDirection:'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#E8DFDF', borderBottomRightRadius: 10, borderBottomLeftRadius: 10}}>
