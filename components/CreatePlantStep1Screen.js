@@ -10,6 +10,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import plant_load_image from '../assets/button_images/add_a_photo.png'
 import PickerPlant from './PickerPlants';
+import firebase from "firebase";
 
 const plantLoadImageUri = Image.resolveAssetSource(plant_load_image).uri
 
@@ -17,7 +18,22 @@ class CreatePlantStep1Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
+        secondsBetweenWaterings: 0,
         plantImage: '',
+        plantTypesTimes: {},
+        plantTypesPicker: []
+    }
+
+    componentDidMount() {
+        firebase.firestore().collection('plantTypes').get().then(snapshot => {
+            const tmpPlantTypesTimes = {};
+            const tmpPlantTypesPicker = [];
+            snapshot.forEach(doc => {
+                tmpPlantTypesTimes[doc.id] = doc.data().secondsBetweenWaterings;
+                tmpPlantTypesPicker.push({label: doc.data().name, value: doc.id})
+            });
+            this.setState({plantTypesTimes: tmpPlantTypesTimes, plantTypesPicker: tmpPlantTypesPicker});
+        })
     }
 
     openImagePickerAsync = async () => {
@@ -52,6 +68,7 @@ class CreatePlantStep1Screen extends React.Component {
             {
                 plantName: this.state.plantName,
                 plantType: this.state.plantType,
+                secondsBetweenWaterings: this.state.secondsBetweenWaterings,
                 plantImage: this.state.plantImage
             });
         }
@@ -63,8 +80,8 @@ class CreatePlantStep1Screen extends React.Component {
     handlePlantName = (text) => {
         this.setState({ plantName: text })
     }
-    handlePlantType = (text) => {
-        this.setState({ plantType: text })
+    handlePlantType = (id) => {
+        this.setState({ plantType: id, secondsBetweenWaterings: this.state.plantTypesTimes[id]})
     }
     render() {
         return (
@@ -83,11 +100,7 @@ class CreatePlantStep1Screen extends React.Component {
                 
                 <PickerPlant
                     label= 'Select a plant type'
-                    items= {[
-                        { label: 'Tomato', value: 'tomato' },
-                        { label: 'Rose', value: 'rose' },
-                        { label: 'Tulipan', value: 'tulipan' },
-                    ]}
+                    items= {this.state.plantTypesPicker}
                     function= {this.handlePlantType}
                 />
                 <Text style={{fontSize: 15, color: '#000', marginLeft: 25, marginTop: 15, marginBottom: 10}}>Tap to add a photo</Text>

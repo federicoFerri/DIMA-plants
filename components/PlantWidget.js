@@ -1,21 +1,39 @@
 import React from 'react';
 import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
-
-const clock_image = require('../assets/button_images/clock.png');
-const water_status_image = require('../assets/button_images/water_status.png');
-
-{/*props required
-  @source: a png image of the plant
-  @name: the name of the plant
-  @time_left_next_watering: time left to the next watering in minutes
-  @colorWaterStatus: string of the color that the water status must have
-  @onPress: if image of the widget is pressed, it launches an event like TouchableOpacity
-*/}
+import firebase from "firebase";
 
 class PlantWidget extends React.Component {
 
   imagePressed = () => () => {
     this.props.onPress()
+  }
+
+  badPlantPressed = () => () => {
+      firebase.firestore().collection('plants').doc(this.props.plant.id).update({
+          logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'bad'}),
+          secondsBetweenWaterings: this.props.plant.secondsBetweenWaterings + diff
+      }).then(() => {
+          // TODO: mark opacity with green color for n seconds
+      })
+  }
+
+  goodPlantPressed = () => () => {
+      const diff = +10;
+      firebase.firestore().collection('plants').doc(this.props.plant.id).update({
+          logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'good'}),
+          secondsBetweenWaterings: this.props.plant.secondsBetweenWaterings + diff
+      }).then(() => {
+          // TODO: mark opacity with green color for n seconds
+      })
+  }
+
+  wateringPlantPressed = () => () => {
+      firebase.firestore().collection('plants').doc(this.props.plant.id).update({
+          logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'watering'}),
+          lastWatering: firebase.firestore.Timestamp.now()
+      }).then(() => {
+          // TODO: mark opacity with green color for n seconds
+      })
   }
 
   render() {
@@ -27,41 +45,41 @@ class PlantWidget extends React.Component {
                 {/*plant image */}
                 <Image 
                 style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
-                source={{uri: this.props.image_url}}
+                source={{uri: this.props.plant.data().imageUrl}}
                 />
                 {/*name of the plant */}
                 <View style={{position: 'absolute', bottom: 2, left: 8}}>
-                  <Text style={{fontSize: 25, color: '#000', fontFamily:'Comfortaa'}}>{this.props.name}</Text>
+                  <Text style={{fontSize: 25, color: '#000', fontFamily:'Comfortaa'}}>{this.props.plant.data().name}</Text>
                 </View>
                 {/*water status image */}
                 <Image 
                 style={{width: 20, height: 25, position: 'absolute', top:4, right:8}}
                 tintColor={this.props.colorWaterStatus}
-                source={water_status_image}
+                source={require('../assets/button_images/water_status.png')}
                 />
                 {/*time left and clock image on top left */}
                 <View style={{position: 'absolute', top: 2, left: 4, padding: 5, flex: 1, flexDirection:'row'}}>
                   <Image 
                   style={{width: 24, height: 23}}
-                  source={clock_image}
+                  source={require('../assets/button_images/clock.png')}
                   />
                   <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering in {this.props.time_left_next_watering} min</Text>
                 </View>
           </TouchableOpacity>
           <View style={{width: 300, padding: 10, flexDirection:'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#E8DFDF', borderBottomRightRadius: 10, borderBottomLeftRadius: 10}}>
-            <TouchableOpacity activeOpacity={0.5}>
+            <TouchableOpacity activeOpacity={0.5} onPress={this.wateringPlantPressed()}>
                 <Image 
                   style={{width: 30, height: 30}}
                   source={require('../assets/button_images/watering.png')}
                 />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5}>
+            <TouchableOpacity activeOpacity={0.5} onPress={this.goodPlantPressed()}>
                 <Image 
                   style={{width: 30, height: 30}}
                   source={require('../assets/button_images/good_plant.png')}
                 />
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5}>
+            <TouchableOpacity activeOpacity={0.5} onPress={this.badPlantPressed()}>
                 <Image 
                   style={{width: 32, height: 30}}
                   source={require('../assets/button_images/bad_plant.png')}

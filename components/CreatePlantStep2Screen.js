@@ -11,6 +11,7 @@ class CreatePlantStep2Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
+        secondsBetweenWaterings: 0,
         plantImage:'',
         externalInternal: '',
         exposition: '',
@@ -21,6 +22,7 @@ class CreatePlantStep2Screen extends React.Component {
         this.setState({
             plantName: this.props.route.params.plantName,
             plantType: this.props.route.params.plantType,
+            secondsBetweenWaterings: this.props.route.params.secondsBetweenWaterings,
             plantImage: this.props.route.params.plantImage
         });
         //console.log(this.state);
@@ -48,6 +50,7 @@ class CreatePlantStep2Screen extends React.Component {
             {
                 plantName: this.state.plantName,
                 plantType: this.state.plantType,
+                secondsBetweenWaterings: this.state.secondsBetweenWaterings,
                 plantImage: this.state.plantImage,
                 externalInternal: this.state.externalInternal,
                 exposition: this.state.exposition,

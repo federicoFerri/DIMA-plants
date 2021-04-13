@@ -20,7 +20,8 @@ class HomeScreen extends React.Component {
 
   toDetailScreen = (plant) => {
     this.props.navigation.navigate('Detail', {
-      plant: plant,
+      plant_data: plant.data(),
+      plant_id: plant.id,
       user: this.state.user
     });
   }
@@ -30,7 +31,7 @@ class HomeScreen extends React.Component {
     firebase.firestore().collection('plants').where('uid', '==', this.state.user.uid).get().then(snapshot => {
       const tmpPlants = [];
       snapshot.forEach(doc => {
-        tmpPlants.push(doc.data());
+        tmpPlants.push(doc);
       });
       this.setState({plants: tmpPlants, isFetching: false});
     }).catch(err => {
@@ -47,8 +48,8 @@ class HomeScreen extends React.Component {
                 data={this.state.plants}
                 renderItem={({ item }) => (
                     <PlantWidget
-                        image_url={item.imageUrl}
-                        name={item.name}
+                        plant={item}
+                        user={this.state.user}
                         time_left_next_watering={30}
                         colorWaterStatus={'red'}
                         onPress={() => this.toDetailScreen(item)}

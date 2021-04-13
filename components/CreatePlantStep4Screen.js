@@ -13,6 +13,7 @@ class CreatePlantStep4Screen extends React.Component {
         user: {},
         plantName: '',
         plantType: '',
+        secondsBetweenWaterings: 0,
         plantImage:'',
         externalInternal: '',
         exposition: '',
@@ -20,8 +21,6 @@ class CreatePlantStep4Screen extends React.Component {
         address:'',
         latitude: '',
         longitude: '',
-        plantState: '', //0 is 'needs water', 1 is 'fine'
-
         loading: false,
     }
 
@@ -34,6 +33,7 @@ class CreatePlantStep4Screen extends React.Component {
         this.setState({
             plantName: this.props.route.params.plantName,
             plantType: this.props.route.params.plantType,
+            secondsBetweenWaterings: this.props.route.params.secondsBetweenWaterings,
             plantImage: this.props.route.params.plantImage,
             externalInternal: this.props.route.params.externalInternal,
             exposition: this.props.route.params.exposition,
@@ -53,11 +53,14 @@ class CreatePlantStep4Screen extends React.Component {
         return snapshot.ref.getDownloadURL();
     }
 
-    toEnd = () => {
+    toEnd = (state) => {
         const filename = this.state.plantImage.substring(this.state.plantImage.lastIndexOf('/') + 1);
         const imageUri = Platform.OS === 'ios' ? this.state.plantImage.replace('file://', '') : this.state.plantImage;
         this.setState({loading: true});
         this.uploadToFirebase(imageUri, filename).then((imageUrl) => {
+            const diff = ((state === 'good') ? 0 : -this.state.secondsBetweenWaterings)
+            const lastWatering = firebase.firestore.Timestamp.now().toDate()
+            lastWatering.setSeconds(lastWatering.getSeconds() + diff);
             firebase.firestore().collection('plants').add({
                 name: this.state.plantName,
                 plantType: this.state.plantType,
@@ -66,8 +69,10 @@ class CreatePlantStep4Screen extends React.Component {
                 exposition: this.state.exposition,
                 room: this.state.roomName,
                 location: this.state.address,
-                state: this.state.plantState,
-                uid: this.state.user.uid
+                uid: this.state.user.uid,
+                logs: [{date: firebase.firestore.Timestamp.now(), action: state}],
+                lastWatering: firebase.firestore.Timestamp.fromDate(lastWatering),
+                secondsBetweenWaterings: this.state.secondsBetweenWaterings
             }).then((res) => {
                 this.setState({loading: false});
                 this.props.navigation.dispatch(
@@ -84,6 +89,7 @@ class CreatePlantStep4Screen extends React.Component {
         {
             plantName: this.state.plantName,
             plantType: this.state.plantType,
+            secondsBetweenWaterings: this.state.secondsBetweenWaterings,
             plantImage: this.state.plantImage,
             externalInternal: this.state.externalInternal,
             exposition: this.state.exposition,
@@ -91,12 +97,10 @@ class CreatePlantStep4Screen extends React.Component {
         });
     }
     handlePlantIsGood = () => {
-        this.setState({ plantState: 1 });
-        this.toEnd();
+        this.toEnd('good');
     }
     handlePlantIsBad = () => {
-        this.setState({ plantState: 0 });
-        this.toEnd();
+        this.toEnd('bad');
     }
     render() {
         return (

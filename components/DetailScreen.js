@@ -13,7 +13,8 @@ import point_timeline from '../assets/timeline_images/point_timeline.png'
 class DetailScreen extends React.Component {
     state = { 
       user: {}, 
-      plant: {},
+      plant_data: {},
+      plant_id: null,
       latitude: 41.390205,
       longitude: 2.154007,
       icon: '',
@@ -23,7 +24,8 @@ class DetailScreen extends React.Component {
     componentDidMount() {
         this.setState({
             user: this.props.route.params.user,
-            plant: this.props.route.params.plant
+            plant_data: this.props.route.params.plant_data,
+            plant_id: this.props.route.params.plant_id
         });
 
         //weather API request
@@ -80,17 +82,17 @@ class DetailScreen extends React.Component {
             <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
               <Text style={{fontSize: 36,
                 color: '#000',
-                fontFamily:'Comfortaa'}}>{this.state.plant.name}
+                fontFamily:'Comfortaa'}}>{this.state.plant_data.name}
               </Text>
               <DeletePlantButton onPress={() => this.createMessageDeletePlant()}/>
             </SafeAreaView>
             <PlantImage
-                source={{uri: this.state.plant.imageUrl}}
+                source={{uri: this.state.plant_data.imageUrl}}
             />
             <SafeAreaView style={{flex: 1,flexDirection: 'column'}}>
               <Info
                   title={'plant type'}
-                  descr={this.state.plant.plantType}
+                  descr={this.state.plant_data.plantType}
               />
               <Info
                   title={'position'}

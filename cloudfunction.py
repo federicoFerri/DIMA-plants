@@ -8,6 +8,7 @@ import firebase_admin
 from firebase_admin import firestore
 import datetime
 import json
+import pytz
 
 credentials = None
 #with open('/hdd0/Downloads/dima-plants-d85fe39b52ba.json') as f:
@@ -55,14 +56,12 @@ def hello_world(request):
     db = firestore.client()
     users = [(user.id, user.to_dict()) for user in db.collection('users').stream()]
     plants = [(plant.id, plant.to_dict()) for plant in db.collection('plants').stream()]
-    plant_types = {plant_type.id: plant_type.to_dict() for plant_type in db.collection('plantTypes').stream()}
     for (user_id, user) in users:
         print('user', user_id)
         user_plants = [(plant_id, plant) for (plant_id, plant) in plants if plant['uid'] == user_id]
         plants_in_need = []
         for (plant_id, plant) in user_plants:
-            timeout = plant.get('secondsBetweenWaterings', plant_types[plant['plantType']]['secondsBetweenWaterings'])
-            if 'lastWatering' not in plant or plant['lastWatering'] + datetime.timedelta(seconds=timeout) > now:
+            if datetime.datetime.now(pytz.utc) > plant['lastWatering'] + datetime.timedelta(seconds=plant['secondsBetweenWaterings']):
                 plants_in_need.append(plant['name'])
         if len(plants_in_need) > 0 and not user.get('disableNotifications', False):
             if len(plants_in_need) > 1:
@@ -73,4 +72,4 @@ def hello_world(request):
             print('user', user_id, 'sent notification for', len(plants_in_need), 'plants')
 
 
-hello_world(None)
+#hello_world(None)

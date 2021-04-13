@@ -11,19 +11,21 @@ class CreatePlantStep3Screen extends React.Component {
     state = {
         plantName: '',
         plantType: '',
+        secondsBetweenWaterings: 0,
         plantImage:'',
         externalInternal: '',
         exposition: '',
         roomName:'',
         address:'',
         latitude: '',
-        longitude: '',
+        longitude: ''
     }
 
     componentDidMount() {
         this.setState({
             plantName: this.props.route.params.plantName,
             plantType: this.props.route.params.plantType,
+            secondsBetweenWaterings: this.props.route.params.secondsBetweenWaterings,
             plantImage: this.props.route.params.plantImage,
             externalInternal: this.props.route.params.externalInternal,
             exposition: this.props.route.params.exposition,
@@ -40,6 +42,7 @@ class CreatePlantStep3Screen extends React.Component {
             this.props.navigation.navigate('CreateStep4',{
                 plantName: this.state.plantName,
                 plantType: this.state.plantType,
+                secondsBetweenWaterings: this.state.secondsBetweenWaterings,
                 plantImage: this.state.plantImage,
                 externalInternal: this.state.externalInternal,
                 exposition: this.state.exposition,
@@ -57,6 +60,7 @@ class CreatePlantStep3Screen extends React.Component {
             //we put the same elements as the navigation from step1 to step2
             plantName: this.state.plantName,
             plantType: this.state.plantType,
+            secondsBetweenWaterings: this.state.secondsBetweenWaterings,
             plantImage: this.state.plantImage
         });
     }
