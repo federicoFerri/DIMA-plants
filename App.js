@@ -51,7 +51,7 @@ class Plants extends React.Component {
         registerForPushNotificationsAsync().then((token) => {
             firebase.auth().onAuthStateChanged((user) => {
                 if (user != null) {
-                    firebase.firestore().collection('users').doc(user.uid).update({expoToken: token});
+                    firebase.firestore().collection('users').doc(user.uid).set({expoToken: token}, {merge: true});
                 }
             });
 
