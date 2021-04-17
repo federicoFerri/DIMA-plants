@@ -10,28 +10,40 @@ import watering_event from '../assets/button_images/watering.png'
 import line_timeline from '../assets/timeline_images/line_timeline.png'
 import point_timeline from '../assets/timeline_images/point_timeline.png'
 import {CommonActions} from "@react-navigation/native";
+import * as Location from 'expo-location';
 
 class DetailScreen extends React.Component {
     state = { 
       user: {}, 
       plant_data: {},
       plant_id: null,
-      latitude: 41.390205,
-      longitude: 2.154007,
+      latitude: '',
+      longitude: '',
       icon: '',
       condition_weather: '',
-      temperature: ''
+      temperature: '',
+      logs: {},
     };
-    componentDidMount() {
+    async componentDidMount() {
         this.setState({
             user: this.props.route.params.user,
             plant_data: this.props.route.params.plant_data,
-            plant_id: this.props.route.params.plant_id
+            plant_id: this.props.route.params.plant_id,
+            logs: this.props.route.params.plant_data.logs,
         });
+
+        //calulate latidute and longitude
+        Location.requestPermissionsAsync();
+        console.log(this.props.route.params.plant_data.location) //don't use state but props, because state could be still undefined
+        let locationData = await Location.geocodeAsync(this.props.route.params.plant_data.location);
+        console.log(locationData)
+        console.log(this.props.route.params.plant_data.logs)
+        let plantLatidute = locationData[0].latitude;
+        let plantLongitude = locationData[0].longitude
 
         //weather API request
         fetch('http://api.weatherapi.com/v1/current.json?key=72fea28e67a349748a9160705210903&q='
-        +this.state.latitude +','+ this.state.longitude + '&aqi=no')
+        +plantLatidute +','+ plantLongitude + '&aqi=no')
         .then(response => response.json())
         .then(responseJson => {
           this.setState(
@@ -75,6 +87,25 @@ class DetailScreen extends React.Component {
     }
   
     render() {
+      //TODO don't use the params, but the state
+      let added_buttons_goes_here = this.props.route.params.plant_data.logs.map( (log) => {
+        switch(log.action){
+          case "watering":
+            return (
+              <Event source={watering_event} date={log.date.seconds}/>
+            )
+          case "good":
+            return (
+              <Event source={plant_fine_image} date={log.date.seconds}/>
+            )
+          case "bad":
+            return (
+              <Event source={needs_water_image} date={log.date.seconds}/>
+            )
+        }
+      });
+      
+
       return (
           <ScrollView style={container}>
             <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
@@ -102,31 +133,23 @@ class DetailScreen extends React.Component {
               />
               <Info
                   title={'position'}
-                  descr={'Internal'}
+                  descr={this.state.plant_data.position}
               />
               <Info
                   title={'exposition'}
-                  descr={'Sunny'}
+                  descr={this.state.plant_data.exposition}
               />
               <Info
                   title={'room'}
-                  descr={'Living room'}
+                  descr={this.state.plant_data.room}
               />
               <Info
                   title={'location'}
-                  descr={"Av. d'Icària, 18908005 Barcelona, Spagna"}
+                  descr={this.state.plant_data.location}
               />
             </SafeAreaView>
-            <ScrollView horizontal={true} style={{flex:1, paddingHorizontal:50, borderBottomWidth: 20}}>
-              <Event source={needs_water_image} date={'10th Dec'}/>
-              <Event source={plant_fine_image} date={'11th Dec'}/>
-              <Event source={watering_event} date={'12th Dec'}/>
-              <Event source={plant_fine_image} date={'13th Dec'}/>
-              <Event source={watering_event} date={'14th Dec'}/>
-              <Event source={plant_fine_image} date={'15th Dec'}/>
-              <Event source={watering_event} date={'16th Dec'}/>
-              <Event source={needs_water_image} date={'17th Dec'}/>
-              <Event source={needs_water_image} date={'18th Dec'}/>
+            <ScrollView horizontal={true} style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10}}>
+              {added_buttons_goes_here}
             </ScrollView>
           </ScrollView>
 
@@ -242,10 +265,10 @@ const stylesImage = StyleSheet.create({
     paddingTop: 50,
   },
   stretch: {
-    width: 357,
-    height: 151,
+    width: 300,
+    height: 140,
     flexDirection: 'row',
-    resizeMode: 'contain',
+    //resizeMode: 'contain',
     //marginHorizontal: 10,
     //marginVertical: 10,
   },
