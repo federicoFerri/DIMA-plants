@@ -113,8 +113,7 @@ class PlantWidget extends React.Component {
                 </View>
                 {/*water status image */}
                 <Image 
-                style={{width: 20, height: 25, position: 'absolute', top:4, right:8}}
-                tintColor={this.state.colorWaterStatus}
+                style={{width: 20, height: 25, position: 'absolute', top:4, right:8, tintColor: this.state.colorWaterStatus}}
                 source={require('../assets/button_images/water_status.png')}
                 />
                 {/*time left and clock image on top left */}
