@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, TouchableOpacity, ActivityIndicator} from 'react-native';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 import HeaderCreatePlant from './HeaderCreatePlant';
@@ -18,8 +18,15 @@ class CreatePlantStep3Screen extends React.Component {
         roomName:'',
         address:'',
         latitude: '',
-        longitude: ''
+        longitude: '',
+
+        //private variable
+        loading:false,
+
     }
+
+    //private variable
+    //loading = false;
 
     componentDidMount() {
         this.setState({
@@ -66,7 +73,7 @@ class CreatePlantStep3Screen extends React.Component {
     }
 
     handleAddress = async (text) => {
-        console.log(text)
+        //console.log(text)
         try{
             let permissionResult = Location.requestPermissionsAsync();
         
@@ -89,6 +96,8 @@ class CreatePlantStep3Screen extends React.Component {
 
     handleGeoLocalization = async () => {
         try{
+            //set loading icon to visible
+            this.setState({loading: true});
             let permissionResult = await Location.requestPermissionsAsync();
         
             if (permissionResult=== false) {
@@ -105,7 +114,10 @@ class CreatePlantStep3Screen extends React.Component {
             this.setState({ latitude: result.coords.latitude });
             this.setState({ longitude: result.coords.longitude });
             console.log(this.state);
+            //set loading icon to invisible
+            this.setState({loading: false});
         }catch(error){
+            alert("Can't use geolocalization!");
             console.log(error);
         }
     }
@@ -133,7 +145,18 @@ class CreatePlantStep3Screen extends React.Component {
                             /> 
                     </TouchableOpacity>
                     <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Location selected: {this.state.address}</Text>
-
+                    <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Latitude: {this.state.latitude}</Text>
+                    <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Longitute: {this.state.longitude}</Text>
+                    {this.state.loading && <ActivityIndicator
+                                            //visibility of Overlay Loading Spinner
+                                            visible={true}
+                                            //Text with the Spinner
+                                            textContent={'Loading...'}
+                                            //Text style of the Spinner Text
+                                            textStyle={{flex:1, fontFamily:'Comfortaa', padding:8}}
+                                            size="large"
+                                            color="#000000"
+                                            />}
                 </SafeAreaView>
             </SafeAreaView>
         )

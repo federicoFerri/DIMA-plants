@@ -34,10 +34,10 @@ class DetailScreen extends React.Component {
 
         //calulate latidute and longitude
         Location.requestPermissionsAsync();
-        console.log(this.props.route.params.plant_data.location) //don't use state but props, because state could be still undefined
+        //console.log(this.props.route.params.plant_data.location) //don't use state but props, because state could be still undefined
         let locationData = await Location.geocodeAsync(this.props.route.params.plant_data.location);
-        console.log(locationData)
-        console.log(this.props.route.params.plant_data.logs)
+        //console.log(locationData)
+        //console.log(this.props.route.params.plant_data.logs)
         let plantLatidute = locationData[0].latitude;
         let plantLongitude = locationData[0].longitude
 
@@ -148,7 +148,7 @@ class DetailScreen extends React.Component {
                   descr={this.state.plant_data.location}
               />
             </SafeAreaView>
-            <ScrollView horizontal={true} style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10}}>
+            <ScrollView horizontal={true} style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10, paddingBottom:50}}>
               {added_buttons_goes_here}
             </ScrollView>
           </ScrollView>

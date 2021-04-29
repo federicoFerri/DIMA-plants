@@ -3,7 +3,11 @@ import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import firebase from "firebase";
 
 class PlantWidget extends React.Component {
-  state = { colorWaterStatus: null, timeLeftNextWatering: 0};
+  millisBetweenUpdates = 15000;
+  state = { 
+    colorWaterStatus: null, 
+    timeLeftNextWatering: 0 //in seconds, you adapt it for minutes
+  };
 
   componentDidMount() {
     const expired = firebase.firestore.Timestamp.now().seconds > this.props.plant.data().lastWatering.seconds + this.props.plant.data().secondsBetweenWaterings;
@@ -11,25 +15,43 @@ class PlantWidget extends React.Component {
     console.log(firebase.firestore.Timestamp.now().seconds, this.props.plant.data().lastWatering.seconds + this.props.plant.data().secondsBetweenWaterings, diff, expired);
     this.setState({
         colorWaterStatus: (expired ? 'red' : 'green'),
-        timeLeftNextWatering: (expired ? 'now' : 'in ' + Math.floor(diff / 60) + ' min')
+        timeLeftNextWatering: (expired ? 0 :  diff )
     });
     // TODO start a recurrent operation (timer) that updates the time left and color of the icon (state)
+    //update every 30 seconds
+    this.interval = setInterval(() => this.updateStatusOverTime(), this.millisBetweenUpdates); 
   }
 
   componentWillUnmount() {
       // TODO: clear the interval
+      clearInterval(this.interval);
   }
 
-    imagePressed = () => () => {
+  imagePressed = () => () => {
     this.props.onPress()
   }
 
+  updateStatusOverTime() {
+    const expired = ((this.state.timeLeftNextWatering - (this.millisBetweenUpdates/ (1000))) <= 0);
+    const diff = (this.millisBetweenUpdates / 1000);
+    this.setState({
+      colorWaterStatus: (expired ? 'red' : 'green'),
+      timeLeftNextWatering: (expired ? 0 : this.state.timeLeftNextWatering - diff )
+  });
+}
+
   badPlantPressed = () => () => {
+      const diff = +10;
       firebase.firestore().collection('plants').doc(this.props.plant.id).update({
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'bad'}),
-          secondsBetweenWaterings: this.props.plant.secondsBetweenWaterings + diff
+          secondsBetweenWaterings: (this.props.plant.secondsBetweenWaterings - diff > 0 ? this.props.plant.secondsBetweenWaterings - diff : this.props.plant.secondsBetweenWaterings)
       }).then(() => {
           // TODO: mark opacity with green color for n seconds and update props
+          const expired = (this.props.plant.secondsBetweenWaterings - diff) > 0
+          this.setState({
+            colorWaterStatus: (expired ? 'red' : 'green'),
+            timeLeftNextWatering: (expired ? 0 :  (this.state.timeLeftNextWatering - diff) )
+        });
       })
   }
 
@@ -40,6 +62,10 @@ class PlantWidget extends React.Component {
           secondsBetweenWaterings: this.props.plant.secondsBetweenWaterings + diff
       }).then(() => {
           // TODO: mark opacity with green color for n seconds and update props
+          this.setState({
+            colorWaterStatus: 'green',
+            timeLeftNextWatering: (this.state.timeLeftNextWatering + diff)
+        });
       })
   }
 
@@ -49,7 +75,25 @@ class PlantWidget extends React.Component {
           lastWatering: firebase.firestore.Timestamp.now()
       }).then(() => {
           // TODO: mark opacity with green color for n seconds and update props
+          this.setState({
+            colorWaterStatus: 'green',
+            timeLeftNextWatering: this.props.plant.data().secondsBetweenWaterings
+        });
       })
+  }
+
+  printTimeLeft(){
+    if(this.state.timeLeftNextWatering > 0) {
+      if(this.state.timeLeftNextWatering >= 60){
+        return ('in ' + Math.floor(this.state.timeLeftNextWatering / 60) + ' min');
+      }
+      else{
+        return ('in ' + this.state.timeLeftNextWatering +' seconds');
+      }
+    }
+    else{
+      return ('now');
+    }
   }
 
   render() {
@@ -79,7 +123,7 @@ class PlantWidget extends React.Component {
                   style={{width: 24, height: 23}}
                   source={require('../assets/button_images/clock.png')}
                   />
-                  <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering {this.state.timeLeftNextWatering}</Text>
+                  <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering {this.printTimeLeft()}</Text>
                 </View>
           </TouchableOpacity>
           <View style={{width: 300, padding: 10, flexDirection:'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#E8DFDF', borderBottomRightRadius: 10, borderBottomLeftRadius: 10}}>
