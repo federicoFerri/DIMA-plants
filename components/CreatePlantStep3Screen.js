@@ -104,7 +104,7 @@ class CreatePlantStep3Screen extends React.Component {
                 alert("Permission to access map services are required!");
                 return;
             }
-            let result = await Location.getCurrentPositionAsync({});
+            let result = await Location.getLastKnownPositionAsync({});
             console.log(result);
             //console.log(result[0].latitude);
             let location = {latitude: result.coords.latitude, longitude: result.coords.longitude};
