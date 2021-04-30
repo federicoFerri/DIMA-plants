@@ -6,7 +6,8 @@ class PlantWidget extends React.Component {
   millisBetweenUpdates = 15000;
   state = { 
     colorWaterStatus: null, 
-    timeLeftNextWatering: 0 //in seconds, you adapt it for minutes
+    timeLeftNextWatering: 0, //in seconds, you adapt it for minutes
+    opacityPlantImage: false
   };
 
   componentDidMount() {
@@ -31,6 +32,10 @@ class PlantWidget extends React.Component {
     this.props.onPress()
   }
 
+  setOpacityImageToDefault(){
+    this.setState({opacityPlantImage: false});
+  }
+
   updateStatusOverTime() {
     const expired = ((this.state.timeLeftNextWatering - (this.millisBetweenUpdates/ (1000))) <= 0);
     const diff = (this.millisBetweenUpdates / 1000);
@@ -50,8 +55,10 @@ class PlantWidget extends React.Component {
           const expired = (this.props.plant.secondsBetweenWaterings - diff) > 0
           this.setState({
             colorWaterStatus: (expired ? 'red' : 'green'),
-            timeLeftNextWatering: (expired ? 0 :  (this.state.timeLeftNextWatering - diff) )
-        });
+            timeLeftNextWatering: (expired ? 0 :  (this.state.timeLeftNextWatering - diff) ),
+            opacityPlantImage: 'red',
+          });
+          setTimeout(() => this.setOpacityImageToDefault(), 100);
       })
   }
 
@@ -64,8 +71,10 @@ class PlantWidget extends React.Component {
           // TODO: mark opacity with green color for n seconds and update props
           this.setState({
             colorWaterStatus: 'green',
-            timeLeftNextWatering: (this.state.timeLeftNextWatering + diff)
+            timeLeftNextWatering: (this.state.timeLeftNextWatering + diff),
+            opacityPlantImage: 'green',
         });
+        setTimeout(() => this.setOpacityImageToDefault(), 100);
       })
   }
 
@@ -77,8 +86,10 @@ class PlantWidget extends React.Component {
           // TODO: mark opacity with green color for n seconds and update props
           this.setState({
             colorWaterStatus: 'green',
-            timeLeftNextWatering: this.props.plant.data().secondsBetweenWaterings
+            timeLeftNextWatering: this.props.plant.data().secondsBetweenWaterings,
+            opacityPlantImage: 'blue',
         });
+        setTimeout(() => this.setOpacityImageToDefault(), 100);
       })
   }
 
@@ -103,10 +114,17 @@ class PlantWidget extends React.Component {
             activeOpacity={0.5}
             onPress={this.imagePressed()}>
                 {/*plant image */}
-                <Image 
-                style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
-                source={{uri: this.props.plant.data().imageUrl}}
-                />
+                {this.state.opacityPlantImage ?
+                  <Image 
+                  style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10, tintColor: this.state.opacityPlantImage}}
+                  source={{uri: this.props.plant.data().imageUrl}}
+                  />
+                  :
+                  <Image 
+                  style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
+                  source={{uri: this.props.plant.data().imageUrl}}
+                  />
+                }
                 {/*name of the plant */}
                 <View style={{position: 'absolute', bottom: 2, left: 8}}>
                   <Text style={{fontSize: 25, color: '#000', fontFamily:'Comfortaa'}}>{this.props.plant.data().name}</Text>
