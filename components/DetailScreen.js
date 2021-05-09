@@ -63,6 +63,8 @@ class DetailScreen extends React.Component {
         .catch(error => {
           console.error(error);
         });
+
+        
     }
 
     deletePlant = () => {
@@ -103,10 +105,11 @@ class DetailScreen extends React.Component {
   
     render() {
       //TODO don't use the params, but the state
-      let added_buttons_goes_here = this.props.route.params.plant_data.logs.map( (log) => {
+      //I use the array in a reverse way with slice(0).reverse()
+      let added_buttons_goes_here = this.props.route.params.plant_data.logs.slice(0).reverse().map( (log) => {
         let dateEvent = new Date(0);
         dateEvent.setSeconds(log.date.seconds);
-        console.log(dateEvent);
+        //console.log(dateEvent);
         //console.log(dateEvent.setSeconds(log.date.seconds));
         switch(log.action){
           case "watering":
@@ -123,6 +126,8 @@ class DetailScreen extends React.Component {
             )
         }
       });
+
+
       
 
       return (
@@ -169,7 +174,7 @@ class DetailScreen extends React.Component {
                   descr={this.state.plant_data.location}
               />
             </SafeAreaView>
-            <ScrollView horizontal={true} style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10, paddingBottom:50}}>
+            <ScrollView ref='_scrollViewEvents' horizontal={true} endFillColor='#fff' style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10, paddingBottom:50}}>
               {added_buttons_goes_here}
             </ScrollView>
           </ScrollView>
