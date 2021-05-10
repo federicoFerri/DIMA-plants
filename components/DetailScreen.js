@@ -23,6 +23,7 @@ class DetailScreen extends React.Component {
       condition_weather: '',
       temperature: '',
       logs: {},
+      isRoomPresent: true,
     };
     async componentDidMount() {
         this.setState({
@@ -30,6 +31,7 @@ class DetailScreen extends React.Component {
             plant_data: this.props.route.params.plant_data,
             plant_id: this.props.route.params.plant_id,
             logs: this.props.route.params.plant_data.logs,
+            isRoomPresent: (this.props.route.params.plant_data.room != ''),
         });
 
         //calulate latidute and longitude
@@ -37,7 +39,10 @@ class DetailScreen extends React.Component {
         //console.log(this.props.route.params.plant_data.location) //don't use state but props, because state could be still undefined
         let locationData = await Location.geocodeAsync(this.props.route.params.plant_data.location);
         //console.log(locationData)
-        //console.log(this.props.route.params.plant_data.logs)
+
+        
+
+
         let plantLatidute = locationData[0].latitude;
         let plantLongitude = locationData[0].longitude
 
@@ -58,6 +63,8 @@ class DetailScreen extends React.Component {
         .catch(error => {
           console.error(error);
         });
+
+        
     }
 
     deletePlant = () => {
@@ -85,25 +92,42 @@ class DetailScreen extends React.Component {
         { cancelable: true }
       );
     }
+
+    showTwoDigits(num){
+      return (num < 10) ? '0' + num.toString() : num.toString();
+    }
+
+    createStringEvent(dateEvent){
+      return dateEvent.getDate() + '/' + dateEvent.getMonth() + '/' + dateEvent.getFullYear() + '\n    ' + 
+      this.showTwoDigits(dateEvent.getHours()) + ':' + this.showTwoDigits(dateEvent.getMinutes());
+    }
+
   
     render() {
       //TODO don't use the params, but the state
-      let added_buttons_goes_here = this.props.route.params.plant_data.logs.map( (log) => {
+      //I use the array in a reverse way with slice(0).reverse()
+      let added_buttons_goes_here = this.props.route.params.plant_data.logs.slice(0).reverse().map( (log) => {
+        let dateEvent = new Date(0);
+        dateEvent.setSeconds(log.date.seconds);
+        //console.log(dateEvent);
+        //console.log(dateEvent.setSeconds(log.date.seconds));
         switch(log.action){
           case "watering":
             return (
-              <Event source={watering_event} date={log.date.seconds}/>
+              <Event source={watering_event} date={this.createStringEvent(dateEvent)}/>
             )
           case "good":
             return (
-              <Event source={plant_fine_image} date={log.date.seconds}/>
+              <Event source={plant_fine_image} date={this.createStringEvent(dateEvent)}/>
             )
           case "bad":
             return (
-              <Event source={needs_water_image} date={log.date.seconds}/>
+              <Event source={needs_water_image} date={this.createStringEvent(dateEvent)}/>
             )
         }
       });
+
+
       
 
       return (
@@ -139,16 +163,18 @@ class DetailScreen extends React.Component {
                   title={'exposition'}
                   descr={this.state.plant_data.exposition}
               />
+              {this.state.isRoomPresent && //show only if a room was added by the user
               <Info
                   title={'room'}
                   descr={this.state.plant_data.room}
               />
+              }
               <Info
                   title={'location'}
                   descr={this.state.plant_data.location}
               />
             </SafeAreaView>
-            <ScrollView horizontal={true} style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10, paddingBottom:50}}>
+            <ScrollView ref='_scrollViewEvents' horizontal={true} endFillColor='#fff' style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10, paddingBottom:50}}>
               {added_buttons_goes_here}
             </ScrollView>
           </ScrollView>
