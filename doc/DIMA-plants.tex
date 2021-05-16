@@ -147,5 +147,231 @@
 	
 	\section{Implementation}
 	
+	\section{Use Cases}
+    
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     &\textbf{Sign up with google account} \\
+     \\
+     Precondition & The user has a google account \\
+     \\
+     User flow 
+     & 1. The user downloads and installs the app\\ 
+     & 2. The user opens the app and is directed to the sing up/login page \\
+     & 3. The user clicks the google button\\ 
+     & 4. The app opens the google services on the browser to convalidate the account  \\
+     & 5. The user log in with their google account\\
+     & 6. The app receives the data and register it in Firebase\\
+     & 7. The app redirects the user to the home page\\
+     \\
+     Postconditions & the user is registered to the app and they are on the homepage \\ 
+     \\
+     Exceptions & Data inserted by the user is not correct and the flows goes to point 3\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{Sign up with facebook account} \\
+     \\
+     Precondition & The user has a facebook account \\
+     \\
+     User flow  
+     & 1. The user downloads and installs the app\\ 
+     & 2. The user opens the app and is directed to the sing up/login page \\
+     & 3. The user clicks the facebook button\\ 
+     & 4. The app opens the facebook services on the browser to convalidate the account  \\
+     & 5. The user log in with their facebook account\\
+     & 6. The app receives the data and register it in Firebase\\
+     & 7. The app redirects the user to the home page\\
+     \\
+     Postconditions & the user is registered to the app and they are on the homepage \\ 
+     \\
+     Exceptions & Data inserted by the user is not correct and the flows goes to point 2\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{Login with a google account} \\
+     \\
+     Precondition & The user has already registered to the app with a google account \\ 
+     \\
+     User flow  
+     & 1. The user opens the app and is directed to the sing up/login page \\
+     & 2. The user clicks the google button\\ 
+     & 3. The app opens the google services on the browser to convalidate the account  \\
+     & 4. The user log in with their google account\\
+     & 5. The app redirects the user to the home page\\
+     \\
+     Postconditions & The app shows the homepage to the user \\ 
+     \\
+     Exceptions & Data inserted by the user is not correct and the flows goes to point 1\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{Login with a facebook account} \\
+     \\
+     Precondition & The user has already registered to the app with a facebook account \\ 
+     \\
+     User flow 
+     & 1. The user opens the app and is directed to the sing up/login page \\
+     & 2. The user clicks the facebook button\\ 
+     & 3. The app opens the facebook services on the browser to convalidate the account  \\
+     & 4. The user log in with their facebook account\\
+     & 5. The app redirects the user to the home page\\
+     \\
+     Postconditions & The app shows the homepage to the user \\
+     \\
+     Exceptions & Data inserted by the user is not correct and the flows goes to point 1\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{The user adds a new plant} \\
+     \\
+     Precondition & The user is on the homepage and their phone has a working camera \\ 
+     \\
+     User flow 
+     & 1. User clicks on the "+" button in the bottom bar \\
+     & 2. App navigates to "add a plant" (step 1) screen\\ 
+     & 3. User inserts name of the plant, type of the plant and takes a photo of the plant with the camera  \\
+     & 4. User clicks the forward arrow\\
+     & 5. App navigates to "position" (step 2) screen \\
+     & 6. User inserts position, exposition and adds (optionally) the name of the room \\
+     & 7. User clicks the forward arrow \\
+     & 8. App navigates to "address" (step 3) screen \\
+     & 9. User presses the geolocalization button or inserts the address of the plant position manually \\
+     & 10. User clicks the forward arrow \\
+     & 11. App navigates to "How is your plant now" (step 2) screen \\
+     & 12. User presses the button representing the current status of the plant (good or bad) \\
+     & 13. App processes and sends all the data of the new plant to firebase \\
+     & 14. App updates its data from Firebase and navigates to the homescreen \\
+     \\
+     Postconditions & App shows the homepage to the user and a new plant with the data inserted by the user is added \\
+     \\
+     Exceptions 
+     & 1. User presses the backward arrow. Flows goes to the previous step\\
+     & 2. User clicks the forward arrow of a page, but the required data is inserted by the user. App shows an alert and doesn't go to the next step\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{Visualization of details of a plant} \\
+     \\
+     Precondition & User is on the homepage and has already added the plant \\ 
+     \\
+     User flow 
+     & 1. User clicks the image of the widget of the plant \\
+     & 2. App navigates to Detail page of the plant \\ 
+     \\
+     Postconditions & The app shows the details of the plant \\
+     \\
+     Exceptions & -\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{"Watering" event of a plant} \\
+     \\
+     Precondition & User is on the homepage and has already added the plant \\ 
+     \\
+     User flow 
+     & 1. User clicks on the "watering" icon of the widget of the plant \\
+     & 2. App sends data of the event to firebase and updates the status of the plant \\ 
+     \\
+     Postconditions & Plant status is affected by the "watering" event \\
+     \\
+     Exceptions & -\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{"Good plant" event of a plant} \\
+     \\
+     Precondition & User is on the homepage and has already added the plant \\ 
+     \\
+     User flow 
+     & 1. User clicks on the "good plant" icon of the widget of the plant \\
+     & 2. App sends data of the event to firebase and updates the status of the plant \\ 
+     \\
+     Postconditions & Plant status is affected by the "good plant" event \\
+     \\
+     Exceptions & -\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{"Bad plant" event of a plant} \\
+     \\
+     Precondition & User is on the homepage and has already added the plant \\ 
+     \\
+     User flow 
+     & 1. User clicks on the "bad plant" icon of the widget of the plant \\
+     & 2. App sends data of the event to firebase and updates the status of the plant \\ 
+     \\
+     Postconditions & Plant status is affected by the "bad plant" event \\
+     \\
+     Exceptions & -\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{Go to homepage} \\
+     \\
+     Precondition & User is on a screen of the app that is not the login/sign up screen \\ 
+     \\
+     User flow 
+     & 1. User clicks on the "home" button in the bottom bar  \\
+     & 2. App navigates to the homepage \\ 
+     \\
+     Postconditions & User is on homepage \\
+     \\
+     Exceptions & -\\
+    \end{tabular}
+    \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{Set up of visualization of notifications} \\
+     \\
+     Precondition & User is on a screen of the app that is not the login/sign up screen \\ 
+     \\
+     User flow 
+     & 1. User clicks on the "profile" button in the bottom bar  \\
+     & 2. App navigates to the Profile screen \\ 
+     & 2. User set "show notifications" on/off using the slider \\ 
+     \\
+     Postconditions & User selects notification visualization  setting \\
+     \\
+     Exceptions & -\\
+    \end{tabular}
+        \newline
+    \newline
+    \newline
+    \begin{tabular}{ p{3cm}|p{8cm} }
+     & \textbf{Logout} \\
+     \\
+     Precondition & User is on a screen of the app that is not the login/sign up screen \\ 
+     \\
+     User flow 
+     & 1. User clicks on the "profile" button in the bottom bar  \\
+     & 2. App navigates to the Profile screen \\ 
+     & 3. User clicks on the "Logout" button \\ 
+     & 4. App navigates to sign up/login screen \\
+     \\
+     Postconditions & User logs out and app shows the login/sign up screen \\
+     \\
+     Exceptions & -\\
+    \end{tabular}
+    
+	
 	
 \end{document}
