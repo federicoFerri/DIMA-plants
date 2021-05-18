@@ -3,10 +3,11 @@ import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import firebase from "firebase";
 
 class PlantWidget extends React.Component {
-  millisBetweenUpdates = 15000;
+  millisBetweenUpdates = 1000;
   state = { 
     colorWaterStatus: null, 
     timeLeftNextWatering: 0, //in seconds, you adapt it for minutes
+    secondsBetweenWaterings: 0,
     opacityPlantImage: 'no_color'
   };
 
@@ -16,7 +17,8 @@ class PlantWidget extends React.Component {
     console.log(firebase.firestore.Timestamp.now().seconds, this.props.plant.data().lastWatering.seconds + this.props.plant.data().secondsBetweenWaterings, diff, expired);
     this.setState({
         colorWaterStatus: (expired ? 'red' : 'green'),
-        timeLeftNextWatering: (expired ? 0 :  diff )
+        timeLeftNextWatering: (expired ? 0 :  diff ),
+        secondsBetweenWaterings: this.props.plant.data().secondsBetweenWaterings,
     });
     // TODO start a recurrent operation (timer) that updates the time left and color of the icon (state)
     //update every 30 seconds
@@ -49,14 +51,15 @@ class PlantWidget extends React.Component {
       const diff = +10;
       firebase.firestore().collection('plants').doc(this.props.plant.id).update({
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'bad'}),
-          secondsBetweenWaterings: (this.props.plant.secondsBetweenWaterings - diff > 0 ? this.props.plant.secondsBetweenWaterings - diff : this.props.plant.secondsBetweenWaterings)
+          secondsBetweenWaterings: (this.state.secondsBetweenWaterings - diff > 0 ? this.state.secondsBetweenWaterings - diff : this.state.secondsBetweenWaterings)
       }).then(() => {
           // TODO: mark opacity with green color for n seconds and update props
-          const expired = (this.props.plant.secondsBetweenWaterings - diff) > 0
+          const expired = ((this.state.timeLeftNextWatering - diff) <= 0 );
           this.setState({
             colorWaterStatus: (expired ? 'red' : 'green'),
             timeLeftNextWatering: (expired ? 0 :  (this.state.timeLeftNextWatering - diff) ),
             opacityPlantImage: 'red',
+            secondsBetweenWaterings: this.state.secondsBetweenWaterings - diff,
           });
           setTimeout(() => this.setOpacityImageToDefault(), 100);
       })
@@ -66,13 +69,14 @@ class PlantWidget extends React.Component {
       const diff = +10;
       firebase.firestore().collection('plants').doc(this.props.plant.id).update({
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'good'}),
-          secondsBetweenWaterings: this.props.plant.secondsBetweenWaterings + diff
+          secondsBetweenWaterings: this.state.secondsBetweenWaterings + diff
       }).then(() => {
           // TODO: mark opacity with green color for n seconds and update props
           this.setState({
             colorWaterStatus: 'green',
             timeLeftNextWatering: (this.state.timeLeftNextWatering + diff),
             opacityPlantImage: 'green',
+            secondsBetweenWaterings: this.state.secondsBetweenWaterings + diff,
         });
         setTimeout(() => this.setOpacityImageToDefault(), 100);
       })
@@ -86,7 +90,7 @@ class PlantWidget extends React.Component {
           // TODO: mark opacity with green color for n seconds and update props
           this.setState({
             colorWaterStatus: 'green',
-            timeLeftNextWatering: this.props.plant.data().secondsBetweenWaterings,
+            timeLeftNextWatering: this.state.secondsBetweenWaterings,
             opacityPlantImage: '#0066cc',
         });
         setTimeout(() => this.setOpacityImageToDefault(), 100);
@@ -94,9 +98,22 @@ class PlantWidget extends React.Component {
   }
 
   printTimeLeft(){
+    /*
     if(this.state.timeLeftNextWatering > 0) {
       if(this.state.timeLeftNextWatering >= 60){
         return ('in ' + Math.floor(this.state.timeLeftNextWatering / 60) + ' min');
+      }
+      else{
+        return ('in ' + this.state.timeLeftNextWatering +' seconds');
+      }
+    }
+    else{
+      return ('now');
+    }
+    */
+    if(this.state.timeLeftNextWatering > 0) {
+      if(this.state.timeLeftNextWatering >= 60){
+        return ('in ' + Math.floor(this.state.timeLeftNextWatering / 60) + ' min and '+ (this.state.timeLeftNextWatering % 60) + ' seconds');
       }
       else{
         return ('in ' + this.state.timeLeftNextWatering +' seconds');
