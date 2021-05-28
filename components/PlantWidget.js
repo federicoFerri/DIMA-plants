@@ -2,12 +2,17 @@ import React from 'react';
 import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import firebase from "firebase";
 
+const image_green= require('../assets/green.png');
+const image_blue= require('../assets/blue.png');
+const image_red= require('../assets/red.png');
+
 class PlantWidget extends React.Component {
   millisBetweenUpdates = 1000;
   state = { 
     colorWaterStatus: null, 
     timeLeftNextWatering: 0, //in seconds, you adapt it for minutes
     secondsBetweenWaterings: 0,
+    imageUrl: this.props.plant.data().imageUrl,
     opacityPlantImage: 'no_color'
   };
 
@@ -21,7 +26,7 @@ class PlantWidget extends React.Component {
         secondsBetweenWaterings: this.props.plant.data().secondsBetweenWaterings,
     });
     // TODO start a recurrent operation (timer) that updates the time left and color of the icon (state)
-    //update every 30 seconds
+    //update every 1 second
     this.interval = setInterval(() => this.updateStatusOverTime(), this.millisBetweenUpdates); 
   }
 
@@ -44,8 +49,8 @@ class PlantWidget extends React.Component {
     this.setState({
       colorWaterStatus: (expired ? 'red' : 'green'),
       timeLeftNextWatering: (expired ? 0 : this.state.timeLeftNextWatering - diff )
-  });
-}
+    });
+  }
 
   badPlantPressed = () => () => {
       const diff = +10;
@@ -91,7 +96,7 @@ class PlantWidget extends React.Component {
           this.setState({
             colorWaterStatus: 'green',
             timeLeftNextWatering: this.state.secondsBetweenWaterings,
-            opacityPlantImage: '#0066cc',
+            opacityPlantImage: 'blue',
         });
         setTimeout(() => this.setOpacityImageToDefault(), 100);
       })
@@ -124,6 +129,15 @@ class PlantWidget extends React.Component {
     }
   }
 
+  //returns the correct image to show when an event botton is pressed
+  giveColorBackgroundImage(){
+    switch(this.state.opacityPlantImage){
+      case 'red': return image_red;
+      case 'blue': return image_blue;
+      case 'green': return image_green;
+    }
+  }
+
   render() {
       return (
         <SafeAreaView style={{width: 300, height: 190, flex: 1, flexDirection:'column', justifyContent: 'center', alignItems: 'center', marginBottom: 20}}>
@@ -131,15 +145,15 @@ class PlantWidget extends React.Component {
             activeOpacity={0.5}
             onPress={this.imagePressed()}>
                 {/*plant image */}
-                {this.state.opacityPlantImage=='no_color' ?
+                {this.state.opacityPlantImage==='no_color' ?
                   <Image 
                   style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
-                  source={{uri: this.props.plant.data().imageUrl}}
+                  source={{uri: this.state.imageUrl}}
                   />
                   :
                   <Image 
-                  style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10, tintColor: this.state.opacityPlantImage}}
-                  source={{uri: this.props.plant.data().imageUrl}}
+                  style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10,}}
+                  source={this.giveColorBackgroundImage()}
                   />
                 }
                 {/*name of the plant */}
@@ -157,7 +171,7 @@ class PlantWidget extends React.Component {
                   style={{width: 24, height: 23}}
                   source={require('../assets/button_images/clock.png')}
                   />
-                  <Text style={{fontSize: 13, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering {this.printTimeLeft()}</Text>
+                  <Text style={{fontSize: 11, color: '#000', fontFamily: 'Comfortaa', padding: 2}}>next watering {this.printTimeLeft()}</Text>
                 </View>
           </TouchableOpacity>
           <View style={{width: 300, padding: 10, flexDirection:'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#E8DFDF', borderBottomRightRadius: 10, borderBottomLeftRadius: 10}}>

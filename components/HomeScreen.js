@@ -44,7 +44,7 @@ class HomeScreen extends React.Component {
         <SafeAreaView style={{ flex: 1}}>
           <Text style={{fontSize: 36, color: '#000', fontFamily: 'Comfortaa', marginTop: 50, marginLeft: 10}}>Profile</Text>
           <View style={{alignItems: 'center'}}>
-            <FlatList style={{marginTop: 15}}
+            <FlatList style={{marginTop: 15, marginBottom:90}}
                 data={this.state.plants}
                 renderItem={({ item }) => (
                     <PlantWidget

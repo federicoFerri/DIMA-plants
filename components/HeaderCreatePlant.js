@@ -16,7 +16,7 @@ class HeaderCreatePlant extends React.Component {
     }
     render() {
         return (
-            <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between', marginTop: 20, paddingLeft: 15, paddingRight: 15}}>
+            <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between', marginTop: 20, marginLeft: 15, marginRight: 15}}>
                 <BackButton
                     onPress={this.backPressed()}
                 />
