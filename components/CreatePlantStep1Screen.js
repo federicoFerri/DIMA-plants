@@ -107,8 +107,8 @@ class CreatePlantStep1Screen extends React.Component {
                 <TouchableOpacity 
                     activeOpacity={0.5}
                     onPress={this.openImagePickerAsync}
-                    style={{width: 300, height: 250, alignSelf: 'center', flex:1, alignItems: 'center', flexDirection: 'column'}}>
-                        {this.state.plantImage ? (<Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250, alignSelf: 'center'}}/>) 
+                    style={{width: 300, height: 250, alignSelf: 'center', flex:1, alignItems: 'center', flexDirection: 'column', marginHorizontal: 10, marginVertical:10}}>
+                        {this.state.plantImage ? (<Image source={{ uri: this.state.plantImage }} style={{width: 300, height: 250, alignSelf: 'center',marginHorizontal: 30, marginVertical:10}}/>) 
                         : (<Image source={{ uri: plantLoadImageUri }} style={{width: 160, height: 120, marginTop: 40, alignSelf: 'center', resizeMode: 'contain'}}/>)}  
                 </TouchableOpacity>
                 

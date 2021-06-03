@@ -132,7 +132,7 @@ class DetailScreen extends React.Component {
 
       return (
           <ScrollView style={container}>
-            <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
+            <SafeAreaView style={{flex: 1, flexDirection: 'row', justifyContent:'space-between', alignItems: 'center'}}>
               <BackButton onPress={() => this.props.navigation.goBack()}/>
               <WeatherWidget
                   icon={this.state.icon}
@@ -140,7 +140,7 @@ class DetailScreen extends React.Component {
                   temperature={this.state.temperature}
               />
             </SafeAreaView>
-            <SafeAreaView style={{flexDirection: 'row', justifyContent:'space-between'}}>
+            <SafeAreaView style={{flex: 1, flexDirection: 'row', justifyContent:'space-between', alignItems: 'center', marginTop: 10}}>
               <Text style={{fontSize: 36,
                 color: '#000',
                 fontFamily:'Comfortaa'}}>{this.state.plant_data.name}
@@ -173,8 +173,8 @@ class DetailScreen extends React.Component {
                   title={'location'}
                   descr={this.state.plant_data.location}
               />
-            </SafeAreaView>
-            <ScrollView ref='_scrollViewEvents' horizontal={true} endFillColor='#fff' style={{flex:1, paddingHorizontal:10, borderBottomWidth: 10, paddingBottom:50}}>
+            </SafeAreaView >
+            <ScrollView ref='_scrollViewEvents' horizontal={true} endFillColor='#fff' showsHorizontalScrollIndicator={false} style={{flex:1, paddingHorizontal:10, paddingBottom:50, marginTop: 20}}>
               {added_buttons_goes_here}
             </ScrollView>
           </ScrollView>

@@ -28,7 +28,7 @@ const stylesImage = StyleSheet.create({
       width: 20,
       height: 21,
       resizeMode: 'contain',
-      marginTop: 20,
+      //marginTop: 20,
     },
   });
 

@@ -136,15 +136,15 @@ class CreatePlantStep3Screen extends React.Component {
                     placeholderTextColor = 'gray'
                     onChangeText = {this.handleAddress}
                 />
-                <SafeAreaView style={{ flex: 1, flexDirection:'column', alignItems: 'center', marginTop: 60}}>
+                <SafeAreaView style={{ flex: 1, flexDirection:'column', alignItems: 'center', marginTop: 40}}>
                     <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Or use geo-localization</Text>
                     <TouchableOpacity activeOpacity={0.5} onPress={this.handleGeoLocalization}>
                         <Image 
-                            style={{width: 115, height: 153, resizeMode: 'contain',}}
+                            style={{width: 115, height: 153, resizeMode: 'contain'}}
                             source={image_geo_localization}
                             /> 
                     </TouchableOpacity>
-                    <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Location selected: {this.state.address}</Text>
+                    <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15, marginTop:5}}>Location selected: {this.state.address}</Text>
                     <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Latitude: {this.state.latitude}</Text>
                     <Text style={{fontSize: 15, color: '#000', fontFamily:'Comfortaa', marginBottom: 15}}>Longitute: {this.state.longitude}</Text>
                     {this.state.loading && <ActivityIndicator

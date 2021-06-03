@@ -35,7 +35,7 @@ const stylesImage = StyleSheet.create({
       width: 32,
       height: 27,
       resizeMode: 'contain',
-      marginTop: 17
+      //marginTop: 17
     },
   });
 

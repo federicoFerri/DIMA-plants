@@ -19,6 +19,7 @@ class HomeScreen extends React.Component {
   }
 
   toDetailScreen = (plant) => {
+    this.onRefresh();
     this.props.navigation.navigate('Detail', {
       plant_data: plant.data(),
       plant_id: plant.id,
