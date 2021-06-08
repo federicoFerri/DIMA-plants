@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PlantWidget /> renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "column",
+      "height": 190,
+      "justifyContent": "center",
+      "marginBottom": 20,
+      "width": 300,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": undefined,
+        }
+      }
+      style={
+        Object {
+          "borderTopLeftRadius": 10,
+          "borderTopRightRadius": 10,
+          "height": 140,
+          "opacity": 0.75,
+          "width": 300,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "bottom": 2,
+          "left": 8,
+          "position": "absolute",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "Comfortaa",
+            "fontSize": 25,
+          }
+        }
+      />
+    </View>
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 25,
+          "position": "absolute",
+          "right": 8,
+          "tintColor": "green",
+          "top": 4,
+          "width": 20,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "left": 4,
+          "padding": 5,
+          "position": "absolute",
+          "top": 2,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 23,
+            "width": 24,
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "Comfortaa",
+            "fontSize": 11,
+            "padding": 2,
+          }
+        }
+      >
+        next watering 
+        now
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#E8DFDF",
+        "borderBottomLeftRadius": 10,
+        "borderBottomRightRadius": 10,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 10,
+        "width": 300,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 30,
+            "width": 30,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 30,
+            "width": 32,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.2.16)  11 MAY 2021 00:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.2.16)  9 JUN 2021 01:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -403,7 +403,7 @@ LaTeX Info: Redefining \nameref on input line 38.
 \@outlinefile=\write3
 \openout3 = `DIMA-plants.out'.
 
-<resources/logo_polimi.png, id=64, 748.7975pt x 566.115pt>
+<resources/logo_polimi.png, id=132, 748.7975pt x 566.115pt>
 File: resources/logo_polimi.png Graphic file (type png)
 <use resources/logo_polimi.png>
 Package pdftex.def Info: resources/logo_polimi.png  used on input line 41.
@@ -535,21 +535,241 @@ Underfull \hbox (badness 10000) in paragraph at lines 146--147
 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 151.
-[7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 151.
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--393
+
+ []
+
+[7] [8] [9] [10] [11] [12] [13]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 397.
+
+<resources/SignUpGoogle.png, id=235, 928.46875pt x 1111.15125pt>
+File: resources/SignUpGoogle.png Graphic file (type png)
+<use resources/SignUpGoogle.png>
+Package pdftex.def Info: resources/SignUpGoogle.png  used on input line 402.
+(pdftex.def)             Requested size: 278.54277pt x 333.34795pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 398--403
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 398--403
+
+ []
+
+[14 <./resources/SignUpGoogle.png>]
+<resources/addPlant.png, id=241, 1232.605pt x 1317.92375pt>
+File: resources/addPlant.png Graphic file (type png)
+<use resources/addPlant.png>
+Package pdftex.def Info: resources/addPlant.png  used on input line 409.
+(pdftex.def)             Requested size: 369.78435pt x 395.38017pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 405--410
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 405--410
+
+ []
+
+
+Overfull \hbox (24.78435pt too wide) in paragraph at lines 405--410
+[] 
+ []
+
+[15 <./resources/addPlant.png>]
+<resources/WateringEvent.png, id=247, 440.64626pt x 445.665pt>
+File: resources/WateringEvent.png Graphic file (type png)
+<use resources/WateringEvent.png>
+Package pdftex.def Info: resources/WateringEvent.png  used on input line 416.
+(pdftex.def)             Requested size: 176.25537pt x 178.26283pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 412--417
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 412--417
+
+ []
+
+[16 <./resources/WateringEvent.png>]
+<resources/DeletePlant.png, id=253, 523.9575pt x 607.26875pt>
+File: resources/DeletePlant.png Graphic file (type png)
+<use resources/DeletePlant.png>
+Package pdftex.def Info: resources/DeletePlant.png  used on input line 423.
+(pdftex.def)             Requested size: 209.57928pt x 242.9032pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 419--424
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 419--424
+
+ []
+
+[17 <./resources/DeletePlant.png>]
+<resources/unittest.png, id=259, 280.04625pt x 106.3975pt>
+File: resources/unittest.png Graphic file (type png)
+<use resources/unittest.png>
+Package pdftex.def Info: resources/unittest.png  used on input line 442.
+(pdftex.def)             Requested size: 168.02904pt x 63.83897pt.
+
+Overfull \hbox (25.90907pt too wide) in paragraph at lines 450--463
+ [] 
+ []
+
+[18 <./resources/unittest.png>]
+Overfull \hbox (128.42313pt too wide) in paragraph at lines 467--482
+ [] 
+ []
+
+
+Overfull \hbox (34.78403pt too wide) in paragraph at lines 486--498
+ [] 
+ []
+
+
+Overfull \hbox (97.53412pt too wide) in paragraph at lines 518--530
+ [] 
+ []
+
+[19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 532.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 532.
  (./DIMA-plants.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 151.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 151.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 532.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 532.
 Package rerunfilecheck Info: File `DIMA-plants.out' has not changed.
-(rerunfilecheck)             Checksum: 66A7727544366E02CFAB9253A1ACAD76;973.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 151.
+(rerunfilecheck)             Checksum: 928A39A190D61EBFB3F12D23879E3AB6;2115.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 532.
  ) 
 Here is how much of TeX's memory you used:
- 8069 strings out of 483183
- 118044 string characters out of 5966292
- 377021 words of memory out of 5000000
- 22912 multiletter control sequences out of 15000+600000
+ 8147 strings out of 483183
+ 119500 string characters out of 5966292
+ 414021 words of memory out of 5000000
+ 22955 multiletter control sequences out of 15000+600000
  541229 words of font info for 58 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  34i,8n,36p,956b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -561,10 +781,10 @@ exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on DIMA-plants.pdf (8 pages, 173264 bytes).
+Output written on DIMA-plants.pdf (21 pages, 323986 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
- 24 named destinations out of 1000 (max. 500000)
- 126 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 317 PDF objects out of 1000 (max. 8388607)
+ 271 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
+ 287 words of extra memory for PDF output out of 10000 (max. 10000000)
 

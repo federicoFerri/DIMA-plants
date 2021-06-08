@@ -422,6 +422,111 @@
 	\newline
 	\includegraphics[scale=0.40]{resources/DeletePlant.png}
     
-	
+    \section{Testing}
+    To test our result we decided to start with a black/gray box approach. This is to test as close as possible to what the user sees. In particular we scouted the testing landscape for React Native Expo and we landed short. There few major testing libraries designed specifically for this framework. \\
+    We decided to test a few good candidates for mobile apps such as Appium and Detox both of whom are quite popular online.
+    \subsection{Appium}
+    While trying Appium we found that the architecture is quite interesting, it works like Selenium so a headless WebDriver that performs automated actions programmed by the developer. \\
+    In our case we were quite attracted by the fact that tests could be written in any language of choice. \\
+    While setting up we found that Appium requires an emulator, this puts us in the condition to package the app so adding another layer of complexity and in our opinion a contradiction compared to React Native Expo promises of simplicity. \\
+    We decided to discard this option.
+    \subsection{Detox}
+    While scouting the various testing paradigms Detox came up, it is quite similar to Appium yet easier. In particular it runs natively on React Native so no WebDriver is used. While this is interesting it does not solve our emulator requirement. \\
+    We decided to also discard this option.
+    \subsection{Unit tests}
+    We then decided to switch from black/gray box testing to white box testing. This choice came because we were looking to perform tests without setting up complex environments.
+    \subsubsection{Jest}
+    In particular we decided to use Jest. This tool is used to execute unit tests in the Javascript word. It is also suggested by the official React Native Expo guide so we think its a good choice.\\
+    We wrote 8 unit tests to be performed on basic components and elements of the app. They are quite simple tests designed to only check that the component rendered is what we want.
+    \begin{figure}[H]
+    	\includegraphics[scale=0.6]{resources/unittest.png}
+    \end{figure}
+    The tests are quite fast to run and that don't test advanced functionalities such as API calls and complex screens but they are an effective way to check for basic mistakes while developing other functionalities (regression testing).
+    \subsection{Test Cases}
+    To better complete the testing procedures we decided to perform also some manual test cases. This is designed to be executed by a person.
+    \subsubsection{Sign In}
+    The objective of this test is to check the login procedure through Google or Facebook
+    \begin{center}
+    	\begin{tabular}{ |c|c| } 
+    		\hline
+    		Initial condition & App opened\\
+    		 & Google or Facebook account available on the device\\
+    		\hline
+    		Steps & Tap on Google or Facebook\\
+    		 & Confirmation on Google or Facebook screen of identity sharing\\
+    		\hline
+    		Expected result & The app should navigate to the homepage\\
+    		\hline
+    		Passed & yes\\
+    		\hline
+    	\end{tabular}
+    \end{center}
+	\subsubsection{Add a plant}
+	The objective of this test is to check the plant addition procedure
+	\begin{center}
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Initial condition & App open on the homepage screen\\
+			\hline
+			Steps & Tap on plus sign on the bottom of the screen\\
+			& Insertion of the plant name, selection of the type and taking a picture of the plant\\
+			& Insertion of the Position, Exposition and optionally of the room\\
+			& Insertion of the address or geolocation\\
+			& Tap on the status of the plant right now\\
+			\hline
+			Expected result & The app should go back to the homepage and the newly added plant should be visible\\
+			\hline
+			Passed & yes\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\subsubsection{Visualization of a plant}
+	The objective of this test is to check the plant visualization features
+	\begin{center}
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Initial condition & App open on the homepage screen with at least a plant available\\
+			\hline
+			Steps & Tap on a plant card\\
+			\hline
+			Expected result & The app should navigate to a screen with detailed information\\
+			& about the plant, weather updates and plant history\\
+			\hline
+			Passed & yes\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\subsubsection{Deletion of a plant}
+	The objective of this test is to check the plant deletion feature
+	\begin{center}
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Initial condition & App open on the plant detail screen\\
+			\hline
+			Steps & Tap on the bin icon in the top right of the screen\\
+			\hline
+			Expected result & The app should navigate to the homepage and\\
+			& the plant deleted should not be visible anymore\\
+			\hline
+			Passed & yes\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\subsubsection{Publication of a plant status}
+	The objective of this test is to check the plant statuses and the insertion from the user
+	\begin{center}
+		\begin{tabular}{ |c|c| } 
+			\hline
+			Initial condition & App open on the homepage with at least one plant available\\
+			\hline
+			Steps & Tap on the watering icon of the plant or on the healthy icon or on the dry icon\\
+			\hline
+			Expected result & The app should restart the next watering timer in case of watering,\\ & increase the timespan in case of healthy and decrease it in case of dry status.\\
+			& The reported status should also be available in the plant detail screen history\\
+			\hline
+			Passed & yes\\
+			\hline
+		\end{tabular}
+	\end{center}
 	
 \end{document}

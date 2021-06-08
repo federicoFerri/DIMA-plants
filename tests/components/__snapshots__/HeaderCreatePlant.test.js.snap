@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderCreatePlant /> renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginLeft": 15,
+      "marginRight": 15,
+      "marginTop": 20,
+    }
+  }
+>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 21,
+            "resizeMode": "contain",
+            "width": 20,
+          }
+        }
+      />
+    </View>
+  </RCTSafeAreaView>
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "height": 27,
+            "resizeMode": "contain",
+            "width": 32,
+          }
+        }
+      />
+    </View>
+  </RCTSafeAreaView>
+</RCTSafeAreaView>
+`;

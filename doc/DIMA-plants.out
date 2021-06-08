@@ -13,3 +13,20 @@
 \BOOKMARK [3][-]{subsubsection.2.2.4}{weatherapi.com}{subsection.2.2}% 13
 \BOOKMARK [3][-]{subsubsection.2.2.5}{Notification service}{subsection.2.2}% 14
 \BOOKMARK [1][-]{section.3}{Implementation}{}% 15
+\BOOKMARK [1][-]{section.4}{Use Cases}{}% 16
+\BOOKMARK [1][-]{section.5}{Sequence Diagrams}{}% 17
+\BOOKMARK [2][-]{subsubsection.5.0.1}{Sign up with Google Account}{section.5}% 18
+\BOOKMARK [3][-]{subsubsection.5.0.2}{Add a plant}{subsubsection.5.0.1}% 19
+\BOOKMARK [3][-]{subsubsection.5.0.3}{Watering event}{subsubsection.5.0.1}% 20
+\BOOKMARK [3][-]{subsubsection.5.0.4}{Delete a Plant}{subsubsection.5.0.1}% 21
+\BOOKMARK [1][-]{section.6}{Testing}{}% 22
+\BOOKMARK [2][-]{subsection.6.1}{Appium}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.2}{Detox}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.3}{Unit tests}{section.6}% 25
+\BOOKMARK [3][-]{subsubsection.6.3.1}{Jest}{subsection.6.3}% 26
+\BOOKMARK [2][-]{subsection.6.4}{Test Cases}{section.6}% 27
+\BOOKMARK [3][-]{subsubsection.6.4.1}{Sign In}{subsection.6.4}% 28
+\BOOKMARK [3][-]{subsubsection.6.4.2}{Add a plant}{subsection.6.4}% 29
+\BOOKMARK [3][-]{subsubsection.6.4.3}{Visualization of a plant}{subsection.6.4}% 30
+\BOOKMARK [3][-]{subsubsection.6.4.4}{Deletion of a plant}{subsection.6.4}% 31
+\BOOKMARK [3][-]{subsubsection.6.4.5}{Publication of a plant status}{subsection.6.4}% 32
