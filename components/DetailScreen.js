@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, Alert, FlatList, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, Alert, FlatList, ScrollView, Dimensions} from 'react-native';
 import BackButton from '../buttons/BackButton'
 import DeletePlantButton from '../buttons/DeletePlantButton';
 import WeatherWidget from '../components/WeatherWidget'
@@ -131,7 +131,7 @@ class DetailScreen extends React.Component {
       
 
       return (
-          <ScrollView style={container}>
+          <ScrollView style={container} showsVerticalScrollIndicator={false}>
             <SafeAreaView style={{flex: 1, flexDirection: 'row', justifyContent:'space-between', alignItems: 'center'}}>
               <BackButton onPress={() => this.props.navigation.goBack()}/>
               <WeatherWidget
@@ -150,7 +150,7 @@ class DetailScreen extends React.Component {
             <PlantImage
                 source={{uri: this.state.plant_data.imageUrl}}
             />
-            <SafeAreaView style={{flex: 1,flexDirection: 'column'}}>
+            <SafeAreaView style={{flex: 1,flexDirection: 'column', marginVertical:10}}>
               <Info
                   title={'plant type'}
                   descr={this.state.plant_data.plantType}
@@ -231,9 +231,18 @@ const Event = (props) => (
 )
 
 const PlantImage = (props) => (
-  <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', marginHorizontal: 30,marginVertical: 10}}>
+  <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', marginHorizontal: 70,marginVertical: 10}}>
     <Image 
-      style={stylesImage.stretch}
+      style={{
+        //stylesImage.stretch
+        //width: 300,
+        width: Dimensions.get('window').width*0.85,
+        height: 140,
+        //flexDirection: 'row',
+        //resizeMode: 'stretch',
+        //marginHorizontal: 10,
+        //marginVertical: 10,
+      }}
       source={props.source}
       />
   </SafeAreaView>
@@ -244,11 +253,12 @@ const Info = (props) => (
 <SafeAreaView style={{
   flex: 1,
     
-  padding: 24,
-  paddingTop: 10,
+  //padding: 24,
+  //paddingTop: 10,
   paddingHorizontal: 20,
   backgroundColor: '#fff',
-  marginHorizontal: 5,}}
+  marginHorizontal: 5,
+  marginVertical:5,}}
 >
     <Text style={{fontSize: 12, color: '#000', fontWeight: 'bold', fontFamily:'Comfortaa'}}>{props.title}</Text>
     <Text style={{fontSize: 18, color: '#000', fontFamily:'Comfortaa'}}>{props.descr}</Text>
