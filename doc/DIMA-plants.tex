@@ -20,6 +20,8 @@
 
 \usepackage{hyperref}
 
+\usepackage{listings}
+
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
@@ -27,6 +29,52 @@
 	filecolor=magenta,      
 	urlcolor=cyan,
 }
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+%define Javascript language
+\lstdefinelanguage{JavaScript}{
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, setState, then, const},
+keywordstyle=\color{codepurple}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this, let, await},
+ndkeywordstyle=\color{blue}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{codegreen}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
 
 
 \title{Design and Implementation of Mobile Applications\\plants}
@@ -146,6 +194,86 @@
 	Notifications to the clients are not generated on the client itself in background but are generated and sent remotely. This is because many devices tend to kill or send to deep sleep and application that is not used very often to save on RAM and CPU usage. Such a behaviour would make our service useless due to unreliability. \\\\ We then decided to develop a Google cloud function that runs periodically and checks the Firestore database for upcoming events. If such events are found notifications are sent to the clients using Expo notifications. This is fine for an unpublished application in a public application available on the stores it would be wiser to use a service such as Firebase notifications.\\\\ Moreover inside Firestore as mentioned before is stored the Expo token needed to send such notifications to the device and this token is retrieved and updated on Firestore every time the user opens up the client application.
 	
 	\section{Implementation}
+	
+	\section{External Services and Libraries}
+	\textit{Plants} uses a set of external services and libraries to carry out its objectives. Here we present in detail the services used.
+	
+	\subsection{Firebase}
+	\textit{Plants} uses Firebase services to handle the server and the authentication of the user. Here we show one example of code using the Firebase package. This is the code used on refresh of the HomeScreen to retrieve the updated data of the plants.
+	\begin{lstlisting}[language=JavaScript]
+    onRefresh() {
+    this.setState({isFetching: true});
+    firebase.firestore().collection('plants').where('uid', '==', this.state.user.uid).get().then(snapshot => {
+      const tmpPlants = [];
+      snapshot.forEach(doc => {
+        tmpPlants.push(doc);
+      });
+      this.setState({plants: tmpPlants, isFetching: false});
+    }).catch(err => {
+      console.log('Error getting documents', err);
+    });
+    }
+	\end{lstlisting}
+	\subsection{weatherapi}
+	
+	\textit{Plants} 
+	
+	\begin{lstlisting}[language=JavaScript]
+    //weatherapi request
+    fetch('http://api.weatherapi.com/v1/current.json?key=_KEY_&q='
+    +plantLatidute +','+ plantLongitude + '&aqi=no')
+    .then(response => response.json())
+    .then(responseJson => {
+        this.setState(
+        {
+            icon: responseJson.current.condition.icon,
+            condition_weather: responseJson.current.condition.text,
+            temperature: responseJson.current.temp_c
+        },
+        ...
+        );
+	\end{lstlisting}
+	
+	\subsection{ImagePicker}
+	The app uses the 'expo-image-picker' package to handle the process of taking the photo of the plant. This library permits the user to cut the image after taking it in order to fit the required dimensions.
+	
+	\begin{lstlisting}[language=JavaScript]
+    //launch the camera
+    let pickerResult = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [350, 250],
+        quality: 1,
+      } );
+    if (pickerResult.cancelled === true) {
+        ...
+    }
+    this.setState({ plantImage: pickerResult.uri });
+	\end{lstlisting}
+	
+	\subsection{Location}
+	During the process of adding a new plant, the user is required to add the location of the plant in order to let the app use the data of the weather. 'expo-location' package is used both to handle the geolocalization and the validation of an address inserted by the user.
+	
+	The geolocalization retrieves the last position registered by the phone. This method permits to have a fast and accurate geolocalization, instead of starting to localize the phone when the icon of geolocalization is pressed, which was found to be too slow for the user experience.
+	\begin{lstlisting}[language=JavaScript]
+    //get permission to access map services
+    let permission = await Location.requestPermissionsAsync();
+    if (permission === false) {
+        alert("Permission to access map services is required!");
+        return;
+    }
+    //use last known position of the phone
+    let location = await Location.getLastKnownPositionAsync({});
+    ...
+	\end{lstlisting}
+	
+	The validation of the address added manually by the user is done by using the method 'geocodeAsync', which provides a set of most probable coordinates in descending order, given the name of the location. The app selects the most probable one and shows it to the user, who will decide if the location found is the correct one.
+	\begin{lstlisting}[language=JavaScript]
+    //retrieve most probable positions, given the address inserted
+    let resultLocation = await Location.geocodeAsync(textOfUser);
+    //select coordinates of the most probable location
+    this.setState({ latitude: resultLocation[0].latitude });
+    this.setState({ longitude: resultLocation[0].longitude });
+    \end{lstlisting}
 	
 	\section{Use Cases}
     
