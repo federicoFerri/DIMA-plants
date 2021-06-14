@@ -275,8 +275,11 @@ morestring=[b]"
     this.setState({ longitude: resultLocation[0].longitude });
     \end{lstlisting}
 	
+	\newpage
 	\section{Use Cases}
+	In this section the different ways in which the user can interact with \textit{Plants} are showed. The focus is on the most significant interaction and on the front-end of the application.
     
+    \subsection{Sign up with google account}
     \begin{tabular}{ p{3cm}|p{8cm} }
      &\textbf{Sign up with google account} \\
      \\
@@ -298,6 +301,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Sign up with facebook account}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{Sign up with facebook account} \\
      \\
@@ -319,6 +323,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Login with a google account}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{Login with a google account} \\
      \\
@@ -338,6 +343,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Login with a facebook account}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{Login with a facebook account} \\
      \\
@@ -357,6 +363,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Adding of a new plant}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{The user adds a new plant} \\
      \\
@@ -387,8 +394,9 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Visualization of the details of a plant}
     \begin{tabular}{ p{3cm}|p{8cm} }
-     & \textbf{Visualization of details of a plant} \\
+     & \textbf{Visualization of the details of a plant} \\
      \\
      Precondition & User is on the homepage and has already added the plant \\ 
      \\
@@ -403,8 +411,9 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{"Watering" event}
     \begin{tabular}{ p{3cm}|p{8cm} }
-     & \textbf{"Watering" event of a plant} \\
+     & \textbf{"Watering" event} \\
      \\
      Precondition & User is on the homepage and has already added the plant \\ 
      \\
@@ -419,8 +428,9 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{"Good plant" event}
     \begin{tabular}{ p{3cm}|p{8cm} }
-     & \textbf{"Good plant" event of a plant} \\
+     & \textbf{"Good plant" event} \\
      \\
      Precondition & User is on the homepage and has already added the plant \\ 
      \\
@@ -435,6 +445,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{"Bad plant" event}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{"Bad plant" event of a plant} \\
      \\
@@ -451,6 +462,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Navigation to homepage}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{Go to homepage} \\
      \\
@@ -467,6 +479,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Set up visualization of notifications}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{Set up of visualization of notifications} \\
      \\
@@ -484,6 +497,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Deletion of a plant}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{Delete plant} \\
      \\
@@ -503,6 +517,7 @@ morestring=[b]"
     \newline
     \newline
     \newline
+    \subsection{Logout}
     \begin{tabular}{ p{3cm}|p{8cm} }
      & \textbf{Logout} \\
      \\
@@ -549,6 +564,17 @@ morestring=[b]"
 	\newline
 	\newline
 	\includegraphics[scale=0.40]{resources/DeletePlant.png}
+	
+	\newpage
+	\section{Software System Attributes}
+	\subsection{Reliability and Availability}
+	The app requires an internet connection in order to communicate to the Firebase server. Moreover, a working camera of the smartphone is needed to add new plants. The notification system is handled by Firebase. As a consequence, an internet connection is needed to receive notifications, even if the app is not open on the smartphone. 
+	\subsection{Security}
+	All the data of the user is saved on Firebase, and the communication between the application the the Firebase server use the HTTPS protocol.
+	\subsection{Maintainability}
+	Using the React Native framework, the application can be easily upgraded, since the framework follows the updates of the new versions of Android and iOS.The code of the application is written following the principles of React Native programming with classes. 
+	\subsection{Portability}
+	The React Native framework permits to application to be run on Android and iOS devices. In particular, \textit{Plants} is meant to be used on smartphones, since its objective is to send notification to the user when plants need water. As a consequence, the app is developed to run on Android and iOS smartphones.
     
     \section{Testing}
     To test our result we decided to start with a black/gray box approach. This is to test as close as possible to what the user sees. In particular we scouted the testing landscape for React Native Expo and we landed short. There few major testing libraries designed specifically for this framework. \\
