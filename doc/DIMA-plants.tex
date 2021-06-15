@@ -193,8 +193,6 @@ morestring=[b]"
 	\subsubsection{Notification service}
 	Notifications to the clients are not generated on the client itself in background but are generated and sent remotely. This is because many devices tend to kill or send to deep sleep and application that is not used very often to save on RAM and CPU usage. Such a behaviour would make our service useless due to unreliability. \\\\ We then decided to develop a Google cloud function that runs periodically and checks the Firestore database for upcoming events. If such events are found notifications are sent to the clients using Expo notifications. This is fine for an unpublished application in a public application available on the stores it would be wiser to use a service such as Firebase notifications.\\\\ Moreover inside Firestore as mentioned before is stored the Expo token needed to send such notifications to the device and this token is retrieved and updated on Firestore every time the user opens up the client application.
 	
-	\section{Implementation}
-	
 	\section{External Services and Libraries}
 	\textit{Plants} uses a set of external services and libraries to carry out its objectives. Here we present in detail the services used.
 	
