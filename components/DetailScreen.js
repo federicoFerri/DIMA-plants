@@ -131,7 +131,7 @@ class DetailScreen extends React.Component {
 
       return (
           <ScrollView style={container} showsVerticalScrollIndicator={false}>
-            <SafeAreaView style={{flex: 1, flexDirection: 'row', justifyContent:'space-between', alignItems: 'center'}}>
+            <SafeAreaView style={{flex: 1, flexDirection: 'row', justifyContent:'space-between', alignItems: 'center', marginTop: 15}}>
               <BackButton onPress={() => this.props.navigation.goBack()}/>
               <WeatherWidget
                   icon={this.state.icon}
