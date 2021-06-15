@@ -12,7 +12,7 @@ import Constants from 'expo-constants';
 import * as Font from "expo-font";
 
 
-LogBox.ignoreLogs(['Setting a timer']);
+LogBox.ignoreLogs(['Setting a timer', 'Non-serializable values were found in the navigation state. Check:', 'Warning: Each child in a list should have a unique "key" prop.']);
 
 firebase.initializeApp(firebaseConfig);
 
