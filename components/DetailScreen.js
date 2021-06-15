@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, Alert, FlatList, ScrollView, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, Alert, FlatList, ScrollView, Dimensions, LogBox} from 'react-native';
 import BackButton from '../buttons/BackButton'
 import DeletePlantButton from '../buttons/DeletePlantButton';
 import WeatherWidget from '../components/WeatherWidget'
@@ -11,6 +11,8 @@ import line_timeline from '../assets/timeline_images/line_timeline.png'
 import point_timeline from '../assets/timeline_images/point_timeline.png'
 import {CommonActions} from "@react-navigation/native";
 import * as Location from 'expo-location';
+
+LogBox.ignoreLogs(['requestPermissionsAsync']);
 
 class DetailScreen extends React.Component {
     state = { 
