@@ -98,7 +98,7 @@ class DetailScreen extends React.Component {
     }
 
     createStringEvent(dateEvent){
-      return dateEvent.getDate() + '/' + dateEvent.getMonth() + '/' + dateEvent.getFullYear() + '\n    ' + 
+      return dateEvent.getDate() + '/' + (dateEvent.getMonth() + 1) + '/' + dateEvent.getFullYear() + '\n    ' +
       this.showTwoDigits(dateEvent.getHours()) + ':' + this.showTwoDigits(dateEvent.getMinutes());
     }
 
@@ -107,8 +107,7 @@ class DetailScreen extends React.Component {
       //TODO don't use the params, but the state
       //I use the array in a reverse way with slice(0).reverse()
       let added_buttons_goes_here = this.props.route.params.plant_data.logs.slice(0).reverse().map( (log) => {
-        let dateEvent = new Date(0);
-        dateEvent.setSeconds(log.date.seconds);
+        let dateEvent = log.date.toDate();
         //console.log(dateEvent);
         //console.log(dateEvent.setSeconds(log.date.seconds));
         switch(log.action){
