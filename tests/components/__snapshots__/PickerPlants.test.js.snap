@@ -340,6 +340,7 @@ exports[`<PickerPlants /> renders correctly 1`] = `
               Array [
                 Object {
                   "label": undefined,
+                  "testID": undefined,
                   "textColor": 4286611584,
                   "value": null,
                 },

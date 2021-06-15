@@ -10,7 +10,7 @@ exports[`<HeaderCreatePlant /> renders correctly 1`] = `
       "justifyContent": "space-between",
       "marginLeft": 15,
       "marginRight": 15,
-      "marginTop": 20,
+      "marginTop": 40,
     }
   }
 >
