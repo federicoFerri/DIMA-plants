@@ -147,12 +147,12 @@ class PlantWidget extends React.Component {
                 {/*plant image */}
                 {this.state.opacityPlantImage==='no_color' ?
                   <Image 
-                  style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
+                  style={{width: 300, height: 140, opacity: 0.40, borderTopRightRadius: 10, borderTopLeftRadius: 10}}
                   source={{uri: this.state.imageUrl}}
                   />
                   :
                   <Image 
-                  style={{width: 300, height: 140, opacity: 0.75, borderTopRightRadius: 10, borderTopLeftRadius: 10,}}
+                  style={{width: 300, height: 140, opacity: 0.40, borderTopRightRadius: 10, borderTopLeftRadius: 10,}}
                   source={this.giveColorBackgroundImage()}
                   />
                 }

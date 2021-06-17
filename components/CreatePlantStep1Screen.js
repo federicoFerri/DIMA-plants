@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button, TouchableOpacity, Platform} from 'react-native';
+import { StyleSheet, Text, View, Image, SafeAreaView, TextInput, Button, TouchableOpacity, Platform, ScrollView} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
@@ -85,6 +85,7 @@ class CreatePlantStep1Screen extends React.Component {
     }
     render() {
         return (
+            <ScrollView showsVerticalScrollIndicator={false}>
             <SafeAreaView style={{ flex: 1, flexDirection:'column'}}>
                 <HeaderCreatePlant
                     forwardPress={() => this.toStep2()} 
@@ -114,6 +115,7 @@ class CreatePlantStep1Screen extends React.Component {
                 
                 
             </SafeAreaView>
+            </ScrollView>
         )
     }
 }

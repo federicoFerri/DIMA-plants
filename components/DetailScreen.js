@@ -104,6 +104,20 @@ class DetailScreen extends React.Component {
       this.showTwoDigits(dateEvent.getHours()) + ':' + this.showTwoDigits(dateEvent.getMinutes());
     }
 
+    //return the correct string to show for the exposition
+    getExpositionString(input){
+      switch(input){
+        case 'full_sun': 
+          return 'full sun';
+        case 'part_shade':
+          return 'part shade';
+        case 'full_shade':
+          return 'full shade';
+        default:
+          return 'full sun';
+      }
+    }
+
   
     render() {
       //TODO don't use the params, but the state
@@ -162,7 +176,7 @@ class DetailScreen extends React.Component {
               />
               <Info
                   title={'exposition'}
-                  descr={this.state.plant_data.exposition}
+                  descr={this.getExpositionString(this.state.plant_data.exposition)}
               />
               {this.state.isRoomPresent && //show only if a room was added by the user
               <Info
