@@ -22,6 +22,10 @@
 
 \usepackage{listings}
 
+\usepackage{caption}
+
+\usepackage{subcaption}
+
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
@@ -557,13 +561,93 @@ morestring=[b]"
 	\includegraphics[scale=0.40]{resources/WateringEvent.png}
 	\newpage
 	\subsubsection{Delete a Plant}
-	.
+	The deletion of a plant requires to send a message to the Firebase server, in order to delete the data of the plant
 	\newline
 	\newline
 	\newline
 	\includegraphics[scale=0.40]{resources/DeletePlant.png}
 	
 	\newpage
+	
+	\section{User Interface Design}
+	In this section the interfaces of all the screens of the application are showed.
+	\newline
+    
+    \begin{figure}[h]
+     \centering
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/login.PNG}
+         \caption{Login}
+         \label{fig:screen1}
+     \end{minipage}%
+     \hfill
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/Homescreen.PNG}
+         \caption{Homescreen}
+         \label{fig:screen2}
+     \end{minipage}
+    \end{figure}
+    
+    \clearpage
+    \begin{figure}[h]
+     \centering
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/Details1.PNG}
+         \caption{Detail of a plant}
+     \end{minipage}%
+     \hfill
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/Details_events_2.PNG}
+         \caption{Events}
+     \end{minipage}
+    \end{figure}
+    
+    \clearpage
+    \begin{figure}[h]
+     \centering
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/Profile.PNG}
+         \caption{Profile}
+     \end{minipage}%
+    \end{figure}
+    
+    \clearpage
+    \begin{figure}[h]
+     \centering
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/AddPlant1.PNG}
+         \caption{Add plant 1}
+     \end{minipage}%
+     \hfill
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/AddPlant2.PNG}
+         \caption{Add plant 2}
+     \end{minipage}
+    \end{figure}
+    
+    \clearpage
+    \begin{figure}[h]
+     \centering
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/AddPlant3.PNG}
+         \caption{Add plant 3}
+     \end{minipage}%
+     \hfill
+     \begin{minipage}[h]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{resources/screens/AddPlant4.PNG}
+         \caption{Add plant 4}
+     \end{minipage}
+    \end{figure}
+    \clearpage
 	\section{Software System Attributes}
 	\subsection{Reliability and Availability}
 	The app requires an internet connection in order to communicate to the Firebase server. Moreover, a working camera of the smartphone is needed to add new plants. The notification system is handled by Firebase. As a consequence, an internet connection is needed to receive notifications, even if the app is not open on the smartphone. 
