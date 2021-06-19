@@ -18,6 +18,7 @@ class HomeScreen extends React.Component {
     });
   }
 
+  //navigate to detail screen of a plant selected
   toDetailScreen = (plant) => {
     this.onRefresh();
     this.props.navigation.navigate('Detail', {
@@ -27,6 +28,7 @@ class HomeScreen extends React.Component {
     });
   }
 
+  //handle refresh of the homepage by updating data from Firebase
   onRefresh() {
     this.setState({isFetching: true});
     firebase.firestore().collection('plants').where('uid', '==', this.state.user.uid).get().then(snapshot => {

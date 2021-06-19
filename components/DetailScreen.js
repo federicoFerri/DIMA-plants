@@ -14,6 +14,7 @@ import * as Location from 'expo-location';
 
 LogBox.ignoreLogs(['requestPermissionsAsync']);
 
+//show the deatils of a single plant
 class DetailScreen extends React.Component {
     state = { 
       user: {}, 
@@ -69,6 +70,7 @@ class DetailScreen extends React.Component {
         
     }
 
+    //handle deletion of the plant by sending a message to firebase and navigating to homescreen
     deletePlant = () => {
         firebase.firestore().collection('plants').doc(this.state.plant_id).delete().then(() => {
             this.props.navigation.dispatch(
@@ -80,6 +82,7 @@ class DetailScreen extends React.Component {
         })
     }
 
+    //send an alert to the user to confirm the deletion of the plant
     createMessageDeletePlant = () => {
       Alert.alert(
         "Attention",
@@ -95,10 +98,12 @@ class DetailScreen extends React.Component {
       );
     }
 
+    //write number in 2 digits format
     showTwoDigits(num){
       return (num < 10) ? '0' + num.toString() : num.toString();
     }
 
+    //create string in correct format of the event
     createStringEvent(dateEvent){
       return dateEvent.getDate() + '/' + (dateEvent.getMonth() + 1) + '/' + dateEvent.getFullYear() + '\n    ' +
       this.showTwoDigits(dateEvent.getHours()) + ':' + this.showTwoDigits(dateEvent.getMinutes());
@@ -120,7 +125,6 @@ class DetailScreen extends React.Component {
 
   
     render() {
-      //TODO don't use the params, but the state
       //I use the array in a reverse way with slice(0).reverse()
       let added_buttons_goes_here = this.props.route.params.plant_data.logs.slice(0).reverse().map( (log) => {
         let dateEvent = log.date.toDate();
@@ -245,6 +249,9 @@ const Event = (props) => (
   </SafeAreaView>
 )
 
+{/*props required
+  @source: image of the plant
+*/}
 const PlantImage = (props) => (
   <SafeAreaView style={{justifyContent: 'center', alignItems: 'center', marginHorizontal: 70,marginVertical: 10}}>
     <Image 
@@ -263,7 +270,11 @@ const PlantImage = (props) => (
   </SafeAreaView>
 )
 
-
+{//format of info line in details
+  /*props required
+  @title: title of the info
+  @descr: description/value of the info
+*/}
 const Info = (props) => (
 <SafeAreaView style={{
   flex: 1,
@@ -280,7 +291,7 @@ const Info = (props) => (
   </SafeAreaView>
 );
 
-
+//styles
 const page = StyleSheet.create({
   container: {
     flex: 1,
@@ -299,6 +310,7 @@ const page = StyleSheet.create({
   },
 });
 
+//styles
 const lists = StyleSheet.create({
   listContainer: {
     flex: 1,
@@ -310,24 +322,8 @@ const lists = StyleSheet.create({
   paddingTop: 50,
 });
 
-const stylesImage = StyleSheet.create({
-  flex: 1,
-  container: {
-    paddingTop: 50,
-  },
-  stretch: {
-    width: 300,
-    height: 140,
-    flexDirection: 'row',
-    //resizeMode: 'contain',
-    //marginHorizontal: 10,
-    //marginVertical: 10,
-  },
-});
-
 
 const container = StyleSheet.compose(page.container, lists.listContainer);
-const text = StyleSheet.compose(page.text, lists.listItem);
 
 
 export default DetailScreen;

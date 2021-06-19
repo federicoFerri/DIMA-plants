@@ -7,6 +7,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import DownArrow from '../buttons/DownArrow';
 import PickerPlant from './PickerPlants';
 
+//second screen of the creation of a plant
 class CreatePlantStep2Screen extends React.Component {
     state = {
         plantName: '',
@@ -28,18 +29,22 @@ class CreatePlantStep2Screen extends React.Component {
         //console.log(this.state);
     }
 
+    //handle the selection of the position of the plant, internal or external
     handleExternalInternal = (text) => {
         this.setState({ externalInternal: text })
     }
 
+    //handle the selection of the exposition of the plant
     handleExposition = (text) => {
         this.setState({ exposition: text })
     }
 
+    //handle the insertion of the name of the room
     handleRoomName = (text) => {
         this.setState({ roomName: text })
     }
 
+    //control that all needed data is inserted and navigate to screen 3 of creation of a plant
     toStep3 = () => {
         if(this.state.externalInternal==='' || this.state.exposition===''){
             alert("Insert all required data!");
@@ -59,6 +64,7 @@ class CreatePlantStep2Screen extends React.Component {
         }
         
     }
+    //go back to screen 1 of the creation of the plant
     toStep1 = () => {
         this.props.navigation.navigate('CreateStep1');
     }

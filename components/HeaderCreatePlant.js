@@ -3,7 +3,8 @@ import {Image, Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
 import BackButton from '../buttons/BackButton'
 import ForwardButton from '../buttons/ForwardButton';
 
-{/*props required
+{//header used in creation plant screens
+  /*props required
   @backPress: if back arrow is pressed, it launches an event like TouchableOpacity
   @forwardPress: if forward arrow is pressed, it launches an event like TouchableOpacity
 */}

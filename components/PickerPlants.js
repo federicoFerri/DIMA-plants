@@ -3,6 +3,7 @@ import { SafeAreaView, Platform} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import DownArrow from '../buttons/DownArrow';
 
+//interface that lets you select an object from a list
 //Required props
 //@label : label to show when no item is selected
 //@items : item list of elements that can be selected, with label and value

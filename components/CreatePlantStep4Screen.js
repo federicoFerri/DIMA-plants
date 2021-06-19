@@ -8,6 +8,7 @@ import plant_fine_image from '../assets/button_images/good_plant.png'
 import firebase from "firebase";
 import * as Font from "expo-font";
 
+//Fourth screen of the creation of a plant
 class CreatePlantStep4Screen extends React.Component {
     state = {
         user: {},
@@ -45,6 +46,7 @@ class CreatePlantStep4Screen extends React.Component {
         });
     }
 
+    //handle updload to firebase
     async uploadToFirebase(uri, filename) {
         const response = await fetch(uri);
         const blob = await response.blob();
@@ -53,6 +55,7 @@ class CreatePlantStep4Screen extends React.Component {
         return snapshot.ref.getDownloadURL();
     }
 
+    //create the plant and send data to firebase, then navigate to homescreen
     toEnd = (state) => {
         const filename = this.state.plantImage.substring(this.state.plantImage.lastIndexOf('/') + 1);
         const imageUri = Platform.OS === 'ios' ? this.state.plantImage.replace('file://', '') : this.state.plantImage;
@@ -84,6 +87,7 @@ class CreatePlantStep4Screen extends React.Component {
             });
         });
     }
+    //go back to screen 3
     toStep3 = () => {
         this.props.navigation.navigate('CreateStep3',
         {
@@ -96,9 +100,11 @@ class CreatePlantStep4Screen extends React.Component {
             roomName: this.state.roomName
         });
     }
+    //hangle selection "plant is good" selection
     handlePlantIsGood = () => {
         this.toEnd('good');
     }
+    //handle //plant needs water" selection
     handlePlantIsBad = () => {
         this.toEnd('bad');
     }

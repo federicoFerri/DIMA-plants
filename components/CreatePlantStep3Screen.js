@@ -7,6 +7,7 @@ import * as Location from 'expo-location';
 
 const image_geo_localization = require('../assets/button_images/geo_localization.png');
 
+//Third screen of the creation of a plant
 class CreatePlantStep3Screen extends React.Component {
     state = {
         plantName: '',
@@ -25,9 +26,6 @@ class CreatePlantStep3Screen extends React.Component {
 
     }
 
-    //private variable
-    //loading = false;
-
     componentDidMount() {
         this.setState({
             plantName: this.props.route.params.plantName,
@@ -40,6 +38,7 @@ class CreatePlantStep3Screen extends React.Component {
         });
     }
 
+    //control that all the needed data is inserted and navigate to screen 4
     toStep4 = () => {
         if(this.state.address==='' || this.state.latitude==='' || this.state.longitude===''){
             alert("Insert all required data!");
@@ -61,6 +60,7 @@ class CreatePlantStep3Screen extends React.Component {
         }
         
     }
+    //go back to screen 2
     toStep2 = () => {
         this.props.navigation.navigate('CreateStep2',
         {
@@ -72,6 +72,7 @@ class CreatePlantStep3Screen extends React.Component {
         });
     }
 
+    //handle the manual insertion of the address of the location of the plant
     handleAddress = async (text) => {
         //console.log(text)
         try{
@@ -94,6 +95,7 @@ class CreatePlantStep3Screen extends React.Component {
         
     }
 
+    //handle the geolocalization of the plant
     handleGeoLocalization = async () => {
         try{
             //set loading icon to visible
