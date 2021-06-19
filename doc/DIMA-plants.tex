@@ -574,6 +574,7 @@ morestring=[b]"
 	\newpage
 	
 	\section{User Interface Design}
+	\subsection{Screens}
 	In this section the interfaces of all the screens of the application are showed.
 	\newline
     
@@ -651,7 +652,17 @@ morestring=[b]"
          \caption{Add plant 4}
      \end{minipage}
     \end{figure}
+    
     \clearpage
+    \subsection{Diagram}
+    In this section we show how a user can navigate from screen to screen in the app.
+    \begin{figure}[h]
+     \centering
+     \includegraphics[width=1.1\textwidth]{resources/screens/UserFlow.jpeg}
+    \caption{Diagram}
+    \end{figure}
+    \clearpage
+    
 	\section{Software System Attributes}
 	\subsection{Reliability and Availability}
 	The app requires an internet connection in order to communicate to the remote services. Those services are highly available services such as Firebase, Google Cloud Platform and weatherapi.com. Moreover, a working camera is needed in the procedure to add new plants in the app. This is to better personalize the look and feel of the plant. The notifications are handled by Expo so this service need to be available in order to work. As a consequence, an internet connection is required in order to receive notifications, even if the app is not opened on the smartphone. 
