@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, Button, Switch } from 'react-native';
 import firebase from 'firebase';
 import * as Font from "expo-font";
 
+//Profile screen
 class ProfileScreen extends React.Component {
   state = { user: {}, fontsLoaded: false, disableNotifications: false};
 

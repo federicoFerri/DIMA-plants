@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, SafeAreaView} from 'react-native';
 
+//widget that shows the weather and the temperature of a location
 //Required props
 //@icon : url of the image of the weather condition
 //@condition : string that explains the weather condition

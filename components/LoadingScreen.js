@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, ActivityIndicator } from 'react-native';
 import firebase from 'firebase';
+
+//show activity indicator while waiting for firebase response
 class LoadingScreen extends React.Component {
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {

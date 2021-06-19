@@ -6,6 +6,7 @@ const image_green= require('../assets/green.png');
 const image_blue= require('../assets/blue.png');
 const image_red= require('../assets/red.png');
 
+//show a widget of the plant that permits to create events and to navigate to Detail Screen when clicked
 class PlantWidget extends React.Component {
   millisBetweenUpdates = 1000;
   state = { 
@@ -35,14 +36,17 @@ class PlantWidget extends React.Component {
       clearInterval(this.interval);
   }
 
+  //if the image of the widget is pressed, execute the funcion put in the props "onPress"
   imagePressed = () => () => {
     this.props.onPress()
   }
 
+  //set color above image as transparent
   setOpacityImageToDefault(){
     this.setState({opacityPlantImage: 'no_color'});
   }
 
+  //update the time left value and the colorWaterStatus
   updateStatusOverTime() {
     const expired = ((this.state.timeLeftNextWatering - (this.millisBetweenUpdates/ (1000))) <= 0);
     const diff = (this.millisBetweenUpdates / 1000);
@@ -52,13 +56,13 @@ class PlantWidget extends React.Component {
     });
   }
 
+  //handle "bad plant" event
   badPlantPressed = () => () => {
       const diff = +10;
       firebase.firestore().collection('plants').doc(this.props.plant.id).update({
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'bad'}),
           secondsBetweenWaterings: (this.state.secondsBetweenWaterings - diff > 0 ? this.state.secondsBetweenWaterings - diff : this.state.secondsBetweenWaterings)
       }).then(() => {
-          // TODO: mark opacity with green color for n seconds and update props
           const expired = ((this.state.timeLeftNextWatering - diff) <= 0 );
           this.setState({
             colorWaterStatus: (expired ? 'red' : 'green'),
@@ -70,13 +74,13 @@ class PlantWidget extends React.Component {
       })
   }
 
+  //handle "good plant" event
   goodPlantPressed = () => () => {
       const diff = +10;
       firebase.firestore().collection('plants').doc(this.props.plant.id).update({
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'good'}),
           secondsBetweenWaterings: this.state.secondsBetweenWaterings + diff
       }).then(() => {
-          // TODO: mark opacity with green color for n seconds and update props
           this.setState({
             colorWaterStatus: 'green',
             timeLeftNextWatering: (this.state.timeLeftNextWatering + diff),
@@ -87,12 +91,12 @@ class PlantWidget extends React.Component {
       })
   }
 
+  //handle "watering" event
   wateringPlantPressed = () => () => {
       firebase.firestore().collection('plants').doc(this.props.plant.id).update({
           logs: firebase.firestore.FieldValue.arrayUnion({date: firebase.firestore.Timestamp.now(), action: 'watering'}),
           lastWatering: firebase.firestore.Timestamp.now()
       }).then(() => {
-          // TODO: mark opacity with green color for n seconds and update props
           this.setState({
             colorWaterStatus: 'green',
             timeLeftNextWatering: this.state.secondsBetweenWaterings,
@@ -102,20 +106,8 @@ class PlantWidget extends React.Component {
       })
   }
 
+  //return string in correct format of the time left to next watering
   printTimeLeft(){
-    /*
-    if(this.state.timeLeftNextWatering > 0) {
-      if(this.state.timeLeftNextWatering >= 60){
-        return ('in ' + Math.floor(this.state.timeLeftNextWatering / 60) + ' min');
-      }
-      else{
-        return ('in ' + this.state.timeLeftNextWatering +' seconds');
-      }
-    }
-    else{
-      return ('now');
-    }
-    */
     if(this.state.timeLeftNextWatering > 0) {
       if(this.state.timeLeftNextWatering >= 60){
         return ('in ' + Math.floor(this.state.timeLeftNextWatering / 60) + ' min and '+ (this.state.timeLeftNextWatering % 60) + ' seconds');

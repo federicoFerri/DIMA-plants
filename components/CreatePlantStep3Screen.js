@@ -76,7 +76,7 @@ class CreatePlantStep3Screen extends React.Component {
     handleAddress = async (text) => {
         //console.log(text)
         try{
-            let permissionResult = Location.requestPermissionsAsync();
+            let permissionResult = Location.requestForegroundPermissionsAsync();
         
             if (permissionResult=== false) {
                 alert("Permission to access map services are required!");

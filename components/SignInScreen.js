@@ -20,7 +20,7 @@ import { androidClientId, IOSClientId } from '../config/google.js';
 import { facebookAppId } from '../config/facebook.js';
 export const isAndroid = () => Platform.OS === 'android';
 
-
+//Sign in screen
 class SignInScreen extends React.Component {
   state = { displayName: '', email: '', password: '', errorMessage: '', loading: false };
 
