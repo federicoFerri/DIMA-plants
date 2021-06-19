@@ -100,7 +100,7 @@ class CreatePlantStep3Screen extends React.Component {
         try{
             //set loading icon to visible
             this.setState({loading: true});
-            let permissionResult = await Location.requestPermissionsAsync();
+            let permissionResult = await Location.requestForegroundPermissionsAsync();
         
             if (permissionResult=== false) {
                 alert("Permission to access map services are required!");
