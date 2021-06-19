@@ -654,13 +654,13 @@ morestring=[b]"
     \clearpage
 	\section{Software System Attributes}
 	\subsection{Reliability and Availability}
-	The app requires an internet connection in order to communicate to the Firebase server. Moreover, a working camera of the smartphone is needed to add new plants. The notification system is handled by Firebase. As a consequence, an internet connection is needed to receive notifications, even if the app is not open on the smartphone. 
+	The app requires an internet connection in order to communicate to the remote services. Those services are highly available services such as Firebase, Google Cloud Platform and weatherapi.com. Moreover, a working camera is needed in the procedure to add new plants in the app. This is to better personalize the look and feel of the plant. The notifications are handled by Expo so this service need to be available in order to work. As a consequence, an internet connection is required in order to receive notifications, even if the app is not opened on the smartphone. 
 	\subsection{Security}
 	All the data of the user is saved on Firebase, and the communication between the application the the Firebase server use the HTTPS protocol. Firebase is a a service that follows the EU General Data Protection Regulation (GDPR) and all Firebase services (aside from App Distribution and Firebase App Indexing) have successfully completed the ISO 27001 and SOC 1, SOC 2, and SOC 3 evaluation process. 
 	
 	Firebase also takes care of the encryption of the data, both the user login data and the plants data.
 	\subsection{Maintainability}
-	Using the React Native framework, the application can be easily upgraded, since the framework follows the updates of the new versions of Android and iOS.The code of the application is written following the principles of React Native programming with classes. 
+	Using the React Native framework, the application can be easily upgraded, since the framework follows the updates of the new versions of Android and iOS.The code of the application is written following the principles of React Native programming with a classes approach. 
 	\subsection{Portability}
 	The React Native framework permits to application to be run on Android and iOS devices. In particular, \textit{Plants} is meant to be used on smartphones, since its objective is to send notification to the user when plants need water. As a consequence, the app is developed to run on Android and iOS smartphones.
 	\newpage

@@ -12,31 +12,31 @@
 \BOOKMARK [3][-]{subsubsection.2.2.3}{Database and storage}{subsection.2.2}% 12
 \BOOKMARK [3][-]{subsubsection.2.2.4}{weatherapi.com}{subsection.2.2}% 13
 \BOOKMARK [3][-]{subsubsection.2.2.5}{Notification service}{subsection.2.2}% 14
-\BOOKMARK [1][-]{section.3}{Implementation}{}% 15
-\BOOKMARK [1][-]{section.4}{External Services and Libraries}{}% 16
-\BOOKMARK [2][-]{subsection.4.1}{Firebase}{section.4}% 17
-\BOOKMARK [2][-]{subsection.4.2}{weatherapi}{section.4}% 18
-\BOOKMARK [2][-]{subsection.4.3}{ImagePicker}{section.4}% 19
-\BOOKMARK [2][-]{subsection.4.4}{Location}{section.4}% 20
-\BOOKMARK [1][-]{section.5}{Use Cases}{}% 21
-\BOOKMARK [2][-]{subsection.5.1}{Sign up with google account}{section.5}% 22
-\BOOKMARK [2][-]{subsection.5.2}{Sign up with facebook account}{section.5}% 23
-\BOOKMARK [2][-]{subsection.5.3}{Login with a google account}{section.5}% 24
-\BOOKMARK [2][-]{subsection.5.4}{Login with a facebook account}{section.5}% 25
-\BOOKMARK [2][-]{subsection.5.5}{Adding of a new plant}{section.5}% 26
-\BOOKMARK [2][-]{subsection.5.6}{Visualization of the details of a plant}{section.5}% 27
-\BOOKMARK [2][-]{subsection.5.7}{"Watering" event}{section.5}% 28
-\BOOKMARK [2][-]{subsection.5.8}{"Good plant" event}{section.5}% 29
-\BOOKMARK [2][-]{subsection.5.9}{"Bad plant" event}{section.5}% 30
-\BOOKMARK [2][-]{subsection.5.10}{Navigation to homepage}{section.5}% 31
-\BOOKMARK [2][-]{subsection.5.11}{Set up visualization of notifications}{section.5}% 32
-\BOOKMARK [2][-]{subsection.5.12}{Deletion of a plant}{section.5}% 33
-\BOOKMARK [2][-]{subsection.5.13}{Logout}{section.5}% 34
-\BOOKMARK [1][-]{section.6}{Sequence Diagrams}{}% 35
-\BOOKMARK [2][-]{subsubsection.6.0.1}{Sign up with Google Account}{section.6}% 36
-\BOOKMARK [3][-]{subsubsection.6.0.2}{Add a plant}{subsubsection.6.0.1}% 37
-\BOOKMARK [3][-]{subsubsection.6.0.3}{Watering event}{subsubsection.6.0.1}% 38
-\BOOKMARK [3][-]{subsubsection.6.0.4}{Delete a Plant}{subsubsection.6.0.1}% 39
+\BOOKMARK [1][-]{section.3}{External Services and Libraries}{}% 15
+\BOOKMARK [2][-]{subsection.3.1}{Firebase}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.2}{weatherapi}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.3}{ImagePicker}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.4}{Location}{section.3}% 19
+\BOOKMARK [1][-]{section.4}{Use Cases}{}% 20
+\BOOKMARK [2][-]{subsection.4.1}{Sign up with google account}{section.4}% 21
+\BOOKMARK [2][-]{subsection.4.2}{Sign up with facebook account}{section.4}% 22
+\BOOKMARK [2][-]{subsection.4.3}{Login with a google account}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.4}{Login with a facebook account}{section.4}% 24
+\BOOKMARK [2][-]{subsection.4.5}{Adding of a new plant}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.6}{Visualization of the details of a plant}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.7}{"Watering" event}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.8}{"Good plant" event}{section.4}% 28
+\BOOKMARK [2][-]{subsection.4.9}{"Bad plant" event}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.10}{Navigation to homepage}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.11}{Set up visualization of notifications}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.12}{Deletion of a plant}{section.4}% 32
+\BOOKMARK [2][-]{subsection.4.13}{Logout}{section.4}% 33
+\BOOKMARK [1][-]{section.5}{Sequence Diagrams}{}% 34
+\BOOKMARK [2][-]{subsubsection.5.0.1}{Sign up with Google Account}{section.5}% 35
+\BOOKMARK [3][-]{subsubsection.5.0.2}{Add a plant}{subsubsection.5.0.1}% 36
+\BOOKMARK [3][-]{subsubsection.5.0.3}{Watering event}{subsubsection.5.0.1}% 37
+\BOOKMARK [3][-]{subsubsection.5.0.4}{Delete a Plant}{subsubsection.5.0.1}% 38
+\BOOKMARK [1][-]{section.6}{User Interface Design}{}% 39
 \BOOKMARK [1][-]{section.7}{Software System Attributes}{}% 40
 \BOOKMARK [2][-]{subsection.7.1}{Reliability and Availability}{section.7}% 41
 \BOOKMARK [2][-]{subsection.7.2}{Security}{section.7}% 42
