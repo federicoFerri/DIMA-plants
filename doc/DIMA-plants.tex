@@ -218,7 +218,9 @@ morestring=[b]"
 	\end{lstlisting}
 	\subsection{weatherapi}
 	
-	\textit{Plants} 
+	\textit{Plants} uses the third party service weatherapi to gain information about the weather in the location where the plant is positioned. In specific, we use this service in the front end to get the temperature, the weather condition (sunny, rainy, etc) and a icon that represents it. All this data is used in the Detail page of the plant. 
+	
+	In a complete implementation of the app, the weatherapi services would be used in the backend to calculate the next weathering time of each plant, since the temperature and the weather influence the needs of a plant.
 	
 	\begin{lstlisting}[language=JavaScript]
     //weatherapi request
@@ -540,6 +542,7 @@ morestring=[b]"
 	\section{Sequence Diagrams}
 	In this section we show the sequence diagrams of the most significant user flows.
 	\subsubsection{Sign up with Google Account}
+	Sign up with a Google account requires the app to use the Google services. In order to do this, the app opens a page on the browser and let the user add the data by himself/herself. When the account is validated, the app sends the data to Firebase.
 	The diagram of the Facebook login is similar. Facebook services are used instead of Google services to validate the account.
 	\newline
 	\newline
@@ -547,21 +550,22 @@ morestring=[b]"
 	\includegraphics[scale=0.30]{resources/SignUpGoogle.png}
 	\newpage
 	\subsubsection{Add a plant}
-	In this diagram the "update of the View" response are not included to simplify the diagram.
+	The flow to add a new plant is the longest one in \textit{Plants}. It requires a navigation through four different screens in order to add all the required data. In particular, the user has the possibility to use geolocalization or to add manually the address of the location of the plant. In this diagram the "update of the View" responses are not included to simplify the diagram.
 	\newline
 	\newline
 	\newline
 	\includegraphics[scale=0.30]{resources/addPlant.png}
 	\newpage
 	\subsubsection{Watering event}
-	"Good Plant" and "Bad Plant" have a similar user flow. The difference are the icon pressed, the update of the state and the message sent to Firebase.
+	The events are a core part of \textit{Plants}, since they influence the next time of watering of each plant. When an event happens, the app notifies Firebase and update its on state.
+	"Good Plant" and "Bad Plant" have a similar user flow. The difference are the icon pressed, how the update of the state is done and the type of message sent to Firebase.
 	\newline
 	\newline
 	\newline
 	\includegraphics[scale=0.40]{resources/WateringEvent.png}
 	\newpage
 	\subsubsection{Delete a Plant}
-	The deletion of a plant requires to send a message to the Firebase server, in order to delete the data of the plant
+	The deletion of a plant requires to send a message to the Firebase server, in order to delete the data of the plant. When the plant is deleted, the app navigates to the Homescreen.
 	\newline
 	\newline
 	\newline
@@ -652,7 +656,7 @@ morestring=[b]"
 	\subsection{Reliability and Availability}
 	The app requires an internet connection in order to communicate to the Firebase server. Moreover, a working camera of the smartphone is needed to add new plants. The notification system is handled by Firebase. As a consequence, an internet connection is needed to receive notifications, even if the app is not open on the smartphone. 
 	\subsection{Security}
-	All the data of the user is saved on Firebase, and the communication between the application the the Firebase server use the HTTPS protocol.
+	All the data of the user is saved on Firebase, and the communication between the application the the Firebase server use the HTTPS protocol. 
 	\subsection{Maintainability}
 	Using the React Native framework, the application can be easily upgraded, since the framework follows the updates of the new versions of Android and iOS.The code of the application is written following the principles of React Native programming with classes. 
 	\subsection{Portability}
