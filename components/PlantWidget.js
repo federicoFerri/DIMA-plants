@@ -26,13 +26,12 @@ class PlantWidget extends React.Component {
         timeLeftNextWatering: (expired ? 0 :  diff ),
         secondsBetweenWaterings: this.props.plant.data().secondsBetweenWaterings,
     });
-    // TODO start a recurrent operation (timer) that updates the time left and color of the icon (state)
     //update every 1 second
     this.interval = setInterval(() => this.updateStatusOverTime(), this.millisBetweenUpdates); 
   }
 
   componentWillUnmount() {
-      // TODO: clear the interval
+      //clear the countdowns to free up memory
       clearInterval(this.interval);
   }
 

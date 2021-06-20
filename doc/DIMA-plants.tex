@@ -166,9 +166,10 @@ morestring=[b]"
 	We decided to use as many external services as possible to keep the application codebase lean and to reduce the development effort. \\\\
 	The system architecture consists in the \textbf{client}, the firebase services such as \textbf{Firebase authentication}, \textbf{Firestore} and \textbf{Firebase storage}. The \textbf{notification service} and the \textbf{weatherapi.com} service. Moreover we have some other services we rely upon such as the \textbf{Google authentication}, the \textbf{Facebook authentication} and the \textbf{Google cloud functions}.
 	
+	\includegraphics[width=0.8\textwidth]{resources/plants_arch.png}
 	
 	\subsubsection{Client}
-	The client consists in the React Native application and is the core of the entire project. We decided to use the SDK 40 of React Native because it is a good and stable version of the SDK. \\\\ The biggest choice we made is to use Expo. Expo is a platform that allow to speed up React Native development at the expense of less freedom in terms of functionalities. We analyzed our needs and decided to proceed in using Expo due to the advantages in terms of using a real mobile device for development and being able to run it off real iOS and Android devices without having to deal with platform specific stores. \\\\ We also decided to use an approach based more on classes than function in our React Native codebase because we have often to deal with internal state of the components that compose the screen so the usage of classes is advised.
+	The client consists in the React Native application and is the core of the entire project. We decided to use the SDK 40 of React Native because it is a good and stable version of the SDK. \\\\ The biggest choice we made is to use Expo. Expo is a framework and a platform that allow to speed up React Native development at the expense of less freedom in terms of functionalities. We analyzed our needs and decided to proceed in using Expo due to the advantages in terms of using a real mobile device for development with ease and being able to run it off real iOS and Android devices without having to deal with platform specific stores. \\\\ We also decided to use an approach based more on classes than function in our React Native codebase because we have often to deal with internal state of the components that compose the screen so the usage of classes is advised.
 	
 	For cleanliness we decided to divide the codebase into logic blocks:
 	\begin{itemize}
@@ -658,7 +659,7 @@ morestring=[b]"
     In this section we show how a user can navigate from screen to screen in the app.
     \begin{figure}[h]
      \centering
-     \includegraphics[width=1.1\textwidth]{resources/screens/UserFlow.jpeg}
+     \includegraphics[width=1.1\textwidth]{resources/screens/flow.png}
     \caption{Diagram}
     \end{figure}
     \clearpage

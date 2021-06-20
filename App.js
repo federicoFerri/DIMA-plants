@@ -11,11 +11,13 @@ import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
 import * as Font from "expo-font";
 
-
+//dealing with less relevant logs related to the environment setup
 LogBox.ignoreLogs(['Setting a timer', 'Non-serializable values were found in the navigation state. Check:', 'Warning: Each child in a list should have a unique "key" prop.']);
 
+//initializing firebase using credentials
 firebase.initializeApp(firebaseConfig);
 
+//initial navigation to the auth screen
 const AppContainer = createAppContainer(
     createSwitchNavigator(
         {
@@ -36,6 +38,7 @@ Notifications.setNotificationHandler({
     }),
 });
 
+//main app, on opening it gets the expo notification token and pushes it to firebase firestore for storage and later use
 class Plants extends React.Component {
     state = {fontsLoaded: false};
 
@@ -79,6 +82,7 @@ class Plants extends React.Component {
 
 export default Plants;
 
+//retrieves the expo notification token and sets the style for it
 async function registerForPushNotificationsAsync() {
     let token;
     if (Constants.isDevice) {

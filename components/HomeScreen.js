@@ -5,7 +5,7 @@ import PlantWidget from './PlantWidget'
 import * as Font from "expo-font";
 
 
-
+//render homescreen with fresh data from firebase
 class HomeScreen extends React.Component {
   state = { user: {}, plants: [], isFetching: true};
 

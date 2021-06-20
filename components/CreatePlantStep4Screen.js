@@ -55,7 +55,7 @@ class CreatePlantStep4Screen extends React.Component {
         return snapshot.ref.getDownloadURL();
     }
 
-    //create the plant and send data to firebase, then navigate to homescreen
+    //create the plant by sending data to firebase, then navigate to homescreen. In the meanwhile display and activity indicator
     toEnd = (state) => {
         const filename = this.state.plantImage.substring(this.state.plantImage.lastIndexOf('/') + 1);
         const imageUri = Platform.OS === 'ios' ? this.state.plantImage.replace('file://', '') : this.state.plantImage;
