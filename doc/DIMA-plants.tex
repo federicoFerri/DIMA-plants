@@ -393,7 +393,7 @@ morestring=[b]"
      & 9. User presses the geolocalization button or inserts the address of the plant position manually \\
      & 10. User clicks the forward arrow \\
      & 11. App navigates to "How is your plant now" (step 2) screen \\
-     & 12. User presses the button representing the current status of the plant (good or bad) \\
+     & 12. User presses the button representing the current status of the plant (healthy or dry) \\
      & 13. App processes and sends all the data of the new plant to firebase \\
      & 14. App updates its data from Firebase and navigates to the homescreen \\
      \\
@@ -440,34 +440,34 @@ morestring=[b]"
     \newline
     \newline
     \newline
-    \subsection{"Good plant" event}
+    \subsection{"Healthy plant" event}
     \begin{tabular}{ p{3cm}|p{8cm} }
-     & \textbf{"Good plant" event} \\
+     & \textbf{"Healthy plant" event} \\
      \\
      Precondition & User is on the homepage and has already added the plant \\ 
      \\
      User flow 
-     & 1. User clicks on the "good plant" icon of the widget of the plant \\
+     & 1. User clicks on the "healthy plant" icon of the widget of the plant \\
      & 2. App sends data of the event to firebase and updates the status of the plant \\ 
      \\
-     Postconditions & Plant status is affected by the "good plant" event \\
+     Postconditions & Plant status is affected by the "healthy plant" event \\
      \\
      Exceptions & -\\
     \end{tabular}
     \newline
     \newline
     \newline
-    \subsection{"Bad plant" event}
+    \subsection{"Dry plant" event}
     \begin{tabular}{ p{3cm}|p{8cm} }
-     & \textbf{"Bad plant" event of a plant} \\
+     & \textbf{"Dry plant" event of a plant} \\
      \\
      Precondition & User is on the homepage and has already added the plant \\ 
      \\
      User flow 
-     & 1. User clicks on the "bad plant" icon of the widget of the plant \\
+     & 1. User clicks on the "dry plant" icon of the widget of the plant \\
      & 2. App sends data of the event to firebase and updates the status of the plant \\ 
      \\
-     Postconditions & Plant status is affected by the "bad plant" event \\
+     Postconditions & Plant status is affected by the "dry plant" event \\
      \\
      Exceptions & -\\
     \end{tabular}
@@ -566,7 +566,7 @@ morestring=[b]"
 	\newpage
 	\subsubsection{Watering event}
 	The events are a core part of \textit{Plants}, since they influence the next time of watering of each plant. When an event happens, the app notifies Firebase and update its on state.
-	"Good Plant" and "Bad Plant" have a similar user flow. The difference are the icon pressed, how the update of the state is done and the type of message sent to Firebase.
+	"Healthy Plant" and "Dry Plant" have a similar user flow. The difference are the icon pressed, how the update of the state is done and the type of message sent to Firebase.
 	\newline
 	\newline
 	\newline
